@@ -1,0 +1,146 @@
+<view class="container">
+  <form bindsubmit="formSubmit" bindreset="formReset">
+    <view class="form-group">
+      <view class="form-item">
+        <view class="form-item-label">
+          <text>姓名</text>
+        </view>
+        <view class="form-item-input">
+          <input name="name" maxlength="7" value="{{userInfo.UserName}}" placeholder-class="form-input-placeholder" placeholder="请填写姓名" auto-focus=""/>
+        </view>
+      </view>
+      <view class="form-item form-item-picker">
+        <view class="form-item-label">
+          <text>性别</text>
+        </view>
+        <view class="form-item-input">
+          <picker bindchange="bindSexChange" value="{{sexIndex}}" range="{{sex}}" range-key="{{'UserName'}}">
+            <view class="picker">
+              <text class="form-input-placeholder" wx:if="{{sexIndex==-1}}">
+              请选择性别
+              </text> {{sexIndex==-1?"":sex[sexIndex].UserName}}
+            </view>
+          </picker>
+        </view>
+
+      </view>
+      <view class="form-item form-item-picker">
+        <view class="form-item-label">
+          <text>出生</text>
+        </view>
+        <view class="form-item-input">
+          <picker mode="date" value="{{birthday}}" start="1900-01-01" end="2017-08-30" bindchange="bindDateChange">
+            <view class="picker">
+              {{birthday}}
+            </view>
+          </picker>
+        </view>
+      </view>
+      <view class="form-item">
+        <view class="form-item-label">
+          <text>手机号</text>
+        </view>
+        <view class="form-item-input">
+          <input name="phoneNum" value="{{userInfo.MobilePhone}}" type="number" maxlength="11" placeholder-class="form-input-placeholder" placeholder="请填写手机号" auto-focus=""/>
+        </view>
+      </view>
+      <view class="form-item" wx:if="{{false}}">
+        <view class="form-item-label">
+          <text>验证码</text>
+        </view>
+        <view class="form-item-input">
+          <input type="number" maxlength="6" placeholder-class="form-input-placeholder" placeholder="请填写验证码" auto-focus=""/>
+        </view>
+      </view>
+      <view class="form-item">
+        <view class="form-item-label">
+          <text>身份证号</text>
+        </view>
+        <view class="form-item-input">
+          <input name="idCard" value="{{userInfo.IdCard}}" type='idcard' maxlength="18" placeholder-class="form-input-placeholder" placeholder="请填写身份证号码" auto-focus=""/>
+        </view>
+      </view>
+    </view>
+
+
+
+    <view class="form-group">
+      <view class="form-item form-item-picker">
+        <view class="form-item-label">
+          <text>治疗医院</text>
+        </view>
+        <view class="form-item-input">
+          <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+            <view class="picker">
+              {{multiArray[2][multiIndex[2]]}}
+            </view>
+          </picker>
+        </view>
+      </view>
+      <view class="form-item form-item-picker">
+        <view class="form-item-label">
+          <text>责任医生</text>
+        </view>
+        <view class="form-item-input">
+          <picker bindchange="bindDocterChange" range="{{docter}}" range-key="{{'UserName'}}">
+            <view class="picker">
+              <text class="form-input-placeholder" wx:if="{{docterIndex==-1}}">
+              请选择医生
+              </text> {{docterIndex==-1?"":docter[docterIndex].UserName}}
+            </view>
+          </picker>
+        </view>
+      </view>
+      <view class="form-item form-item-picker">
+        <view class="form-item-label">
+          <text>责任护士</text>
+        </view>
+        <view class="form-item-input">
+          <picker bindchange="bindNurseChange" range="{{nurse}}" range-key="{{'UserName'}}">
+            <view class="picker">
+              <text class="form-input-placeholder" wx:if="{{nurseIndex==-1}}">
+              请选择护士
+              </text> {{nurseIndex==-1?"":nurse[nurseIndex].UserName}}
+            </view>
+          </picker>
+        </view>
+      </view>
+      <view class="form-item">
+        <view class="form-item-label">
+          <text>CKD分期</text>
+        </view>
+        <view class="form-item-input">
+          <picker bindchange="bindCKDChange" range="{{CKD}}" range-key="{{'Name'}}">
+            <view class="picker">
+              <text class="form-input-placeholder" wx:if="{{CKDIndex==-1}}">
+                请选择CKD分期
+              </text> {{CKDIndex==-1?"":CKD[CKDIndex].Name}}
+            </view>
+          </picker>
+        </view>
+      </view>
+      <view class="form-item">
+        <view class="form-item-label">
+          <text>原发病</text>
+        </view>
+        <view class="form-item-input">
+          <picker bindchange="bindDiseaseChange" range="{{disease}}" range-key="{{'Name'}}">
+            <view class="picker">
+              <text class="form-input-placeholder" wx:if="{{diseaseIndex==-1}}">
+                请选择原发病
+              </text> {{diseaseIndex==-1?"":disease[diseaseIndex].Name}}
+            </view>
+          </picker>
+        </view>
+      </view>
+    </view>
+
+    <view class="form-group">
+      <view class="form-row-button">
+        <button class="form-row-button" formType="submit">
+          <text>保存</text>
+        </button>
+      </view>
+    </view>
+  </form>
+</view>

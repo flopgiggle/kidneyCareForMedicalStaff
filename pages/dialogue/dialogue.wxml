@@ -1,0 +1,32 @@
+<!--pages/dialogue/dialogue.wxml-->
+<view class="container">
+  <view class="message-area">
+      <block wx:for="{{allData}}" wx:for-item="item">
+        <view class="diaogue-time-lable">{{item.CreateTime}}</view>
+        <view wx:if="{{item.FromUser == user.Id}}" class="my-message-group">
+          <view class="my-message">
+            {{item.Messge}}
+          </view>
+          <view class="my-icon">
+            <image class="avatar" src="/images/avatar/1.png"></image>
+          </view>
+        </view>
+        <view wx:else="{{item.FromUser == app.globalData.user.Id}}" class="other-message-group">
+          <view class="other-icon">
+            <image wx:if="{{item.UserType == 3}}" class="avatar"  src="/images/avatar/nures.png"></image>
+            <image wx:if="{{item.UserType == 2}}" class="avatar"  src="/images/avatar/doctor.png"></image>
+          </view>
+          <view class="other-message">
+            {{item.Messge}}
+          </view>
+        </view>
+      </block>  
+  </view>
+  
+  
+  <view wx:if="{{false}}" class="post-area">
+    <input class="dialogue-input"></input><view class="dialogue-send">
+      <view>发送</view>
+    </view>
+  </view>
+</view>

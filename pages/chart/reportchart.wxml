@@ -1,0 +1,35 @@
+<view class="container" style="background-color: #ffffff">
+  <view class="list-group">
+    <view class="list-item title" catchtap='viewMoviePostImg' data-src="{{picurl+item.ImageUrl}}">
+      <view class="list-item-info">
+        <text class='text-info'>检查日期</text>
+      </view>
+      <view class="list-item-info">
+        <text class='text-type'>报告类型</text>
+      </view>
+      <view class="list-item-info">
+        <text class='text-type'>查看图片</text>
+      </view>
+    </view>
+    <block wx:for="{{report}}" wx:for-item="item">
+      <view class="list-item" >
+        <view class="list-item-info date">
+          <text class='text-info'>{{item.ReportDate}}</text>
+        </view>
+        <view class="list-item-info">
+          <text class='text-type'>{{item.ReportType}}</text>
+        </view>
+        <view class="list-item-info image">
+          <text wx:if="{{item.ImageUrl}}" catchtap='viewMoviePostImg' data-src="{{picurl+item.ImageUrl}}" class='text-type'>点击查看图片</text>
+          <text wx:else="{{item.ImageUrl}}" class='text-type'>无图片信息</text>
+        </view>
+      </view>
+    </block>
+  </view>
+  <block wx:for="{{result}}" wx:for-item="item">
+    <view class='chart-title' >{{item.Name}}</view>
+    <view  class="chartView">
+      <canvas canvas-id="{{item.DataCode}}" class="canvas" ></canvas>
+    </view>
+  </block>
+</view>

@@ -1,0 +1,47 @@
+<view class="container">
+    <view class="list-group">
+        <view class="list-title">
+            2017-08-30 今天
+        </view>
+        <view class="list-item" bindtap='onRecordTap'>
+            <view class="list-item-info"><text class='text-info'>正常血压 正常血糖</text></view>
+            <view class="list-item-info"><text class='text-type'>自我记录</text> <text class='text-time'>20:05</text></view>
+        </view>
+        <view class="list-item" bindtap='onDialogueTap'>
+            <view class="list-item-info" ><text class='text-info'>医生消息</text></view>
+            <view class="list-item-info"><text class='text-type'>消息</text> <text class='text-time'>20:05</text></view>
+        </view>
+        <view class="list-item" bindtap='onReportTap'>
+            <view class="list-item-info"><text class='text-info'>腹部彩超与记录</text></view>
+            <view  class="list-item-info"><text class='text-type'>检查记录</text> <text class='text-time'>20:05</text></view>
+        </view>
+
+    </view>
+
+    <view class="list-group">
+        <view class="list-title">
+            2017-08-31
+        </view>
+        <view class="list-item" bindtap='onRecordTap'>
+            <view class="list-item-info"><text class='text-info'>血压偏高 血糖偏高</text></view>
+            <view class="list-item-info"><text class='text-type'>自我记录</text> <text class='text-time'>20:05</text></view>
+        </view>
+        <view class="list-item" bindtap='onDialogueTap'>
+            <view class="list-item-info" ><text class='text-info'>医生消息</text></view>
+            <view class="list-item-info"><text class='text-type'>消息</text> <text class='text-time'>20:05</text></view>
+        </view>
+        <view class="list-item" bindtap='onReportTap'>
+            <view class="list-item-info"><text class='text-info'>腹部彩超</text></view>
+            <view  class="list-item-info"><text class='text-type'>检查记录</text> <text class='text-time'>20:05</text></view>
+        </view>
+    </view>
+
+    <view class="add-record">
+        <view class="record-button left-button" bindtap="onAddHospitalRecordTap">
+            <text>+检查记录</text>
+        </view>
+        <view class="record-button right-button" bindtap="onMyselfRecordTap">
+            <text>+自我记录</text>
+        </view>
+    </view>
+</view>
