@@ -13,13 +13,16 @@ Page({
      */
     data: {
         windowWidthdata: 320,
+        patientId: ""
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
+        this.setData({
+            patientId: options.patientId
+        });
     },
 
     /**
@@ -35,10 +38,10 @@ Page({
             console.error('getSystemInfoSync failed!');
         }
         this.setData({
-            windowWidthdata:windowWidth
+            windowWidthdata: windowWidth
         });
 
-       
+
 
     },
 
@@ -46,7 +49,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-        var url = app.globalData.urls.user.recordChart + "7/" + app.globalData.openId;
+        var url = app.globalData.urls.user.getMyRecordHistoryByPatientId + "7/" + this.data.patientId;
         util.http(url,
             res => {
                 //this.setData({
@@ -61,20 +64,20 @@ Page({
                         {
                             name: '收缩压',
                             data: res.Result.SystolicPressure,
-                            format: function(val) {
+                            format: function (val) {
                                 return val; //return val.toFixed(2);
                             }
                         }, {
                             name: '舒张压',
                             data: res.Result.DiastolicPressure,
-                            format: function(val) {
+                            format: function (val) {
                                 return val; //return val.toFixed(2);
                             }
                         }
                     ],
                     yAxis: {
                         title: '血压mmhg',
-                        format: function(val) {
+                        format: function (val) {
                             return val; //return val.toFixed(2);
                         },
                         min: 0
@@ -116,25 +119,25 @@ Page({
                             format: function (val) {
                                 return val;//return val.toFixed(2);
                             }
-                        },{
-                        name: '早餐后',
-                        data: res.Result.BreakfastBloodGlucose,
-                        format: function (val) {
-                            return val;//return val.toFixed(2);
-                        }
-                    }, {
-                        name: '午餐后',
-                        data: res.Result.LunchBloodGlucose,
-                        format: function (val) {
-                            return val;//return val.toFixed(2);
-                        }
-                    }, {
-                        name: '晚餐后',
-                        data: res.Result.DinnerBloodGlucose,
-                        format: function (val) {
-                            return val;//return val.toFixed(2);
-                        }
-                    }, {
+                        }, {
+                            name: '早餐后',
+                            data: res.Result.BreakfastBloodGlucose,
+                            format: function (val) {
+                                return val;//return val.toFixed(2);
+                            }
+                        }, {
+                            name: '午餐后',
+                            data: res.Result.LunchBloodGlucose,
+                            format: function (val) {
+                                return val;//return val.toFixed(2);
+                            }
+                        }, {
+                            name: '晚餐后',
+                            data: res.Result.DinnerBloodGlucose,
+                            format: function (val) {
+                                return val;//return val.toFixed(2);
+                            }
+                        }, {
                             name: '随机',
                             data: res.Result.RandomBloodGlucose,
                             format: function (val) {

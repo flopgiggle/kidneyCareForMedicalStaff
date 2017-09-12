@@ -63,3 +63,7 @@
 .right-disease {
     flex: 1
 }
+
+checkbox-group {
+    width:100%
+}

@@ -1,7 +1,7 @@
 <view class="container">
   <view class="form-group">
     <block wx:for="{{patientList}}" wx:for-item="userInfo">
-      <view class="form-item upload-Item " bindtap="onPatientTap">
+      <view class="form-item upload-Item " data-patient="{{userInfo}}" bindtap="onPatientTap">
         <view class="form-item-input upload-container my-avatar" >
           <image wx:if="{{true}}" class="avatar" src="/images/avatar/1.png"></image>
         </view>

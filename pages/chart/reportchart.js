@@ -17,13 +17,16 @@ Page({
         result: [],
         report: [],
         picurl: app.globalData.picUrl,
+        patientId: ""
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
+        this.setData({
+            patientId: options.patientId
+        });
     },
 
     /**
@@ -39,7 +42,7 @@ Page({
             console.error('getSystemInfoSync failed!');
         }
 
-        var url = app.globalData.urls.user.reportChart + this.data.year + "/" + app.globalData.openId;
+        var url = app.globalData.urls.user.getReportHistoryByPatientId + this.data.year + "/" + this.data.patientId;
         util.http(url,
         res => {
             this.setData({

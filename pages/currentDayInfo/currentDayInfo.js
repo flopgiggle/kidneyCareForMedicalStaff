@@ -19,9 +19,9 @@ Page({
             url: "/pages/register/register"
         });
     },
-    onPatientTap: function(e) {
+    onPatientTap: function (e) {
         wx.navigateTo({
-            url: "/pages/patient/patientDetail"
+            url: "/pages/patient/patientDetail?patientId=" + e.currentTarget.dataset.patient.patientId
         });
     },
     bindDateChange: function (e) {

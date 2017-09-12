@@ -15,20 +15,22 @@
         <text>疾病诊断</text>
       </view>
       <view class="form-item-input ">
-        adfdf adf adf adf asdf addf adf adsdf addf asdf afd
+        <block wx:for="{{patientInfo.disease}}" wx:for-item="item">
+         {{item.DiseaseName}}
+        </block>
       </view>
     </view>
   </view>
   <view class="form-group" >
-    <view class="form-item form-item-picker" >
+    <view class="form-item form-item-picker" bindtap='onRecordTap'>
       <view class="form-item-label">
         <text>记录曲线</text>
       </view>
       <view class="form-item-input">
-        <input placeholder-class="form-input-placeholder" type="number" placeholder="" auto-focus=""/>
+        <input placeholder-class="form-input-placeholder" disable="true" type="number" placeholder="" auto-focus=""/>
       </view>
     </view>
-    <view class="form-item form-item-picker" >
+    <view class="form-item form-item-picker" bindtap='onReportTap'>
       <view class="form-item-label">
         <text>报告记录</text>
       </view>

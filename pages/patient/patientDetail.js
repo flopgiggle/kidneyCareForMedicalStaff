@@ -7,29 +7,44 @@ Page({
      * 页面的初始数据
      */
     data: {
+        patientId :"",
         userInfo: {},
+        patientInfo: {},
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        console.log(111);
+        this.setData({
+            patientId: options.patientId
+        });
+        console.log(this.data.patientId);
     },
     onEvaluateTap: function (e) {
         wx.navigateTo({
             url: "/pages/evaluate/evaluate"
-        })
+        });
     },
     onMessageTap: function (e) {
         wx.navigateTo({
             url: "/pages/dialogue/dialogue"
-        })
+        });
+    },
+    onRecordTap: function(e) {
+        wx.navigateTo({
+            url: "/pages/chart/chart?patientId=" + this.data.patientId
+        });
+    },
+    onReportTap: function (e) {
+        wx.navigateTo({
+            url: "/pages/chart/reportchart?patientId=" + this.data.patientId
+        });
     },
     onDiseaseDiagnosisTap: function (e) {
         wx.navigateTo({
-            url: "/pages/diseaseDiagnosis/diseaseDiagnosis"
-        })
+            url: "/pages/diseaseDiagnosis/diseaseDiagnosis?patientId=" + this.data.patientId
+        });
     },
     onContactUsTap: function (e) {
         wx.navigateTo({
@@ -48,6 +63,17 @@ Page({
      */
     onShow: function () {
         this.setData({ userInfo: app.globalData.user });
+        var url = app.globalData.urls.user.getPatientInfo+"/"+this.data.patientId;
+        util.http(url,
+        res => {
+            //合并收缩压舒张压数据
+            //var recordListGroup = res.Result.MyRecord;
+            var patientInfo = JSON.parse(res.Result);
+            wx.setStorageSync("patientInfo"+this.data.patientId, patientInfo);
+            this.setData({
+                patientInfo: patientInfo
+            });
+        });
     },
 
     /**

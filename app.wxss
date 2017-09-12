@@ -97,6 +97,7 @@ input{
 
 .autoHeight {
     height: auto;
+    min-height:90rpx;
 }
 
 
