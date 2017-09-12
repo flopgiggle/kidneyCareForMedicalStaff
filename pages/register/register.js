@@ -10,13 +10,13 @@ Page({
      */
     data: {
         sex: [{ UserName: '男', Id: '0' }, { UserName: '女', Id: '1' }],
-        docter: [{ UserName: '张医生', Id: '1' }, { UserName: '王医生', Id: '1' }, { UserName: '未收录', Id: '1' }],
-        nurse: [{ UserName: '张护士', Id: '1' }, { UserName: '王护士', Id: '1' }, { UserName: '未收录', Id: '1' }],
+        jobTitle: [{ UserName: '住院医师', Id: '1' }, { UserName: '主治医师', Id: '2' }, { UserName: '副主任医师', Id: '3' }, { UserName: '主任医师', Id: '4' }],
+        duty: [{ UserName: '医生', Id: '2' }, { UserName: '护士', Id: '3' }],
         disease: [{ Name: '肾衰竭', Id: '1' }, { Name: '肾小球肾炎', Id: '2' }],
         CKD: [{ Name: 'I期', Id: '1' }, { Name: 'II期', Id: '2' }, { Name: 'III期', Id: '3' }, { Name: 'IV期', Id: '4' }, { Name: 'V期', Id: '5' }],
         sexIndex: -1,
-        docterIndex: -1,
-        nurseIndex: -1,
+        jobTitleIndex: -1,
+        dutyIndex: -1,
         CKDIndex: -1,
         diseaseIndex: -1,
         birthday: '2017-01-01',
@@ -52,15 +52,15 @@ Page({
             CKDIndex: e.detail.value
         });
     },
-    bindDocterChange: function (e) {
+    bindJobChange: function (e) {
         this.setData({
-            docterIndex: e.detail.value
+            jobTitleIndex: e.detail.value
         });
     },
-    bindNurseChange: function (e) {
+    bindDutyChange: function (e) {
 
         this.setData({
-            nurseIndex: e.detail.value
+            dutyIndex: e.detail.value
         });
     },
     bindSexChange: function (e) {
@@ -173,10 +173,10 @@ Page({
             return;
         }
 
-        if (this.data.docterIndex < 0) {
+        if (this.data.dutyIndex < 0) {
             wx.showModal({
                 title: '提示',
-                content: '请选择医生',
+                content: '请选择职务',
                 success: function (res) {
                     if (res.confirm) {
                         console.log('用户点击确定');
@@ -188,10 +188,10 @@ Page({
             return;
         }
 
-        if (this.data.nurseIndex < 0) {
+        if (this.data.jobTitleIndex < 0) {
             wx.showModal({
                 title: '提示',
-                content: '请选择护士',
+                content: '请选择职称',
                 success: function (res) {
                     if (res.confirm) {
                         console.log('用户点击确定');
@@ -202,45 +202,23 @@ Page({
             });
             return;
         }
-
 
         var postData = {
             UserName: e.detail.value.name,
             MobilePhone: e.detail.value.phoneNum,
-            Birthday: this.data.birthday,
             BelongToHospital: 1,
             Sex: this.data.sex[this.data.sexIndex].Id,
-            UserType: 1,
-            BelongToNurse: this.data.nurse[this.data.nurseIndex].Id,
-            BelongToDoctor: this.data.docter[this.data.docterIndex].Id,
+            UserType: this.data.duty[this.data.dutyIndex].Id,
             IdCard: e.detail.value.idCard,
             OpenId: app.globalData.openId,
-            CKDLeave: this.data.CKD[this.data.CKDIndex].Id,
-            DiseaseType: this.data.disease[this.data.diseaseIndex].Id,
-            //:,
-            //BelongToDoctor:,
+            JobTitle: this.data.jobTitle[this.data.jobTitleIndex].Id
         };
 
 
-        if (postData.MobilePhone.length !== 11) {
+        if (postData.MobilePhone.length > 0 && postData.MobilePhone.length !== 11) {
             wx.showModal({
                 title: '提示',
                 content: '手机号格式不正确',
-                success: function (res) {
-                    if (res.confirm) {
-                        console.log('用户点击确定');
-                    } else if (res.cancel) {
-                        console.log('用户点击取消');
-                    }
-                }
-            });
-            return;
-        }
-
-        if (postData.IdCard.length !== 18) {
-            wx.showModal({
-                title: '提示',
-                content: '身份证号不正确',
                 success: function (res) {
                     if (res.confirm) {
                         console.log('用户点击确定');
@@ -267,18 +245,11 @@ Page({
             return;
         }
 
-
-
-
-
-        util.httpPost(app.globalData.urls.user.update, postData, res => {
+        util.httpPost(app.globalData.urls.user.regist, postData, res => {
             wx.switchTab({
                 url: "/pages/currentDayInfo/currentDayInfo"
             });
         });
-
-
-        //e.detail.value.name;
         //e.detail.value.illInfo;
     },
 
@@ -294,15 +265,15 @@ Page({
      */
     onShow: function () {
 
-        this.setData({
-            sexIndex: this.getIndexValue(app.globalData.user.Sex,this.data.sex),
-            docterIndex: this.getIndexValue(app.globalData.user.Patient.BelongToDoctor,this.data.docter),
-            nurseIndex: this.getIndexValue(app.globalData.user.Patient.BelongToNurse, this.data.nurse),
-            CKDIndex: this.getIndexValue(app.globalData.user.Patient.CKDLeave, this.data.CKD),
-            diseaseIndex: this.getIndexValue(app.globalData.user.Patient.DiseaseType, this.data.disease),
-            birthday: app.globalData.user.Patient.Birthday ? app.globalData.user.Patient.Birthday : '2017-01-01',
-            userInfo: app.globalData.user
-    });
+    //    this.setData({
+    //        sexIndex: this.getIndexValue(app.globalData.user.Sex,this.data.sex),
+    //        docterIndex: this.getIndexValue(app.globalData.user.Patient.BelongToDoctor,this.data.docter),
+    //        nurseIndex: this.getIndexValue(app.globalData.user.Patient.BelongToNurse, this.data.nurse),
+    //        CKDIndex: this.getIndexValue(app.globalData.user.Patient.CKDLeave, this.data.CKD),
+    //        diseaseIndex: this.getIndexValue(app.globalData.user.Patient.DiseaseType, this.data.disease),
+    //        birthday: app.globalData.user.Patient.Birthday ? app.globalData.user.Patient.Birthday : '2017-01-01',
+    //        userInfo: app.globalData.user
+    //});
         
     },
 

@@ -22,9 +22,8 @@
             </view>
           </picker>
         </view>
-
       </view>
-      <view class="form-item form-item-picker">
+      <view class="form-item form-item-picker" wx:if="{{false}}">
         <view class="form-item-label">
           <text>出生</text>
         </view>
@@ -52,12 +51,12 @@
           <input type="number" maxlength="6" placeholder-class="form-input-placeholder" placeholder="请填写验证码" auto-focus=""/>
         </view>
       </view>
-      <view class="form-item">
+      <view class="form-item" wx:if="{{false}}">
         <view class="form-item-label">
           <text>身份证号</text>
         </view>
         <view class="form-item-input">
-          <input name="idCard" value="{{userInfo.IdCard}}" type='idcard' maxlength="18" placeholder-class="form-input-placeholder" placeholder="请填写身份证号码" auto-focus=""/>
+          <input name="idCard"  value="{{userInfo.IdCard}}" type='idcard' maxlength="18" placeholder-class="form-input-placeholder" placeholder="请填写身份证号码" auto-focus=""/>
         </view>
       </view>
     </view>
@@ -79,60 +78,41 @@
       </view>
       <view class="form-item form-item-picker">
         <view class="form-item-label">
-          <text>责任医生</text>
+          <text>职务</text>
         </view>
         <view class="form-item-input">
-          <picker bindchange="bindDocterChange" range="{{docter}}" range-key="{{'UserName'}}">
+          <picker bindchange="bindDutyChange" range="{{duty}}" range-key="{{'UserName'}}">
             <view class="picker">
-              <text class="form-input-placeholder" wx:if="{{docterIndex==-1}}">
-              请选择医生
-              </text> {{docterIndex==-1?"":docter[docterIndex].UserName}}
+              <text class="form-input-placeholder" wx:if="{{dutyIndex==-1}}">
+              请选职务
+              </text> {{dutyIndex==-1?"":duty[dutyIndex].UserName}}
             </view>
           </picker>
         </view>
       </view>
       <view class="form-item form-item-picker">
         <view class="form-item-label">
-          <text>责任护士</text>
+          <text>职称</text>
         </view>
         <view class="form-item-input">
-          <picker bindchange="bindNurseChange" range="{{nurse}}" range-key="{{'UserName'}}">
+          <picker bindchange="bindJobChange" range="{{jobTitle}}" range-key="{{'UserName'}}">
             <view class="picker">
-              <text class="form-input-placeholder" wx:if="{{nurseIndex==-1}}">
-              请选择护士
-              </text> {{nurseIndex==-1?"":nurse[nurseIndex].UserName}}
+              <text class="form-input-placeholder" wx:if="{{jobTitleIndex==-1}}">
+              请选择职称
+              </text> {{jobTitleIndex==-1?"":jobTitle[jobTitleIndex].UserName}}
             </view>
           </picker>
         </view>
       </view>
       <view class="form-item">
         <view class="form-item-label">
-          <text>CKD分期</text>
+          <text>简介</text>
         </view>
         <view class="form-item-input">
-          <picker bindchange="bindCKDChange" range="{{CKD}}" range-key="{{'Name'}}">
-            <view class="picker">
-              <text class="form-input-placeholder" wx:if="{{CKDIndex==-1}}">
-                请选择CKD分期
-              </text> {{CKDIndex==-1?"":CKD[CKDIndex].Name}}
-            </view>
-          </picker>
+          <input name="profile" value="{{userInfo.IdCard}}" type='text' maxlength="50" placeholder-class="form-input-placeholder" placeholder="请填写简介" auto-focus=""/>
         </view>
       </view>
-      <view class="form-item">
-        <view class="form-item-label">
-          <text>原发病</text>
-        </view>
-        <view class="form-item-input">
-          <picker bindchange="bindDiseaseChange" range="{{disease}}" range-key="{{'Name'}}">
-            <view class="picker">
-              <text class="form-input-placeholder" wx:if="{{diseaseIndex==-1}}">
-                请选择原发病
-              </text> {{diseaseIndex==-1?"":disease[diseaseIndex].Name}}
-            </view>
-          </picker>
-        </view>
-      </view>
+
     </view>
 
     <view class="form-group">

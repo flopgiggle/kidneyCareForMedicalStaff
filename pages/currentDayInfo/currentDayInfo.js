@@ -12,10 +12,16 @@ Page({
         myRecord: [],
         myReport: [],
         app: {},
+        patientList:[],
     },
     onGoToBindTap: function(e) {
         wx.navigateTo({
             url: "/pages/register/register"
+        });
+    },
+    onPatientTap: function(e) {
+        wx.navigateTo({
+            url: "/pages/patient/patientDetail"
         });
     },
     bindDateChange: function (e) {
@@ -90,7 +96,7 @@ Page({
 
     wxLoginProcess: function(res) {
         //var url = baseUri + "user/getUserInfo/" +res.code; 
-        var url = app.globalData.urls.user.getUserInfo;
+        var url = app.globalData.urls.user.getUserForMedical;
         var postData= {
             Code: res.code,
             OpenId: app.globalData.openId
@@ -104,7 +110,9 @@ Page({
                 });
                 //判定用户是否已注册,未注册则不能使用该app，需要跳转到注册页面
                 if (app.globalData.user.Status === 0 || app.globalData.user.Status == null) {
-                    
+                    wx.navigateTo({
+                        url: "/pages/register/register"
+                    });
                 } else {
                     //wx.switchTab({
                     //    url: "/pages/currentDayInfo/currentDayInfo"
@@ -113,22 +121,24 @@ Page({
                 }
             });
     },
-
     loadList: function () {
         if (app.globalData.openId==="") {
             console.log("openId获取失败");
             return;
         }
-        var url = app.globalData.urls.user.getCurrentDayInfoList + this.data.searchDate + "/" + app.globalData.openId;
-       util.http(url,
-           res => {
-               //合并收缩压舒张压数据
-               //var recordListGroup = res.Result.MyRecord;
-               this.setData({
-                   myRecord: res.Result.MyRecord,
-                   myReport: res.Result.MyReport
-               });
-           });
+        var url = app.globalData.urls.user.getPatientList;
+        var postData = {
+            UserId: app.globalData.user.Id,
+            UserType: app.globalData.user.UserType
+        }
+        util.httpPost(url, postData,
+            res => {
+                //合并收缩压舒张压数据
+                //var recordListGroup = res.Result.MyRecord;
+                this.setData({
+                    patientList: JSON.parse(res.Result)
+                });
+            });
    },
 
     /**

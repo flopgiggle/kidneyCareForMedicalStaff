@@ -9,7 +9,7 @@ App({
         doubanBase: "https://api.douban.com",
         host: host,
         picUrl: host + "/upload/",
-        openId: "55443234",//12345868889
+        openId: "43343fad",
         patientAlreadyBind:"111",
         user: "",
         urls: {
@@ -19,7 +19,9 @@ App({
                 getCurrentDayInfoList: baseUri + "user/getCurrentDayInfoList/",
                 reportChart: baseUri + "user/getReportHistory/",
                 recordChart: baseUri + "user/getMyRecordHistory/",
-                getUserInfo: baseUri + "user/getUserInfo/", 
+                getUserForMedical: baseUri + "user/getUserForMedical/",
+                getPatientList: baseUri + "user/getPatientList",
+                getPatientInfo: baseUri + "user/getPatientInfo",
             },
             record: {
                 add: baseUri + "record/add",

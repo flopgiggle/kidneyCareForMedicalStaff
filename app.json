@@ -1,13 +1,7 @@
 {
   "pages": [
     "pages/currentDayInfo/currentDayInfo",
-    "pages/welcome/welcome",
     "pages/register/register",
-    "pages/posts/post",
-    "pages/movies/movies",
-    "pages/movies/movie-detail/movie-detail",
-    "pages/posts/post-detail/post-detail",
-    "pages/movies/more-movie/more-movie",
     "pages/chart/chart",
     "pages/chart/reportchart",
     "pages/uploadReport/uploadReport",
@@ -16,7 +10,11 @@
     "pages/consulting/consulting",
     "pages/record/add",
     "pages/dialogue/dialogue",
-    "pages/contactUs/contactUs"
+    "pages/contactUs/contactUs",
+    "pages/patient/patientDetail",
+    "pages/diseaseDiagnosis/diseaseDiagnosis",
+    "pages/evaluate/evaluate",
+    "pages/evaluate/content"
   ],
   "window": {
     "navigationBarBackgroundColor": "#4fc1e9"
