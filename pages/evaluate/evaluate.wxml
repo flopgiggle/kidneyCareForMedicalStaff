@@ -1,0 +1,111 @@
+<view class="container">
+  <form bindsubmit="formSubmit" bindreset="formReset">
+    <view class="form-group">
+      <view class="form-item">
+        <view class="form-item-label">
+          <text>患教日期</text>
+        </view>
+        <view class="form-item-input">
+          <input name="name" maxlength="7" value="{{userInfo.UserName}}" placeholder-class="form-input-placeholder" placeholder="请填写姓名" auto-focus=""/>
+        </view>
+      </view>
+      <view class="form-item form-item-picker">
+        <view class="form-item-label">
+          <text>患教对象</text>
+        </view>
+        <view class="form-item-input">
+          <picker bindchange="bindSexChange" value="{{sexIndex}}" range="{{sex}}" range-key="{{'UserName'}}">
+            <view class="picker">
+              <text class="form-input-placeholder" wx:if="{{sexIndex==-1}}">
+                请选择性别
+              </text> {{sexIndex==-1?"":sex[sexIndex].UserName}}
+            </view>
+          </picker>
+        </view>
+      </view>
+      <view class="form-item form-item-picker" wx:if="{{false}}">
+        <view class="form-item-label">
+          <text></text>
+        </view>
+        <view class="form-item-input">
+          <picker mode="date" value="{{birthday}}" start="1900-01-01" end="2017-08-30" bindchange="bindDateChange">
+            <view class="picker">
+              {{birthday}}
+            </view>
+          </picker>
+        </view>
+      </view>
+      <view class="form-item">
+        <view class="form-item-label">
+          <text>备注</text>
+        </view>
+        <view class="form-item-input">
+          <input name="phoneNum" value="{{userInfo.MobilePhone}}" type="number" maxlength="11" placeholder-class="form-input-placeholder" placeholder="请填写手机号" auto-focus=""/>
+        </view>
+      </view>
+    </view>
+
+
+
+    <view class="form-group">
+      <view class="form-item form-item-picker">
+        <view class="form-item-label">
+          <text>患教方式</text>
+        </view>
+        <view class="form-item-input">
+          <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+            <view class="picker">
+              {{multiArray[2][multiIndex[2]]}}
+            </view>
+          </picker>
+        </view>
+      </view>
+      <view class="form-item form-item-picker" bindtap="onContentTap">
+        <view class="form-item-label">
+          <text>患教内容</text>
+        </view>
+        <view class="form-item-input">
+          <input name="phoneNum" value="{{userInfo.MobilePhone}}" type="number" maxlength="11" placeholder-class="form-input-placeholder" placeholder="请选择患教内容" auto-focus=""/>
+        </view>
+      </view>
+      <view class="form-item form-item-picker">
+        <view class="form-item-label">
+          <text>认知评估</text>
+        </view>
+        <view class="form-item-input">
+          <picker bindchange="bindJobChange" range="{{jobTitle}}" range-key="{{'UserName'}}">
+            <view class="picker">
+              <text class="form-input-placeholder" wx:if="{{jobTitleIndex==-1}}">
+                请选择职称
+              </text> {{jobTitleIndex==-1?"":jobTitle[jobTitleIndex].UserName}}
+            </view>
+          </picker>
+        </view>
+      </view>
+      <view class="form-item form-item-picker">
+        <view class="form-item-label">
+          <text>行为评估</text>
+        </view>
+        <view class="form-item-input">
+          <picker bindchange="bindDutyChange" range="{{duty}}" range-key="{{'UserName'}}">
+            <view class="picker">
+              <text class="form-input-placeholder" wx:if="{{dutyIndex==-1}}">
+                请选职务
+              </text> {{dutyIndex==-1?"":duty[dutyIndex].UserName}}
+            </view>
+          </picker>
+        </view>
+      </view>
+
+
+    </view>
+
+    <view class="form-group">
+      <view class="form-row-button">
+        <button class="form-row-button" formType="submit">
+          <text>保存</text>
+        </button>
+      </view>
+    </view>
+  </form>
+</view>

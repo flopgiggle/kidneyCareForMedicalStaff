@@ -1,0 +1,58 @@
+<view class="container">
+  <view class="form-group">
+    <view class="form-item upload-Item ">
+      <view class="form-item-input upload-container my-avatar" bindtap="chooseImage">
+        <image wx:if="{{true}}" class="avatar" src="/images/avatar/1.png"></image>
+      </view>
+      <view class="my-name">
+        <text>{{userInfo.UserName?userInfo.UserName:""}} {{userInfo.Sex=="0"?"男":"女"}}</text>
+      </view>
+    </view>
+  </view>
+  <view class="form-group">
+    <view class="form-item form-item-picker autoHeight" bindtap='onDiseaseDiagnosisTap'>
+      <view class="form-item-label">
+        <text>疾病诊断</text>
+      </view>
+      <view class="form-item-input ">
+        adfdf adf adf adf asdf addf adf adsdf addf asdf afd
+      </view>
+    </view>
+  </view>
+  <view class="form-group" >
+    <view class="form-item form-item-picker" >
+      <view class="form-item-label">
+        <text>记录曲线</text>
+      </view>
+      <view class="form-item-input">
+        <input placeholder-class="form-input-placeholder" type="number" placeholder="" auto-focus=""/>
+      </view>
+    </view>
+    <view class="form-item form-item-picker" >
+      <view class="form-item-label">
+        <text>报告记录</text>
+      </view>
+      <view class="form-item-input">
+        <input placeholder-class="form-input-placeholder" type="number" placeholder="" auto-focus=""/>
+      </view>
+    </view>
+  </view>
+  <view class="form-group">
+    <view class="form-item form-item-picker" bindtap='onEvaluateTap'>
+      <view class="form-item-label">
+        <text>患教评估</text>
+      </view>
+      <view class="form-item-input ">
+        <input placeholder-class="form-input-placeholder" disabled="true"  auto-focus=""/>
+      </view>
+    </view>
+    <view class="form-item form-item-picker" bindtap='onMessageTap'>
+      <view class="form-item-label">
+        <text>消息记录</text>
+      </view>
+      <view class="form-item-input ">
+        <input placeholder-class="form-input-placeholder" disabled="true"  auto-focus=""/>
+      </view>
+    </view>
+  </view>
+</view>
