@@ -50,3 +50,20 @@ checkbox {
     width: 100%;
     font-size: 33rpx;
 }
+
+.disease-item {
+    flex-direction: row;
+    display: flex;
+}
+
+.left-disease {
+    flex: 1
+}
+
+.right-disease {
+    flex: 1
+}
+
+checkbox-group {
+    width: 100%
+}
