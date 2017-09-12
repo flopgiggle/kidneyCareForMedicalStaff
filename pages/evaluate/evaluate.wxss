@@ -7,3 +7,8 @@ form {
     width: 100%;
     height: 100%;
 }
+
+.form-item {
+    height:auto;
+    min-height:90rpx;
+}

@@ -9,20 +9,23 @@ Page({
      * 页面的初始数据
      */
     data: {
-        sex: [{ UserName: '男', Id: '0' }, { UserName: '女', Id: '1' }],
-        jobTitle: [{ UserName: '住院医师', Id: '1' }, { UserName: '主治医师', Id: '2' }, { UserName: '副主任医师', Id: '3' }, { UserName: '主任医师', Id: '4' }],
+        object: [{ name: '患者本人', Id: '0' }, { name: '患者家属', Id: '1' }],
+        mode: [{ name: '门诊', Id: '1' }, { name: '电话', Id: '2' }, { name: '线上', Id: '3' }, { name: '线下', Id: '4' }],
         duty: [{ UserName: '医生', Id: '2' }, { UserName: '护士', Id: '3' }],
-        disease: [{ Name: '肾衰竭', Id: '1' }, { Name: '肾小球肾炎', Id: '2' }],
-        CKD: [{ Name: 'I期', Id: '1' }, { Name: 'II期', Id: '2' }, { Name: 'III期', Id: '3' }, { Name: 'IV期', Id: '4' }, { Name: 'V期', Id: '5' }],
-        sexIndex: -1,
-        jobTitleIndex: -1,
+        cognition: [{ name: '完全了解能做到', Id: '1' }, { name: '完全了解做不到', Id: '2' }, { name: '部分了解', Id: '3' }, { name: '完全不了解', Id: '4' }],
+        behavior: [{ name: '不愿接受', Id: '1' }, { name: '愿意接受', Id: '2' }, { name: '已改变中', Id: '3' }, { name: '维持持续', Id: '4' }],
+        objectIndex: -1,
+        modeIndex: -1,
         dutyIndex: -1,
-        CKDIndex: -1,
-        diseaseIndex: -1,
+        behaviorIndex: -1,
+        cognitionIndex: -1,
         birthday: '2017-01-01',
         multiArray: [['四川省', '云南省'], ['成都市', '绵阳市', '德阳市', '攀枝花市', '宜宾市'], ['四川大学华西医院', '省医院']],
         multiIndex: [0, 0, 0],
         userInfo: {},
+        patientId:"",
+        date: "2017-09-12",
+        content: ""
     },
     //需要查找原始对象,id,对应的选项索引值
     getIndexValue: function (orgValue, collect) {
@@ -42,24 +45,24 @@ Page({
             return -1;
         }
     },
-    bindDiseaseChange: function (e) {
+    bindCognitionChange: function (e) {
         this.setData({
-            diseaseIndex: e.detail.value
+            cognitionIndex: e.detail.value
         });
     },
     onContentTap: function(e) {
         wx.navigateTo({
-            url: "/pages/evaluate/content"
-        })
+            url: "/pages/evaluate/content?patientId=" + this.data.patientId
+    })
     },
-    bindCKDChange: function (e) {
+    bindBehaviorChange: function (e) {
         this.setData({
-            CKDIndex: e.detail.value
+            behaviorIndex: e.detail.value
         });
     },
-    bindJobChange: function (e) {
+    bindModeChange: function (e) {
         this.setData({
-            jobTitleIndex: e.detail.value
+            modeIndex: e.detail.value
         });
     },
     bindDutyChange: function (e) {
@@ -68,9 +71,9 @@ Page({
             dutyIndex: e.detail.value
         });
     },
-    bindSexChange: function (e) {
+    bindObjectChange: function (e) {
         this.setData({
-            sexIndex: e.detail.value
+            objectIndex: e.detail.value
         });
     },
     bindPickerChange: function (e) {
@@ -82,7 +85,7 @@ Page({
     bindDateChange: function (e) {
         console.log('picker发送选择改变，携带值为', e.detail.value)
         this.setData({
-            birthday: e.detail.value
+            date: e.detail.value
         })
     },
     bindMultiPickerChange: function (e) {
@@ -155,7 +158,9 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
+        this.setData({
+            patientId: options.patientId
+        });
     },
     formSubmit: function (e) {
         console.log('form发生了submit事件，携带数据为：', e.detail.value);
@@ -269,6 +274,12 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
+        var content = "";
+        var checkedList = wx.getStorageSync("contentCheckedList" + this.data.patientId);
+        for (var item of checkedList) {
+            content += item.coursCode + " ";
+        }
+        this.setData({ content: content });
 
         //    this.setData({
         //        sexIndex: this.getIndexValue(app.globalData.user.Sex,this.data.sex),

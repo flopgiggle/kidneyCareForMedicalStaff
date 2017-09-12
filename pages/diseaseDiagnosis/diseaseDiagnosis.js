@@ -65,18 +65,22 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        debugger;
+        
         var allDiease = this.data.disease;
         var patientInfo = wx.getStorageSync("patientInfo" + options.patientId);
         //设置选中的疾病
 
-        for (var item of patientInfo.disease) {
-            for (var dataItem of allDiease) {
+        for (var dataItem of allDiease) {
+            for (var item of patientInfo.disease) {
                 if (item.DiseaseCode == dataItem.diseaseCode) {
                     dataItem.checked = true;
+                    break;;
+                } else {
+                    dataItem.checked = false;
                 }
             }
         }
+
         this.setData({
             patientId: options.patientId,
             patientInfo: patientInfo,
@@ -107,31 +111,36 @@ Page({
         }
         util.httpPost(url,postData,
             res => {
-                wx.navigateTo({
-                    url: "/pages/patient/patientDetail?patientId=" + this.data.patientId
+                wx.navigateBack({
+                    delta: 1
                 });
             });
     },
     yfCheckboxChange: function (e) {
         //var allDisease = e.detail.value;
         ////设置选中的疾病
-        //var allDiease = this.data.disease;
+        var allDiease = this.data.disease;
         //debugger;
-        //for (var item of allDisease) {
-        //    for (var dataItem of allDiease) {
-        //        if (item == dataItem.diseaseCode) {
-        //            dataItem.checked = true;
-        //        } else {
-        //            dataItem.checked = false;
-        //        }
-        //    }
-        //}
+        for (var dataItem of allDiease) {
+            for (var item of e.detail.value) {
+                if (item == dataItem.diseaseCode) {
+                    dataItem.checked = true;
+                    break;;
+                } else {
+                    dataItem.checked = false;
+                }
+            }
+        }
 
+        this.setData({
+            disease: allDiease,
+        });
         wx.setStorageSync("diseaseCheckedList", e.detail.value);
         //this.setData({ checkedList: e.detail.value});
         console.log('checkbox发生change事件，携带value值为：', e.detail.value);
     },
     bindCKDChange: function (e) {
+        debugger;
         this.setData({
             CKDIndex: e.detail.value
         });

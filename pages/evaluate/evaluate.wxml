@@ -6,7 +6,11 @@
           <text>患教日期</text>
         </view>
         <view class="form-item-input">
-          <input name="name" maxlength="7" value="{{userInfo.UserName}}" placeholder-class="form-input-placeholder" placeholder="请填写姓名" auto-focus=""/>
+          <picker mode="date" value="{{date}}" start="1900-01-01" end="2019-08-30" bindchange="bindDateChange">
+            <view class="picker">
+              {{date}}
+            </view>
+          </picker>
         </view>
       </view>
       <view class="form-item form-item-picker">
@@ -14,11 +18,11 @@
           <text>患教对象</text>
         </view>
         <view class="form-item-input">
-          <picker bindchange="bindSexChange" value="{{sexIndex}}" range="{{sex}}" range-key="{{'UserName'}}">
+          <picker bindchange="bindObjectChange" value="{{objectIndex}}" range="{{object}}" range-key="{{'name'}}">
             <view class="picker">
-              <text class="form-input-placeholder" wx:if="{{sexIndex==-1}}">
-                请选择性别
-              </text> {{sexIndex==-1?"":sex[sexIndex].UserName}}
+              <text class="form-input-placeholder" wx:if="{{objectIndex==-1}}">
+                请选择患教对象
+              </text> {{objectIndex==-1?"":object[objectIndex].name}}
             </view>
           </picker>
         </view>
@@ -44,28 +48,28 @@
         </view>
       </view>
     </view>
-
-
-
     <view class="form-group">
       <view class="form-item form-item-picker">
         <view class="form-item-label">
           <text>患教方式</text>
         </view>
         <view class="form-item-input">
-          <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+          <picker bindchange="bindModeChange" value="{{modeIndex}}" range="{{mode}}" range-key="{{'name'}}">
             <view class="picker">
-              {{multiArray[2][multiIndex[2]]}}
+              <text class="form-input-placeholder" wx:if="{{modeIndex==-1}}">
+                请选择患教对象
+              </text> {{modeIndex==-1?"":mode[modeIndex].name}}
             </view>
           </picker>
         </view>
+
       </view>
       <view class="form-item form-item-picker" bindtap="onContentTap">
         <view class="form-item-label">
           <text>患教内容</text>
         </view>
         <view class="form-item-input">
-          <input name="phoneNum" value="{{userInfo.MobilePhone}}" type="number" maxlength="11" placeholder-class="form-input-placeholder" placeholder="请选择患教内容" auto-focus=""/>
+          {{content}}
         </view>
       </view>
       <view class="form-item form-item-picker">
@@ -73,11 +77,11 @@
           <text>认知评估</text>
         </view>
         <view class="form-item-input">
-          <picker bindchange="bindJobChange" range="{{jobTitle}}" range-key="{{'UserName'}}">
+          <picker bindchange="bindCognitionChange" value="{{cognitionIndex}}" range="{{cognition}}" range-key="{{'name'}}">
             <view class="picker">
-              <text class="form-input-placeholder" wx:if="{{jobTitleIndex==-1}}">
-                请选择职称
-              </text> {{jobTitleIndex==-1?"":jobTitle[jobTitleIndex].UserName}}
+              <text class="form-input-placeholder" wx:if="{{cognitionIndex==-1}}">
+                请选择患教对象
+              </text> {{cognitionIndex==-1?"":cognition[cognitionIndex].name}}
             </view>
           </picker>
         </view>
@@ -87,11 +91,11 @@
           <text>行为评估</text>
         </view>
         <view class="form-item-input">
-          <picker bindchange="bindDutyChange" range="{{duty}}" range-key="{{'UserName'}}">
+          <picker bindchange="bindBehaviorChange" value="{{behaviorIndex}}" range="{{behavior}}" range-key="{{'name'}}">
             <view class="picker">
-              <text class="form-input-placeholder" wx:if="{{dutyIndex==-1}}">
-                请选职务
-              </text> {{dutyIndex==-1?"":duty[dutyIndex].UserName}}
+              <text class="form-input-placeholder" wx:if="{{behaviorIndex==-1}}">
+                请选择患教对象
+              </text> {{behaviorIndex==-1?"":behavior[behaviorIndex].name}}
             </view>
           </picker>
         </view>

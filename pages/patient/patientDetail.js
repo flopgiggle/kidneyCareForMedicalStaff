@@ -23,8 +23,8 @@ Page({
     },
     onEvaluateTap: function (e) {
         wx.navigateTo({
-            url: "/pages/evaluate/evaluate"
-        });
+            url: "/pages/evaluate/evaluate?patientId=" + this.data.patientId
+    });
     },
     onMessageTap: function (e) {
         wx.navigateTo({
