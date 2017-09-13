@@ -1,0 +1,62 @@
+<view class="container">
+  <block wx:for="{{patientInfo}}" wx:for-item="item" wx:for-index="idx">
+    <view class="form-group">
+      <view class="form-item">
+        <view class="form-item-label">
+          <text>患教日期</text>
+        </view>
+        <view class="form-item-input">
+          {{item.AttendingDates}}
+        </view>
+      </view>
+      <view class="form-item">
+        <view class="form-item-label">
+          <text>患教对象</text>
+        </view>
+        <view class="form-item-input">
+          {{item.ObjectName}}
+        </view>
+      </view>
+      <view class="form-item">
+        <view class="form-item-label">
+          <text>患教方式</text>
+        </view>
+        <view class="form-item-input">
+          {{item.ModeName}}
+        </view>
+      </view>
+      <view class="form-item">
+        <view class="form-item-label">
+          <text>患教内容</text>
+        </view>
+        <view class="form-item-input">
+          {{item.CoursCode}}
+        </view>
+      </view>
+      <view class="form-item">
+        <view class="form-item-label">
+          <text>认知评估</text>
+        </view>
+        <view class="form-item-input">
+          {{item.CognitionName}}
+        </view>
+      </view>
+      <view class="form-item">
+        <view class="form-item-label">
+          <text>行为评估</text>
+        </view>
+        <view class="form-item-input">
+          {{item.BehaviorName}}
+        </view>
+      </view>
+      <view class="form-item">
+        <view class="form-item-label">
+          <text>备注</text>
+        </view>
+        <view class="form-item-input">
+          {{item.Mark}}
+        </view>
+      </view>
+    </view>
+  </block>
+</view>

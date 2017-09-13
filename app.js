@@ -25,6 +25,8 @@ App({
                 updatePatientDisease: baseUri + "user/updatePatientDisease",
                 getMyRecordHistoryByPatientId: baseUri + "user/getMyRecordHistoryByPatientId/",
                 getReportHistoryByPatientId: baseUri + "user/getReportHistoryByPatientId/",
+                addPatientCourseEvaluate: baseUri + "user/addPatientCourseEvaluate/",
+                getPatientCourseEvaluate: baseUri + "user/getPatientCourseEvaluate/",
             },
             record: {
                 add: baseUri + "record/add",

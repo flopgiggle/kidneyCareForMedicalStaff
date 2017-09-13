@@ -51,6 +51,11 @@ Page({
             url: "/pages/contactUs/contactUs"
         })
     },
+    onEvaluateHitoryTap: function (e) {
+        wx.navigateTo({
+            url: "/pages/evaluate/hitory?patientId=" + this.data.patientId
+        });
+    },
     /**
      * 生命周期函数--监听页面初次渲染完成
      */

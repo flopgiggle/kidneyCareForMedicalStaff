@@ -39,14 +39,7 @@
           </picker>
         </view>
       </view>
-      <view class="form-item">
-        <view class="form-item-label">
-          <text>备注</text>
-        </view>
-        <view class="form-item-input">
-          <input name="phoneNum" value="{{userInfo.MobilePhone}}" type="number" maxlength="11" placeholder-class="form-input-placeholder" placeholder="请填写手机号" auto-focus=""/>
-        </view>
-      </view>
+
     </view>
     <view class="form-group">
       <view class="form-item form-item-picker">
@@ -99,9 +92,17 @@
             </view>
           </picker>
         </view>
+
       </view>
 
-
+      <view class="form-item">
+        <view class="form-item-label">
+          <text>备注</text>
+        </view>
+        <view class="form-item-input">
+          <input name="mark" value="{{userInfo.MobilePhone}}" type="number" maxlength="11" placeholder-class="form-input-placeholder" placeholder="请填写手机号" auto-focus=""/>
+        </view>
+      </view>
     </view>
 
     <view class="form-group">

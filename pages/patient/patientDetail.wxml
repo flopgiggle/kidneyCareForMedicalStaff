@@ -48,6 +48,16 @@
         <input placeholder-class="form-input-placeholder" disabled="true"  auto-focus=""/>
       </view>
     </view>
+    <view class="form-item form-item-picker" bindtap='onEvaluateHitoryTap'>
+      <view class="form-item-label">
+        <text>评估记录</text>
+      </view>
+      <view class="form-item-input ">
+        <input placeholder-class="form-input-placeholder" disabled="true"  auto-focus=""/>
+      </view>
+    </view>
+  </view>
+  <view class="form-group">
     <view class="form-item form-item-picker" bindtap='onMessageTap'>
       <view class="form-item-label">
         <text>消息记录</text>

@@ -14,7 +14,8 @@
     "pages/patient/patientDetail",
     "pages/diseaseDiagnosis/diseaseDiagnosis",
     "pages/evaluate/evaluate",
-    "pages/evaluate/content"
+    "pages/evaluate/content",
+    "pages/evaluate/hitory"
   ],
   "window": {
     "navigationBarBackgroundColor": "#4fc1e9"

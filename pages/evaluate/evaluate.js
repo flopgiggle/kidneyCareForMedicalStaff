@@ -166,12 +166,12 @@ Page({
         console.log('form发生了submit事件，携带数据为：', e.detail.value);
         console.log(e.detail.value.phoneNum);
         //UserName Password UserType BelongToHospital Sex MobilePhone Birthday OpenId Status BelongToNurse BelongToDoctor
+        var checkedList = wx.getStorageSync("contentCheckedList" + this.data.patientId);
 
-
-        if (this.data.sexIndex < 0) {
+        if (this.data.objectIndex < 0) {
             wx.showModal({
                 title: '提示',
-                content: '请选择性别',
+                content: '请选择患教对象',
                 success: function (res) {
                     if (res.confirm) {
                         console.log('用户点击确定');
@@ -183,10 +183,10 @@ Page({
             return;
         }
 
-        if (this.data.dutyIndex < 0) {
+        if (this.data.modeIndex < 0) {
             wx.showModal({
                 title: '提示',
-                content: '请选择职务',
+                content: '请选择患教方式',
                 success: function (res) {
                     if (res.confirm) {
                         console.log('用户点击确定');
@@ -198,10 +198,10 @@ Page({
             return;
         }
 
-        if (this.data.jobTitleIndex < 0) {
+        if (checkedList.length < 0) {
             wx.showModal({
                 title: '提示',
-                content: '请选择职称',
+                content: '请选择患教内容',
                 success: function (res) {
                     if (res.confirm) {
                         console.log('用户点击确定');
@@ -213,51 +213,62 @@ Page({
             return;
         }
 
+
+        if (this.data.cognitionIndex.length < 0) {
+            wx.showModal({
+                title: '提示',
+                content: '请选择认知评估',
+                success: function (res) {
+                    if (res.confirm) {
+                        console.log('用户点击确定');
+                    } else if (res.cancel) {
+                        console.log('用户点击取消');
+                    }
+                }
+            });
+            return;
+        }
+
+        if (this.data.behaviorIndex.length < 0) {
+            wx.showModal({
+                title: '提示',
+                content: '请选择行为评估',
+                success: function (res) {
+                    if (res.confirm) {
+                        console.log('用户点击确定');
+                    } else if (res.cancel) {
+                        console.log('用户点击取消');
+                    }
+                }
+            });
+            return;
+        }
+        var courseInfo = "";
+        var courseName = "";
+        for (var item of checkedList) {
+            courseInfo += item.coursCode + ",";
+            courseName += item.name + ",";
+        }
+        debugger;
         var postData = {
-            UserName: e.detail.value.name,
-            MobilePhone: e.detail.value.phoneNum,
-            BelongToHospital: 1,
-            Sex: this.data.sex[this.data.sexIndex].Id,
-            UserType: this.data.duty[this.data.dutyIndex].Id,
-            IdCard: e.detail.value.idCard,
-            OpenId: app.globalData.openId,
-            JobTitle: this.data.jobTitle[this.data.jobTitleIndex].Id
+            AttendingDates: this.data.date,
+            BehaviorCode: this.data.behavior[this.data.behaviorIndex].Id,
+            BehaviorName: this.data.behavior[this.data.behaviorIndex].name,
+            CognitionCode: this.data.cognition[this.data.cognitionIndex].Id,
+            CognitionName: this.data.cognition[this.data.cognitionIndex].name,
+            CoursCode: courseInfo,
+            CoursName: courseName,
+            Mark: e.detail.value.mark,
+            ModeCode: this.data.mode[this.data.modeIndex].Id,
+            ModeName: this.data.mode[this.data.modeIndex].name,
+            ObjectCode: this.data.object[this.data.objectIndex].Id,
+            ObjectName: this.data.object[this.data.objectIndex].name,
+            PatientId: this.data.patientId
         };
 
-
-        if (postData.MobilePhone.length > 0 && postData.MobilePhone.length !== 11) {
-            wx.showModal({
-                title: '提示',
-                content: '手机号格式不正确',
-                success: function (res) {
-                    if (res.confirm) {
-                        console.log('用户点击确定');
-                    } else if (res.cancel) {
-                        console.log('用户点击取消');
-                    }
-                }
-            });
-            return;
-        }
-
-        if (postData.UserName.length < 2) {
-            wx.showModal({
-                title: '提示',
-                content: '用户名不正确',
-                success: function (res) {
-                    if (res.confirm) {
-                        console.log('用户点击确定');
-                    } else if (res.cancel) {
-                        console.log('用户点击取消');
-                    }
-                }
-            });
-            return;
-        }
-
-        util.httpPost(app.globalData.urls.user.regist, postData, res => {
-            wx.switchTab({
-                url: "/pages/currentDayInfo/currentDayInfo"
+        util.httpPost(app.globalData.urls.user.addPatientCourseEvaluate, postData, res => {
+            wx.navigateBack({
+                delta: 1
             });
         });
         //e.detail.value.illInfo;

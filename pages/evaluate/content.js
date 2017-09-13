@@ -143,7 +143,6 @@ Page({
                 }
             };
         };
-        debugger;
         this.setData({ disease: this.data.disease});
     },
 
