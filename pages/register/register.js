@@ -10,7 +10,8 @@ Page({
      */
     data: {
         sex: [{ UserName: '男', Id: '0' }, { UserName: '女', Id: '1' }],
-        jobTitle: [{ UserName: '住院医师', Id: '1' }, { UserName: '主治医师', Id: '2' }, { UserName: '副主任医师', Id: '3' }, { UserName: '主任医师', Id: '4' }],
+        jobTitle: [{ UserName: '住院医师', Id: '1' }, { UserName: '主治医师', Id: '2' }, { UserName: '副主任医师', Id: '3' }, { UserName: '主任医师', Id: '4' },
+                   { UserName: '初级护士', Id: '10' }, { UserName: '初级护师', Id: '11' }, { UserName: '主管护师', Id: '12' }, { UserName: '副主任护师', Id: '13' }, { UserName: '主任护师', Id: '14' }],
         duty: [{ UserName: '医生', Id: '2' }, { UserName: '护士', Id: '3' }],
         disease: [{ Name: '肾衰竭', Id: '1' }, { Name: '肾小球肾炎', Id: '2' }],
         CKD: [{ Name: 'I期', Id: '1' }, { Name: 'II期', Id: '2' }, { Name: 'III期', Id: '3' }, { Name: 'IV期', Id: '4' }, { Name: 'V期', Id: '5' }],
