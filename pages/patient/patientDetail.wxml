@@ -60,7 +60,7 @@
   <view class="form-group">
     <view class="form-item form-item-picker" bindtap='onMessageTap'>
       <view class="form-item-label">
-        <text>消息记录</text>
+        <text>沟通消息</text>
       </view>
       <view class="form-item-input ">
         <input placeholder-class="form-input-placeholder" disabled="true"  auto-focus=""/>

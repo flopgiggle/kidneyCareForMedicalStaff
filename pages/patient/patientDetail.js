@@ -28,7 +28,7 @@ Page({
     },
     onMessageTap: function (e) {
         wx.navigateTo({
-            url: "/pages/dialogue/dialogue"
+            url: "/pages/dialogue/dialogue?patientId=" + this.data.patientId
         });
     },
     onRecordTap: function(e) {

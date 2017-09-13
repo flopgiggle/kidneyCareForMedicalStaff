@@ -8,14 +8,18 @@ Page({
      */
     data: {
         allData: [],
-        user:{},
+        user: {},
+        patientId: "",
+        message:"",
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+      this.setData({
+          patientId: options.patientId,
+      });
   },
 
   /**
@@ -86,5 +90,45 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+  formSubmite: function (e) {
+      if (e.detail.value.message < 2) {
+          wx.showModal({
+              title: '提示',
+              content: '消息发送不能少于2个字符',
+              success: function (res) {
+                  if (res.confirm) {
+                      console.log('用户点击确定');
+                  } else if (res.cancel) {
+                      console.log('用户点击取消');
+                  }
+              }
+          });
+          return;
+      }
+
+      var postData = {
+          Message: e.detail.value.message,
+          FromUser: app.globalData.user.Id,
+          ToUser: this.data.patientId
+      };
+
+      util.httpPost(app.globalData.urls.message.sendMessage, postData, res => {
+          wx.showModal({
+              title: '提示',
+              content: '提交成功',
+              success: res => {
+                  if (res.confirm) {
+                      console.log('用户点击确定');
+                  } else if (res.cancel) {
+                      console.log('用户点击取消');
+                  }
+                  this.setData({message:""});
+                  this.loadList();
+              }
+          });
+
+
+      });
   }
 })

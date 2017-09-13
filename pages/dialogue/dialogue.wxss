@@ -87,7 +87,6 @@
     height: 60rpx;
     justify-content: center;
     align-items: center;
-    display:flex;
     color:white;
 }
 .diaogue-time-lable {
@@ -104,3 +103,29 @@
     border-bottom: 1px solid #4fc1e9;
     margin-right:20rpx;
 }
+
+form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 100%;
+    align-items: flex-start;
+    margin: 10rpx 0 10rpx 0;
+}
+
+.form-row-button {
+    height:60rpx;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #4fc1e9;
+    align-items: center;
+    font-size: 30rpx;
+    color: #ffffff;
+    border:none;
+}
+
+
