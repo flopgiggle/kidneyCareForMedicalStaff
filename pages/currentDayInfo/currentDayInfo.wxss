@@ -38,4 +38,15 @@
     width: 40rpx !important;
 }
 
+.name {
+    width:100rpx;
+}
+
+.fisrtRow {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    flex-direction:row;
+}
+
 

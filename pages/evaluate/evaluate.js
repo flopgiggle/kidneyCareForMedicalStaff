@@ -249,7 +249,6 @@ Page({
             courseInfo += item.coursCode + ",";
             courseName += item.name + ",";
         }
-        debugger;
         var postData = {
             AttendingDates: this.data.date,
             BehaviorCode: this.data.behavior[this.data.behaviorIndex].Id,
@@ -267,6 +266,8 @@ Page({
         };
 
         util.httpPost(app.globalData.urls.user.addPatientCourseEvaluate, postData, res => {
+            //清除患教内容
+            wx.removeStorageSync("contentCheckedList" + this.data.patientId);
             wx.navigateBack({
                 delta: 1
             });

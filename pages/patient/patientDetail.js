@@ -19,6 +19,7 @@ Page({
         this.setData({
             patientId: options.patientId
         });
+        wx.setStorageSync("newpatient" + this.data.patientId, false);
         console.log(this.data.patientId);
     },
     onEvaluateTap: function (e) {

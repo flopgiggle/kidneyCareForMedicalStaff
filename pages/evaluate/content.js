@@ -66,7 +66,6 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        //debugger;
         //var allDiease = this.data.disease;
         //var patientInfo = wx.getStorageSync("patientInfo" + options.patientId);
         ////设置选中的疾病
@@ -91,7 +90,6 @@ Page({
         //var allDisease = e.detail.value;
         ////设置选中的疾病
         //var allDiease = this.data.disease;
-        //debugger;
         //for (var item of allDisease) {
         //    for (var dataItem of allDiease) {
         //        if (item == dataItem.diseaseCode) {

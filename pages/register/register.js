@@ -203,6 +203,15 @@ Page({
             return;
         }
 
+        var userId = "";
+        var url = "";
+        if (app.globalData.user && app.globalData.user.Id) {
+            userId = app.globalData.user.Id;
+            url = app.globalData.urls.user.updateProfile;
+        } else {
+            url = app.globalData.urls.user.regist;
+        }
+
         var postData = {
             UserName: e.detail.value.name,
             MobilePhone: e.detail.value.phoneNum,
@@ -211,7 +220,8 @@ Page({
             UserType: this.data.duty[this.data.dutyIndex].Id,
             IdCard: e.detail.value.idCard,
             OpenId: app.globalData.openId,
-            JobTitle: this.data.jobTitle[this.data.jobTitleIndex].Id
+            JobTitle: this.data.jobTitle[this.data.jobTitleIndex].Id,
+            UserId: userId
         };
 
 
@@ -245,7 +255,7 @@ Page({
             return;
         }
 
-        util.httpPost(app.globalData.urls.user.regist, postData, res => {
+        util.httpPost(url, postData, res => {
             wx.switchTab({
                 url: "/pages/currentDayInfo/currentDayInfo"
             });
@@ -264,16 +274,20 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
+        if (app.globalData.user.userType == 2) {
 
-    //    this.setData({
-    //        sexIndex: this.getIndexValue(app.globalData.user.Sex,this.data.sex),
-    //        docterIndex: this.getIndexValue(app.globalData.user.Patient.BelongToDoctor,this.data.docter),
-    //        nurseIndex: this.getIndexValue(app.globalData.user.Patient.BelongToNurse, this.data.nurse),
-    //        CKDIndex: this.getIndexValue(app.globalData.user.Patient.CKDLeave, this.data.CKD),
-    //        diseaseIndex: this.getIndexValue(app.globalData.user.Patient.DiseaseType, this.data.disease),
-    //        birthday: app.globalData.user.Patient.Birthday ? app.globalData.user.Patient.Birthday : '2017-01-01',
-    //        userInfo: app.globalData.user
-    //});
+        }
+
+        if (app.globalData.user.userType == 3) {
+
+        }
+        this.setData({
+                userInfo: app.globalData.user,
+                sexIndex: this.getIndexValue(app.globalData.user.Sex, this.data.sex),
+                birthday: app.globalData.user.Birthday ? app.globalData.user.Birthday : '2017-01-01',
+                dutyIndex: this.getIndexValue(app.globalData.user.UserType, this.data.duty),
+                jobTitleIndex: this.getIndexValue(app.globalData.user.JobTitle, this.data.jobTitle)
+        });
         
     },
 

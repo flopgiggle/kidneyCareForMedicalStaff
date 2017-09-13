@@ -27,7 +27,7 @@
         <text>记录曲线</text>
       </view>
       <view class="form-item-input">
-        <input placeholder-class="form-input-placeholder" disable="true" type="number" placeholder="" auto-focus=""/>
+       
       </view>
     </view>
     <view class="form-item form-item-picker" bindtap='onReportTap'>
@@ -35,7 +35,7 @@
         <text>报告记录</text>
       </view>
       <view class="form-item-input">
-        <input placeholder-class="form-input-placeholder" type="number" placeholder="" auto-focus=""/>
+       
       </view>
     </view>
   </view>
@@ -45,7 +45,7 @@
         <text>患教评估</text>
       </view>
       <view class="form-item-input ">
-        <input placeholder-class="form-input-placeholder" disabled="true"  auto-focus=""/>
+       
       </view>
     </view>
     <view class="form-item form-item-picker" bindtap='onEvaluateHitoryTap'>
@@ -53,7 +53,7 @@
         <text>评估记录</text>
       </view>
       <view class="form-item-input ">
-        <input placeholder-class="form-input-placeholder" disabled="true"  auto-focus=""/>
+       
       </view>
     </view>
   </view>
@@ -63,7 +63,7 @@
         <text>沟通消息</text>
       </view>
       <view class="form-item-input ">
-        <input placeholder-class="form-input-placeholder" disabled="true"  auto-focus=""/>
+      
       </view>
     </view>
   </view>

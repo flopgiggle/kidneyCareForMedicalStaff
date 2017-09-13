@@ -6,9 +6,22 @@
           <image wx:if="{{true}}" class="avatar" src="/images/avatar/1.png"></image>
         </view>
         <view class="my-name">
-          <text>{{userInfo.UserName?userInfo.UserName:""}} {{userInfo.Sex=="0"?"男":"女"}}</text>
-          <image wx:if="{{userInfo.Sex=='0'}}" class="image-sex" src="/images/boy.png"></image>
-          <image wx:else="{{userInfo.Sex=='0'}}" class="image-sex" src="/images/girl.png"></image>
+          <view class="fisrtRow">
+            <view style="width:240rpx">
+              <text>{{userInfo.UserName?userInfo.UserName:""}} {{userInfo.Sex=="0"?"男":"女"}}</text>
+              <image wx:if="{{userInfo.Sex=='0'}}" class="image-sex" src="/images/boy.png"></image>
+              <image wx:else="{{userInfo.Sex=='0'}}" class="image-sex" src="/images/girl.png"></image>
+            </view>
+
+            <text>CKD三期</text>
+          </view>
+          <view>
+
+          </view>
+          <view>
+            <text>{{(userInfo.Birthday) }}</text> <text wx:if="{{userInfo.IsNew}}" style="color:red">  new</text>
+          </view>
+
         </view>
       </view>
     </block>

@@ -120,7 +120,6 @@ Page({
         //var allDisease = e.detail.value;
         ////设置选中的疾病
         var allDiease = this.data.disease;
-        //debugger;
         for (var dataItem of allDiease) {
             for (var item of e.detail.value) {
                 if (item == dataItem.diseaseCode) {
@@ -140,7 +139,6 @@ Page({
         console.log('checkbox发生change事件，携带value值为：', e.detail.value);
     },
     bindCKDChange: function (e) {
-        debugger;
         this.setData({
             CKDIndex: e.detail.value
         });

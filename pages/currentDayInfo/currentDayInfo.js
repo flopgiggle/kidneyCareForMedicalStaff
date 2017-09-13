@@ -12,7 +12,8 @@ Page({
         myRecord: [],
         myReport: [],
         app: {},
-        patientList:[],
+        patientList: [],
+        currentYear: new Date().getFullYear()
     },
     onGoToBindTap: function(e) {
         wx.navigateTo({
@@ -135,8 +136,17 @@ Page({
             res => {
                 //合并收缩压舒张压数据
                 //var recordListGroup = res.Result.MyRecord;
+                var result = JSON.parse(res.Result);
+                for (var oneItem of result) {
+                    if (wx.getStorageSync("newpatient" + oneItem.patientId) !== false) {
+                        oneItem.IsNew = true;
+                    } else {
+                        oneItem.IsNew = false;
+                    }
+                }
+
                 this.setData({
-                    patientList: JSON.parse(res.Result)
+                    patientList: result
                 });
             });
    },
