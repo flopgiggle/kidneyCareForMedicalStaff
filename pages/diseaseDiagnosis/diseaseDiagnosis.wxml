@@ -2,7 +2,7 @@
   <checkbox-group bindchange="yfCheckboxChange">
   <view class="form-group">
     <view class="form-item ckd form-item-picker">
-      <view class="form-item-label ">
+      <view class="form-item-label ckdfq">
         <text>CKD分期</text>
       </view>
       <view class="form-item-input">
@@ -75,14 +75,14 @@
       </view>
     </view>
   </view>
-  <view class="form-group autoHeight">
-    <view class="form-item"  >
+  <view class="form-group ">
+    <view class="form-item autoHeight"  >
       <view class="form-item-label">
         <text>其他</text>
       </view>
       <view class="form-item-input ">
         <block wx:for="{{disease}}" wx:for-item="item" wx:for-index="idx">
-          <view wx:if="{{ idx%2 == 0 && disease[idx].type=='other' }}" class="disease-item">
+          <view wx:if="{{ disease[idx].type=='other' }}" class="disease-item">
             <view class="left-disease">
               <checkbox value="{{disease[idx].diseaseCode}}" checked="{{disease[idx].checked}}"/>{{disease[idx].name}}
             </view>

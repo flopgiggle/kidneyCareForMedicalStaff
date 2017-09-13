@@ -67,3 +67,7 @@
 checkbox-group {
     width:100%
 }
+
+.ckdfq {
+    width:180rpx;
+}

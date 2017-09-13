@@ -13,7 +13,7 @@
               <image wx:else="{{userInfo.Sex=='0'}}" class="image-sex" src="/images/girl.png"></image>
             </view>
 
-            <text>CKD三期</text>
+            <text>CKD{{" "+userInfo.CKDLeave+" "}}期</text>
           </view>
           <view>
 

@@ -138,6 +138,7 @@ Page({
                 //var recordListGroup = res.Result.MyRecord;
                 var result = JSON.parse(res.Result);
                 for (var oneItem of result) {
+                    debugger;
                     if (wx.getStorageSync("newpatient" + oneItem.patientId) !== false) {
                         oneItem.IsNew = true;
                     } else {

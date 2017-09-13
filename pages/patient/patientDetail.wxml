@@ -9,7 +9,9 @@
       </view>
     </view>
   </view>
+  
   <view class="form-group">
+    
     <view class="form-item form-item-picker autoHeight" bindtap='onDiseaseDiagnosisTap'>
       <view class="form-item-label">
         <text>疾病诊断</text>
