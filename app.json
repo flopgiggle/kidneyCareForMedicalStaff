@@ -4,18 +4,15 @@
     "pages/register/register",
     "pages/chart/chart",
     "pages/chart/reportchart",
-    "pages/uploadReport/uploadReport",
-    "pages/infolist/infolist",
     "pages/my/my",
-    "pages/consulting/consulting",
-    "pages/record/add",
     "pages/dialogue/dialogue",
     "pages/contactUs/contactUs",
     "pages/patient/patientDetail",
     "pages/diseaseDiagnosis/diseaseDiagnosis",
     "pages/evaluate/evaluate",
     "pages/evaluate/content",
-    "pages/evaluate/hitory"
+    "pages/evaluate/hitory",
+    "pages/patient/exceptInfo"
   ],
   "window": {
     "navigationBarBackgroundColor": "#4fc1e9"

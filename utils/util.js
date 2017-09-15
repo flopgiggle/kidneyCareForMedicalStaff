@@ -12,12 +12,13 @@ function convertToStarsArray(stars) {
     return array;
 }
 
-function http(url, callBack) {
-    wx.showToast({
-        title: '',
-        icon: 'loading',
-        duration: 100000
-    });
+function http(url, callBack,noShowMask) {
+    if (!!!noShowMask) {
+        wx.showLoading({
+            title: '加载中',
+        });
+    }
+
     wx.request({
         url: url,
         method: 'GET',
@@ -26,7 +27,9 @@ function http(url, callBack) {
         },
         success: function (res) {
             callBack(res.data);
-            wx.hideToast();
+            if (!!!noShowMask) {
+                wx.hideLoading();
+            }
         },
         fail: function (error) {
             wx.showToast({
@@ -34,6 +37,7 @@ function http(url, callBack) {
                 icon: 'loading',
                 duration: 1000
             });
+            wx.hideLoading();
             console.log(error);
         }
     });
@@ -43,12 +47,12 @@ function app() {
     return getApp();
 }
 
-function httpPost(url, data, callBack) {
-    wx.showToast({
-        title: '',
-        icon: 'loading',
-        duration: 10000
-    });
+function httpPost(url, data, callBack, noShowMask) {
+    if (!!!noShowMask) {
+        wx.showLoading({
+            title: '加载中',
+        });
+    }
     wx.request({
         url: url,
         method: 'POST',
@@ -58,7 +62,9 @@ function httpPost(url, data, callBack) {
         },
         success: function (res) {
             callBack(res.data);
-            wx.hideToast();
+            if (!!!noShowMask) {
+                wx.hideLoading();
+            }
         },
         fail: function (error) {
             wx.showToast({
@@ -66,6 +72,7 @@ function httpPost(url, data, callBack) {
                 icon: 'loading',
                 duration: 1000
             });
+            wx.hideLoading();
             console.log(error);
         }
     });
@@ -110,8 +117,15 @@ function getIndexValue(orgValue, collect) {
     }
 }
 
-function getNowFormatDate() {
-    var date = new Date();
+function getNowFormatDate(newDate) {
+
+    var date;
+    if (newDate) {
+        date = newDate;
+    } else {
+        date = new Date();
+    }
+
     var seperator1 = "-";
     var seperator2 = ":";
     var month = date.getMonth() + 1;
@@ -128,6 +142,116 @@ function getNowFormatDate() {
     return currentdate;
 }
 
+function jsGetAge(strBirthday) {
+    if (!!!strBirthday) {
+        return "";
+    }
+
+    var returnAge;
+    var strBirthdayArr= strBirthday.split("-");  
+    var birthYear = strBirthdayArr[0];  
+    var birthMonth = strBirthdayArr[1];  
+    var birthDay = strBirthdayArr[2];  
+      
+    var d = new Date();  
+    var nowYear = d.getFullYear();  
+    var nowMonth = d.getMonth() + 1;  
+    var nowDay = d.getDate();  
+      
+    if(nowYear == birthYear) {
+        returnAge = 0;//同年 则为0岁  
+    }  
+    else{  
+        var ageDiff = nowYear - birthYear ; //年之差  
+        if(ageDiff > 0) {
+            if (nowMonth == birthMonth) {
+                var dayDiff = nowDay - birthDay;//日之差  
+                if (dayDiff < 0) {
+                    returnAge = ageDiff - 1;
+                }
+                else {
+                    returnAge = ageDiff;
+                }
+            }
+            else {
+                var monthDiff = nowMonth - birthMonth;//月之差  
+                if (monthDiff < 0) {
+                    returnAge = ageDiff - 1;
+                }
+                else {
+                    returnAge = ageDiff;
+                }
+            }
+        }  
+        else  
+        {  
+            returnAge = -1;//返回-1 表示出生日期输入错误 晚于今天  
+        }
+    }  
+      
+    return returnAge;//返回周岁年龄  
+
+}
+
+
+function getPreMonth(date) {
+    var arr = date.split('-');
+    var year = arr[0]; //获取当前日期的年份  
+    var month = arr[1]; //获取当前日期的月份  
+    var day = arr[2]; //获取当前日期的日  
+    var days = new Date(year, month, 0);
+    days = days.getDate(); //获取当前日期中月的天数  
+    var year2 = year;
+    var month2 = parseInt(month) - 1;
+    if (month2 == 0) {
+        year2 = parseInt(year2) - 1;
+        month2 = 12;
+    }
+    var day2 = day;
+    var days2 = new Date(year2, month2, 0);
+    days2 = days2.getDate();
+    if (day2 > days2) {
+        day2 = days2;
+    }
+    if (month2 < 10) {
+        month2 = '0' + month2;
+    }
+    var t2 = year2 + '-' + month2 + '-' + day2;
+    return t2;
+}
+
+/** 
+ * 获取下一个月 
+ * 
+ * @date 格式为yyyy-mm-dd的日期，如：2014-01-25 
+ */
+function getNextMonth(date) {
+    var arr = date.split('-');
+    var year = arr[0]; //获取当前日期的年份  
+    var month = arr[1]; //获取当前日期的月份  
+    var day = arr[2]; //获取当前日期的日  
+    var days = new Date(year, month, 0);
+    days = days.getDate(); //获取当前日期中的月的天数  
+    var year2 = year;
+    var month2 = parseInt(month) + 1;
+    if (month2 == 13) {
+        year2 = parseInt(year2) + 1;
+        month2 = 1;
+    }
+    var day2 = day;
+    var days2 = new Date(year2, month2, 0);
+    days2 = days2.getDate();
+    if (day2 > days2) {
+        day2 = days2;
+    }
+    if (month2 < 10) {
+        month2 = '0' + month2;
+    }
+
+    var t2 = year2 + '-' + month2 + '-' + day2;
+    return t2;
+} 
+
 module.exports = {
     convertToStarsArray: convertToStarsArray,
     http: http,
@@ -137,4 +261,6 @@ module.exports = {
     getNowFormatDate: getNowFormatDate,
     app: app,
     getIndexValue: getIndexValue,
+    jsGetAge: jsGetAge,
+    getPreMonth: getPreMonth
 }

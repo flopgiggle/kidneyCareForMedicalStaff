@@ -102,6 +102,9 @@ Page({
             Code: res.code,
             OpenId: app.globalData.openId
         }
+        wx.showLoading({
+            title: '加载中',
+        });
         util.httpPost(url,postData,
             res => {
                 app.globalData.user = res.Result;
@@ -120,7 +123,7 @@ Page({
                     //});
                     this.loadList();
                 }
-            });
+            },true);
     },
     loadList: function () {
         if (app.globalData.openId==="") {
@@ -132,24 +135,28 @@ Page({
             UserId: app.globalData.user.Id,
             UserType: app.globalData.user.UserType
         }
+        wx.showLoading({
+            title: '加载中',
+        });
         util.httpPost(url, postData,
             res => {
                 //合并收缩压舒张压数据
                 //var recordListGroup = res.Result.MyRecord;
-                var result = JSON.parse(res.Result);
+                //var result = JSON.parse(res.Result);
+                var result = res.Result;
                 for (var oneItem of result) {
-                    debugger;
+                    oneItem.age = util.jsGetAge(oneItem.Birthday);
                     if (wx.getStorageSync("newpatient" + oneItem.patientId) !== false) {
                         oneItem.IsNew = true;
                     } else {
                         oneItem.IsNew = false;
                     }
                 }
-
+                wx.hideLoading();
                 this.setData({
                     patientList: result
                 });
-            });
+            },true);
    },
 
     /**

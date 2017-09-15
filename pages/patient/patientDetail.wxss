@@ -38,3 +38,7 @@
 .autoHeight {
     height: auto;
 }
+
+.disease {
+    font-size:32rpx;
+}

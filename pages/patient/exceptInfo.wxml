@@ -1,0 +1,69 @@
+<view class="container padding-list">
+  <view wx:if="{{ myReport.length==0 && myRecord.length==0}}" class="none-data">
+    <view>暂无异常记录信息</view>
+  </view>
+  <block wx:for="{{myRecord}}" wx:for-item="allData">
+    <view class="list-title">
+
+    </view>
+    <view class="list-item report recodeTitle" >
+      <view class="list-item-info titile-left" >
+        <text class='text-info'>自我记录</text>
+      </view>
+      <view class="list-item-info titile-right">
+        <text class='text-type title'>{{allData[0].RecordDate}} {{allData[0].RecordTime}}</text>
+      </view>
+    </view>
+    <block wx:for="{{allData}}" wx:for-item="item">
+      <view class="list-group" bindtap='onRecordTap'>
+
+        <view class="list-item" >
+          <view class="list-item-info name">
+            <text class='text-info'>{{item.DataName}}</text>
+          </view>
+          <view class="list-item-info value">
+            <text class='text-type'>{{item.DataValue}} {{item.Unit}}</text>
+          </view>
+          <view class="list-item-info result">
+            <text wx:if="{{item.IsNomoal}}" class='text-type'>正常</text>
+            <text wx:else="{{item.IsNomoal}}" style='color:red' class='text-type'>异常</text>
+          </view>
+        </view>
+      </view>
+    </block>
+  </block>
+  <block wx:for="{{myReport}}" wx:for-item="allData">
+    <view  class="list-title">
+
+    </view>
+    <block wx:for="{{allData}}" wx:for-item="item">
+      <view class="list-group" bindtap='onReportTap'>
+
+        <block wx:if="{{item.ReportName}}">
+          <view class="list-item report" >
+            <view class="list-item-info titile-left" >
+              <text class='text-info'>检查报告:{{item.ReportName}}</text>
+            </view>
+            <view class="list-item-info titile-right">
+              <text class='text-type title'>{{item.RecordDate}}</text>
+            </view>
+          </view>
+        </block>
+        <block wx:else="{{item.ReportName}}">
+          <view class="list-item" >
+            <view class="list-item-info name">
+              <text class='text-info'>{{item.DataName}}</text>
+            </view>
+            <view class="list-item-info value">
+              <text class='text-type'>{{item.DataValue}} {{item.Unit}}</text>
+            </view>
+            <view class="list-item-info result">
+              <text wx:if="{{item.IsNomoal}}" class='text-type'>正常</text>
+              <text wx:else="{{item.IsNomoal}}" style='color:red' class='text-type'>异常</text>
+            </view>
+          </view>
+        </block>
+      </view>
+    </block>
+  </block>
+</view>

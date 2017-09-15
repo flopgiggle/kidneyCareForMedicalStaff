@@ -75,9 +75,11 @@ Page({
             //合并收缩压舒张压数据
             //var recordListGroup = res.Result.MyRecord;
             var patientInfo = JSON.parse(res.Result);
+            debugger;
             wx.setStorageSync("patientInfo"+this.data.patientId, patientInfo);
             this.setData({
-                patientInfo: patientInfo
+                patientInfo: patientInfo,
+                age:util.jsGetAge(patientInfo.patientBaseInfo.Birthday)
             });
         });
     },
@@ -115,5 +117,10 @@ Page({
      */
     onShareAppMessage: function () {
 
+    },
+    onExceptTap: function() {
+        wx.navigateTo({
+            url: "/pages/patient/exceptInfo?patientId=" + this.data.patientId
+        });
     }
 })

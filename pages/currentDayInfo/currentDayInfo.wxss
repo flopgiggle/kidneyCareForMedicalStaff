@@ -28,10 +28,34 @@
     width: 22%;
 }
 
-.my-name text {
+.titleRight {
     color: #666;
     font-size: 40rpx;
+    justify-content:flex-start;
+    align-items: center;
+    align-content: center;
+    flex-direction: row;
+    display: flex;
+    width:60%
 }
+
+    .titleRight .name {
+        flex:50;
+        text-align:center;
+    }
+    .titleRight .sex {
+        flex: 10;
+        text-align:left;
+    }
+    .titleRight .icon {
+        flex: 10;
+    }
+    .titleRight .status {
+        flex: 30;
+        text-align:left;
+    }
+
+   
 
 .image-sex {
     height: 40rpx !important;
@@ -47,6 +71,22 @@
     flex: 1;
     justify-content: space-between;
     flex-direction:row;
+    width:100%;
 }
+
+.none-data {
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    flex-direction: column;
+    display: flex;
+    color: #666;
+    height: 70vh;
+    text-align: center;
+    background-color:#efeff4;
+    width:100%;
+    
+}
+
 
 

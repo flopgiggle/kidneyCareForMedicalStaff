@@ -5,7 +5,7 @@
         <image wx:if="{{true}}" class="avatar" src="/images/avatar/1.png"></image>
       </view>
       <view class="my-name">
-        <text>{{userInfo.UserName?userInfo.UserName:""}} {{userInfo.Sex=="0"?"男":"女"}}</text>
+        <text>{{patientInfo.patientBaseInfo.UserName?patientInfo.patientBaseInfo.UserName:""}} {{patientInfo.patientBaseInfo.Sex=="0"?"男":"女"}} {{age}}岁</text>
       </view>
     </view>
   </view>
@@ -16,9 +16,10 @@
       <view class="form-item-label">
         <text>疾病诊断</text>
       </view>
-      <view class="form-item-input ">
+      <view class="form-item-input disease">
+        CKD{{patientInfo.patientBaseInfo.CKDLeave}}期;
         <block wx:for="{{patientInfo.disease}}" wx:for-item="item">
-         {{item.DiseaseName}}
+         {{item.DiseaseName}};
         </block>
       </view>
     </view>
@@ -38,6 +39,13 @@
       </view>
       <view class="form-item-input">
        
+      </view>
+    </view>
+    <view class="form-item form-item-picker" bindtap='onExceptTap'>
+      <view class="form-item-label">
+        <text>异常记录</text>
+      </view>
+      <view class="form-item-input">
       </view>
     </view>
   </view>

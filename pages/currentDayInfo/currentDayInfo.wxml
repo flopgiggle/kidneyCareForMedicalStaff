@@ -1,27 +1,29 @@
 <view class="container">
+
   <view class="form-group">
+    <view wx:if="{{ patientList.length==0}}" class="none-data">
+      <view>无患者信息,请联系患者绑定医患关系</view>
+    </view>
     <block wx:for="{{patientList}}" wx:for-item="userInfo">
       <view class="form-item upload-Item " data-patient="{{userInfo}}" bindtap="onPatientTap">
         <view class="form-item-input upload-container my-avatar" >
           <image wx:if="{{true}}" class="avatar" src="/images/avatar/1.png"></image>
         </view>
-        <view class="my-name">
-          <view class="fisrtRow">
-            <view style="width:240rpx">
-              <text>{{userInfo.UserName?userInfo.UserName:""}} {{userInfo.Sex=="0"?"男":"女"}}</text>
-              <image wx:if="{{userInfo.Sex=='0'}}" class="image-sex" src="/images/boy.png"></image>
-              <image wx:else="{{userInfo.Sex=='0'}}" class="image-sex" src="/images/girl.png"></image>
-            </view>
-
-            <text>CKD{{" "+userInfo.CKDLeave+" "}}期</text>
+        <view class="titleRight">
+          <view class="name">
+            {{userInfo.UserName?userInfo.UserName:""}}
           </view>
-          <view>
-
+          <view class="sex">
+            {{userInfo.Sex=="0"?"男":"女"}}
           </view>
-          <view>
-            <text>{{(userInfo.Birthday) }}</text> <text wx:if="{{userInfo.IsNew}}" style="color:red">  new</text>
+          <view class="icon">
+            <image wx:if="{{userInfo.Sex=='0'}}" class="image-sex" src="/images/boy.png"></image>
+            <image wx:else="{{userInfo.Sex=='0'}}" class="image-sex" src="/images/girl.png"></image>
           </view>
-
+          <view class="status">
+            <text wx:if="{{userInfo.IsNew}}" style="color:red">  new</text>
+            <text wx:if="{{userInfo.isException}}" style="color:red">  异常!</text>
+          </view>
         </view>
       </view>
     </block>

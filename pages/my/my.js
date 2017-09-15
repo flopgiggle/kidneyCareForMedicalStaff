@@ -7,7 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userInfo: {},
+      userInfo: {},
+      age:"",
   },
 
   /**
@@ -47,7 +48,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-      this.setData({ userInfo: app.globalData.user });
+      this.setData({ userInfo: app.globalData.user, age: util.jsGetAge(app.globalData.user.Birthday) });
   },
 
   /**
