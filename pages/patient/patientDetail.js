@@ -75,7 +75,6 @@ Page({
             //合并收缩压舒张压数据
             //var recordListGroup = res.Result.MyRecord;
             var patientInfo = JSON.parse(res.Result);
-            debugger;
             wx.setStorageSync("patientInfo"+this.data.patientId, patientInfo);
             this.setData({
                 patientInfo: patientInfo,
