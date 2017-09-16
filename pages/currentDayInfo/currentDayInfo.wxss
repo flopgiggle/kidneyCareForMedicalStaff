@@ -36,7 +36,7 @@
     align-content: center;
     flex-direction: row;
     display: flex;
-    width:60%
+    width:70%
 }
 
     .titleRight .name {
@@ -46,6 +46,12 @@
     .titleRight .sex {
         flex: 10;
         text-align:left;
+        vertical-align:central;
+    }
+    .titleRight .age {
+        flex: 20;
+        text-align: left;
+        vertical-align: central;
     }
     .titleRight .icon {
         flex: 10;

@@ -7,15 +7,19 @@
     <block wx:for="{{patientList}}" wx:for-item="userInfo">
       <view class="form-item upload-Item " data-patient="{{userInfo}}" bindtap="onPatientTap">
         <view class="form-item-input upload-container my-avatar" >
-          <image wx:if="{{true}}" class="avatar" src="/images/avatar/1.png"></image>
+          <image wx:if="{{userInfo.WxAvatarUrl!=''}}" class="avatar" src="{{userInfo.WxAvatarUrl}}"></image>
+          <image wx:else="{{userInfo.WxAvatarUrl==''}}" class="avatar" src="/images/avatar/1.png"></image>
         </view>
         <view class="titleRight">
           <view class="name">
             {{userInfo.UserName?userInfo.UserName:""}}
           </view>
-          <view class="sex">
-            {{userInfo.Sex=="0"?"男":"女"}}
+          <view class="age">
+            {{userInfo.age}}岁
           </view>
+          <view class="sex">{{userInfo.Sex=="0"?"男":"女"}}
+          </view>
+
           <view class="icon">
             <image wx:if="{{userInfo.Sex=='0'}}" class="image-sex" src="/images/boy.png"></image>
             <image wx:else="{{userInfo.Sex=='0'}}" class="image-sex" src="/images/girl.png"></image>
