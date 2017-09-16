@@ -81,6 +81,18 @@ Page({
             birthday: e.detail.value
         })
     },
+    getHospitalSelectInfo: function (province, city) {
+        var url = app.globalData.urls.user.getHospitalSelectInfo + province + "/" + city;
+        util.http(url,
+            res => {
+                var result = JSON.parse(res.Result);
+                //result.allDoctors.push({ UserName: '未收录', Id: '-100' });
+                //result.allNurses.push({ UserName: '未收录', Id: '-100' });
+                this.setData({
+                    multiArray: [result.provinces, result.citys, result.hospital],
+                });
+            });
+    },
     bindMultiPickerChange: function (e) {
         console.log('picker发送选择改变，携带值为', e.detail.value)
         this.setData({
@@ -88,70 +100,38 @@ Page({
         })
     },
     bindMultiPickerColumnChange: function (e) {
+        var provice = this.data.multiIndex[0];
+        var city = this.data.multiIndex[1];
+        var hospital = this.data.multiIndex[2];
+        if (e.detail.column == 0) {
+            provice = e.detail.value;
+        }
+
+        if (e.detail.column == 1) {
+            city = e.detail.value;
+        }
+
+        if (e.detail.column == 2) {
+            hospital = e.detail.value;
+        }
+
+        var provicesIndex = this.data.multiArray[0][provice].Id;
+        var cityIndex = this.data.multiArray[1][city].Id;
+        if (e.detail.column != 2) {
+            this.getHospitalSelectInfo(provicesIndex, cityIndex);
+        }
         console.log('修改的列为', e.detail.column, '，值为', e.detail.value);
         var data = {
-            multiArray: this.data.multiArray,
-            multiIndex: this.data.multiIndex
+            multiIndex: [provice, city, hospital]
         };
-        data.multiIndex[e.detail.column] = e.detail.value;
-        switch (e.detail.column) {
-            case 0:
-                switch (data.multiIndex[0]) {
-                    case 0:
-                        data.multiArray[1] = ['成都市', '绵阳市', '德阳市', '攀枝花市', '宜宾市'];
-                        data.multiArray[2] = ['四川大学华西医院', '省医院'];
-                        break;
-                    case 1:
-                        data.multiArray[1] = ['昆明市', '玉溪市'];
-                        data.multiArray[2] = ['昆明市医院', '昆明儿童医院', '昆明中心医院'];
-                        break;
-                }
-                data.multiIndex[1] = 0;
-                data.multiIndex[2] = 0;
-                break;
-            case 1:
-                switch (data.multiIndex[0]) {
-                    case 0:
-                        switch (data.multiIndex[1]) {
-                            case 0:
-                                data.multiArray[2] = ['四川大学华西医院', '省医院'];
-                                break;
-                            case 1:
-                                data.multiArray[2] = ['绵阳医院'];
-                                break;
-                            case 2:
-                                data.multiArray[2] = ['德阳医院', '德阳医院1'];
-                                break;
-                            case 3:
-                                data.multiArray[2] = ['攀枝花医院', '攀枝花医院2', '攀枝花医院3'];
-                                break;
-                            case 4:
-                                data.multiArray[2] = ['宜宾医院1', '宜宾医院2', '宜宾医院3', '宜宾医院4'];
-                                break;
-                        }
-                        break;
-                    case 1:
-                        switch (data.multiIndex[1]) {
-                            case 0:
-                                data.multiArray[2] = ['昆明市医院', '昆明儿童医院', '昆明中心医院'];
-                                break;
-                            case 1:
-                                data.multiArray[2] = ['玉溪市医院', '玉溪儿童医院'];
-                                break;
-                        }
-                        break;
-                }
-                data.multiIndex[2] = 0;
-                console.log(data.multiIndex);
-                break;
-        }
         this.setData(data);
     },
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
+        //默认查询四川成都地区的医院
+        this.getHospitalSelectInfo("510000", "510100");
     },
     formSubmit: function (e) {
         console.log('form发生了submit事件，携带数据为：', e.detail.value);
@@ -216,7 +196,7 @@ Page({
         var postData = {
             UserName: e.detail.value.name,
             MobilePhone: e.detail.value.phoneNum,
-            BelongToHospital: 1,
+            BelongToHospital: this.data.multiArray[2][this.data.multiIndex[2]].Id,
             Sex: this.data.sex[this.data.sexIndex].Id,
             UserType: this.data.duty[this.data.dutyIndex].Id,
             IdCard: e.detail.value.idCard,

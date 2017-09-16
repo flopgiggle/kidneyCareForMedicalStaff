@@ -15,7 +15,7 @@
     
     <view class="form-item form-item-picker autoHeight" bindtap='onDiseaseDiagnosisTap'>
       <view class="form-item-label">
-        <text>疾病诊断</text>
+        <text>临床诊断</text>
       </view>
       <view class="form-item-input disease">
         CKD{{patientInfo.patientBaseInfo.CKDLeave}}期;

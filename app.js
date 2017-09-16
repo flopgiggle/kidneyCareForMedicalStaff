@@ -31,6 +31,7 @@ App({
                 getPatientCourseEvaluate: baseUri + "user/getPatientCourseEvaluate/",
                 updateProfile: baseUri + "user/updateProfile", 
                 getExcpetRecordInfoList: baseUri + "user/getExcpetRecordInfoList/", 
+                getHospitalSelectInfo: baseUri + "user/getHospitalSelectInfo/"
             },
             record: {
                 add: baseUri + "record/add",

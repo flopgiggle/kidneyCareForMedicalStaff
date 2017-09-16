@@ -36,11 +36,11 @@
     align-content: center;
     flex-direction: row;
     display: flex;
-    width:70%
+    width:75%
 }
 
     .titleRight .name {
-        flex:50;
+        flex:40;
         text-align:center;
     }
     .titleRight .sex {
