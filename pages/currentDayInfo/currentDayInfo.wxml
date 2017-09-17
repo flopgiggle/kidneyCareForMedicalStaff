@@ -7,8 +7,8 @@
     <block wx:for="{{patientList}}" wx:for-item="userInfo">
       <view class="form-item upload-Item " data-patient="{{userInfo}}" bindtap="onPatientTap">
         <view class="form-item-input upload-container my-avatar" >
-          <image wx:if="{{userInfo.WxAvatarUrl!=''}}" class="avatar" src="{{userInfo.WxAvatarUrl}}"></image>
-          <image wx:else="{{userInfo.WxAvatarUrl==''}}" class="avatar" src="/images/avatar/1.png"></image>
+          <image wx:if="{{userInfo.WxAvatarUrl!='' && userInfo.WxAvatarUrl!=null}}" class="avatar" src="{{userInfo.WxAvatarUrl}}"></image>
+          <image wx:else="{{userInfo.WxAvatarUrl=='' ||userInfo.WxAvatarUrl==null }}" class="avatar" src="/images/avatar/1.png"></image>
         </view>
         <view class="titleRight">
           <view class="name">
