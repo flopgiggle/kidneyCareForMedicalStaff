@@ -10,8 +10,9 @@ Page({
      */
     data: {
         sex: [{ UserName: '男', Id: '0' }, { UserName: '女', Id: '1' }],
-        jobTitle: [{ UserName: '住院医师', Id: '1' }, { UserName: '主治医师', Id: '2' }, { UserName: '副主任医师', Id: '3' }, { UserName: '主任医师', Id: '4' },
-                   { UserName: '初级护士', Id: '10' }, { UserName: '初级护师', Id: '11' }, { UserName: '主管护师', Id: '12' }, { UserName: '副主任护师', Id: '13' }, { UserName: '主任护师', Id: '14' }],
+        jobTitleForDoctor: [{ UserName: '住院医师', Id: '1' }, { UserName: '主治医师', Id: '2' }, { UserName: '副主任医师', Id: '3' }, { UserName: '主任医师', Id: '4' }],
+        jobTitleForNures: [{ UserName: '初级护士', Id: '10' }, { UserName: '初级护师', Id: '11' }, { UserName: '主管护师', Id: '12' }, { UserName: '副主任护师', Id: '13' }, { UserName: '主任护师', Id: '14' }],
+        jobTitle: [{ UserName: '住院医师', Id: '1' }, { UserName: '主治医师', Id: '2' }, { UserName: '副主任医师', Id: '3' }, { UserName: '主任医师', Id: '4' }],
         duty: [{ UserName: '医生', Id: '2' }, { UserName: '护士', Id: '3' }],
         disease: [{ Name: '肾衰竭', Id: '1' }, { Name: '肾小球肾炎', Id: '2' }],
         CKD: [{ Name: 'I期', Id: '1' }, { Name: 'II期', Id: '2' }, { Name: 'III期', Id: '3' }, { Name: 'IV期', Id: '4' }, { Name: 'V期', Id: '5' }],
@@ -24,6 +25,7 @@ Page({
         multiArray: [['四川省', '云南省'], ['成都市', '绵阳市', '德阳市', '攀枝花市', '宜宾市'], ['四川大学华西医院', '省医院']],
         multiIndex: [0, 0, 0],
         userInfo: {},
+        disabled:false,
     },
     //需要查找原始对象,id,对应的选项索引值
     getIndexValue: function(orgValue,collect) {
@@ -59,8 +61,15 @@ Page({
         });
     },
     bindDutyChange: function (e) {
+        var jobTitle = [];
+        if (e.detail.value == 0) {
+            jobTitle = this.data.jobTitleForDoctor;
+        } else {
+            jobTitle = this.data.jobTitleForNures;
+        }
 
         this.setData({
+            jobTitle: jobTitle,
             dutyIndex: e.detail.value
         });
     },
@@ -137,7 +146,20 @@ Page({
         console.log('form发生了submit事件，携带数据为：', e.detail.value);
         console.log(e.detail.value.phoneNum);
         //UserName Password UserType BelongToHospital Sex MobilePhone Birthday OpenId Status BelongToNurse BelongToDoctor
-
+        if (e.detail.value.name.length < 2) {
+            wx.showModal({
+                title: '提示',
+                content: '用户名不正确',
+                success: function (res) {
+                    if (res.confirm) {
+                        console.log('用户点击确定');
+                    } else if (res.cancel) {
+                        console.log('用户点击取消');
+                    }
+                }
+            });
+            return;
+        }
 
         if (this.data.sexIndex < 0) {
             wx.showModal({
@@ -202,7 +224,8 @@ Page({
             IdCard: e.detail.value.idCard,
             OpenId: app.globalData.openId,
             JobTitle: this.data.jobTitle[this.data.jobTitleIndex].Id,
-            UserId: userId
+            UserId: userId,
+            Profile: e.detail.value.profile,
         };
 
 
@@ -221,20 +244,7 @@ Page({
             return;
         }
 
-        if (postData.UserName.length < 2) {
-            wx.showModal({
-                title: '提示',
-                content: '用户名不正确',
-                success: function (res) {
-                    if (res.confirm) {
-                        console.log('用户点击确定');
-                    } else if (res.cancel) {
-                        console.log('用户点击取消');
-                    }
-                }
-            });
-            return;
-        }
+
 
         util.httpPost(url, postData, res => {
             wx.switchTab({
@@ -262,14 +272,33 @@ Page({
         if (app.globalData.user.userType == 3) {
 
         }
+
+        if (app.globalData.user.UserType) {
+            wx.setNavigationBarTitle({
+                title: '个人档案'
+            })
+            var jobTitle = [];
+            if (app.globalData.user.UserType == 2) {
+                jobTitle = this.data.jobTitleForDoctor;
+            } else {
+                jobTitle = this.data.jobTitleForNures;
+            }
+            this.setData({
+                jobTitle: jobTitle,
+            });
+        }
+
         this.setData({
                 userInfo: app.globalData.user,
                 sexIndex: this.getIndexValue(app.globalData.user.Sex, this.data.sex),
                 birthday: app.globalData.user.Birthday ? app.globalData.user.Birthday : '2017-01-01',
                 dutyIndex: this.getIndexValue(app.globalData.user.UserType, this.data.duty),
-                jobTitleIndex: this.getIndexValue(app.globalData.user.JobTitle, this.data.jobTitle)
+                jobTitleIndex: this.getIndexValue(app.globalData.user.JobTitle, this.data.jobTitle),
+                disabled: app.globalData.user.UserType?true:false,
         });
         
+
+
     },
 
     /**

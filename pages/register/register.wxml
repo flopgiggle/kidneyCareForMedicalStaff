@@ -6,7 +6,7 @@
           <text>姓名</text>
         </view>
         <view class="form-item-input">
-          <input name="name" maxlength="7" value="{{userInfo.UserName}}" placeholder-class="form-input-placeholder" placeholder="请填写姓名" auto-focus=""/>
+          <input name="name" maxlength="7" value="{{userInfo.UserName}}" placeholder-class="form-input-placeholder" placeholder="(必填)" auto-focus=""/>
         </view>
       </view>
       <view class="form-item form-item-picker">
@@ -17,7 +17,7 @@
           <picker bindchange="bindSexChange" value="{{sexIndex}}" range="{{sex}}" range-key="{{'UserName'}}">
             <view class="picker">
               <text class="form-input-placeholder" wx:if="{{sexIndex==-1}}">
-              请选择性别
+                (必填)
               </text> {{sexIndex==-1?"":sex[sexIndex].UserName}}
             </view>
           </picker>
@@ -40,7 +40,7 @@
           <text>手机号</text>
         </view>
         <view class="form-item-input">
-          <input name="phoneNum" value="{{userInfo.MobilePhone}}" type="number" maxlength="11" placeholder-class="form-input-placeholder" placeholder="请填写手机号" auto-focus=""/>
+          <input name="phoneNum" value="{{userInfo.MobilePhone}}" type="number" maxlength="11" placeholder-class="form-input-placeholder" placeholder="(推荐填写)" auto-focus=""/>
         </view>
       </view>
       <view class="form-item" wx:if="{{false}}">
@@ -69,7 +69,7 @@
           <text>治疗医院</text>
         </view>
         <view class="form-item-input">
-          <picker mode="multiSelector" bindchange="bindMultiPickerChange" range-key="Name" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+          <picker disabled="{{disabled}}" mode="multiSelector" bindchange="bindMultiPickerChange" range-key="Name" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
             <view class="picker">
               {{multiArray[2][multiIndex[2]].Name}}
             </view>
@@ -81,10 +81,10 @@
           <text>职务</text>
         </view>
         <view class="form-item-input">
-          <picker bindchange="bindDutyChange" range="{{duty}}" range-key="{{'UserName'}}">
+          <picker disabled="{{disabled}}" bindchange="bindDutyChange" range="{{duty}}" range-key="{{'UserName'}}">
             <view class="picker">
               <text class="form-input-placeholder" wx:if="{{dutyIndex==-1}}">
-              请选职务
+                (必填)
               </text> {{dutyIndex==-1?"":duty[dutyIndex].UserName}}
             </view>
           </picker>
@@ -95,10 +95,10 @@
           <text>职称</text>
         </view>
         <view class="form-item-input">
-          <picker bindchange="bindJobChange" range="{{jobTitle}}" range-key="{{'UserName'}}">
+          <picker disabled="{{disabled}}" bindchange="bindJobChange" range="{{jobTitle}}" range-key="{{'UserName'}}">
             <view class="picker">
               <text class="form-input-placeholder" wx:if="{{jobTitleIndex==-1}}">
-              请选择职称
+                (必填)
               </text> {{jobTitleIndex==-1?"":jobTitle[jobTitleIndex].UserName}}
             </view>
           </picker>
@@ -109,7 +109,7 @@
           <text>简介</text>
         </view>
         <view class="form-item-input">
-          <input name="profile" value="{{userInfo.IdCard}}" type='text' maxlength="50" placeholder-class="form-input-placeholder" placeholder="请填写简介" auto-focus=""/>
+          <input name="profile" value="{{userInfo.Profile}}" type='text' maxlength="100" placeholder-class="form-input-placeholder" placeholder="(推荐填写)" auto-focus=""/>
         </view>
       </view>
 

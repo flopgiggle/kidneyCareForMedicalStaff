@@ -20,7 +20,6 @@ Page({
    */
     onLoad: function (options) {
       var patientInfo = wx.getStorageSync("patientInfo" + options.patientId);
-        debugger;
       this.setData({
           patientId: options.patientId,
           wxUserInfo: app.globalData.wxUserInfo,
