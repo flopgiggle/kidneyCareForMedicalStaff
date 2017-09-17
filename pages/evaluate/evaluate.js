@@ -24,7 +24,7 @@ Page({
         multiIndex: [0, 0, 0],
         userInfo: {},
         patientId:"",
-        date: "2017-09-12",
+        date: util.getNowFormatDate(),
         content: ""
     },
     //需要查找原始对象,id,对应的选项索引值
@@ -198,7 +198,7 @@ Page({
             return;
         }
 
-        if (checkedList.length < 0) {
+        if (checkedList.length <= 0) {
             wx.showModal({
                 title: '提示',
                 content: '请选择患教内容',
@@ -214,7 +214,7 @@ Page({
         }
 
 
-        if (this.data.cognitionIndex.length < 0) {
+        if (this.data.cognitionIndex < 0) {
             wx.showModal({
                 title: '提示',
                 content: '请选择认知评估',
@@ -229,7 +229,7 @@ Page({
             return;
         }
 
-        if (this.data.behaviorIndex.length < 0) {
+        if (this.data.behaviorIndex < 0) {
             wx.showModal({
                 title: '提示',
                 content: '请选择行为评估',
@@ -268,8 +268,8 @@ Page({
         util.httpPost(app.globalData.urls.user.addPatientCourseEvaluate, postData, res => {
             //清除患教内容
             wx.removeStorageSync("contentCheckedList" + this.data.patientId);
-            wx.navigateBack({
-                delta: 1
+            wx.redirectTo({
+                url: "/pages/evaluate/hitory?patientId=" + this.data.patientId
             });
         });
         //e.detail.value.illInfo;

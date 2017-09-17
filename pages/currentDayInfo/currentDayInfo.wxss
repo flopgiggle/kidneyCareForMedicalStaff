@@ -41,7 +41,7 @@
 
     .titleRight .name {
         flex:40;
-        text-align:center;
+        text-align:left;
     }
     .titleRight .sex {
         flex: 10;

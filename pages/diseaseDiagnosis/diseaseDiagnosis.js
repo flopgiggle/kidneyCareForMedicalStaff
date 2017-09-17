@@ -104,6 +104,21 @@ Page({
             }
         }
 
+        if (diseaseList.length <= 0) {
+            wx.showModal({
+                title: '提示',
+                content: '请选择疾病类型',
+                success: function (res) {
+                    if (res.confirm) {
+                        console.log('用户点击确定');
+                    } else if (res.cancel) {
+                        console.log('用户点击取消');
+                    }
+                }
+            });
+            return;
+        }
+
         var postData = {
             patientId : this.data.patientId,
             CDKLeave : this.data.CKD[this.data.CKDIndex].Id,
@@ -120,16 +135,23 @@ Page({
         //var allDisease = e.detail.value;
         ////设置选中的疾病
         var allDiease = this.data.disease;
-        for (var dataItem of allDiease) {
-            for (var item of e.detail.value) {
-                if (item == dataItem.diseaseCode) {
-                    dataItem.checked = true;
-                    break;;
-                } else {
-                    dataItem.checked = false;
+        if (e.detail.value.length == 0) {
+            for (var dataItem of allDiease) {
+                dataItem.checked = false;
+            }
+        } else {
+            for (var dataItem of allDiease) {
+                for (var item of e.detail.value) {
+                    if (item == dataItem.diseaseCode) {
+                        dataItem.checked = true;
+                        break;;
+                    } else {
+                        dataItem.checked = false;
+                    }
                 }
             }
         }
+
 
         this.setData({
             disease: allDiease,

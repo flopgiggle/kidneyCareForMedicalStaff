@@ -8,13 +8,14 @@
             {{item.Messge}}
           </view>
           <view class="my-icon">
-            <image class="avatar" src="/images/avatar/1.png"></image>
+            <image wx:if="{{wxUserInfo.avatarUrl!='' && wxUserInfo.avatarUrl!=null}}" class="avatar" src="{{wxUserInfo.avatarUrl}}"></image>
+            <image wx:else="{{wxUserInfo.avatarUrl=='' ||wxUserInfo.avatarUrl==null }}" class="avatar" src="/images/avatar/1.png"></image>
           </view>
         </view>
         <view wx:else="{{item.FromUser == app.globalData.user.Id}}" class="other-message-group">
           <view class="other-icon">
-            <image wx:if="{{item.UserType == 3}}" class="avatar"  src="/images/avatar/nures.png"></image>
-            <image wx:if="{{item.UserType == 2}}" class="avatar"  src="/images/avatar/doctor.png"></image>
+            <image wx:if="{{patientInfo.patientBaseInfo.WxAvatarUrl!='' && patientInfo.patientBaseInfo.WxAvatarUrl!=null}}" class="avatar" src="{{patientInfo.patientBaseInfo.WxAvatarUrl}}"></image>
+            <image wx:else="{{patientInfo.patientBaseInfo.WxAvatarUrl=='' ||patientInfo.patientBaseInfo.WxAvatarUrl==null }}" class="avatar" src="/images/avatar/1.png"></image>
           </view>
           <view class="other-message">
             {{item.Messge}}

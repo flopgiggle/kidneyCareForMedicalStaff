@@ -164,6 +164,9 @@ Page({
                         oneItem.IsNew = false;
                     }
                 }
+                wx.setNavigationBarTitle({
+                    title: '患者列表(共' + result.length +"人)"
+                })
                 wx.hideLoading();
                 this.setData({
                     patientList: result

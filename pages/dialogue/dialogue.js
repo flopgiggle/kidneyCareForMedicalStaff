@@ -10,15 +10,21 @@ Page({
         allData: [],
         user: {},
         patientId: "",
-        message:"",
+        message: "",
+        wxUserInfo: "",
+        patientInfo:null,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+    onLoad: function (options) {
+      var patientInfo = wx.getStorageSync("patientInfo" + options.patientId);
+        debugger;
       this.setData({
           patientId: options.patientId,
+          wxUserInfo: app.globalData.wxUserInfo,
+          patientInfo: patientInfo,
       });
   },
 
@@ -40,12 +46,13 @@ Page({
       //    console.log("openId获取失败");
       //    return;
       //}
-      var url = app.globalData.urls.message.getMessage;
+      var url = app.globalData.urls.message.getMessageForPatient;
 
       var postData = {
           Index: 1,
           PageSize: 1000,
-          UserId: app.globalData.user.Id
+          UserId: app.globalData.user.Id,
+          PatientId: this.data.patientId,
       }
 
       util.httpPost(url, postData, res => {
