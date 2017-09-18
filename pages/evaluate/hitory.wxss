@@ -25,7 +25,7 @@
 }
 
 .form-item-label {
-    width:150rpx;
+    width:200rpx;
 }
 
 .my-avatar {

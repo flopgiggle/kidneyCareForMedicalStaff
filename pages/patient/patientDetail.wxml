@@ -70,11 +70,10 @@
   </view>
   <view class="form-group">
     <view class="form-item form-item-picker" bindtap='onMessageTap'>
-      <view class="form-item-label row">
+      <view class="form-item-label row {{IsRead=='false'?'red-point':''}}">
         <view class="messageTitle">
-          <text>沟通消息{{IsRead=='false'}}</text>
+          <text>沟通消息</text>
         </view>
-        <view wx:if="{{IsRead=='false'}}" class="message">·</view>
       </view>
       <view class="form-item-input ">
       

@@ -11,7 +11,7 @@ App({
         picUrl: host + "/upload/",
         //openId: "oSqUB0XRxeZzn-iTpaXkenjXV0hE",
         openId: "",
-        patientAlreadyBind:"111",
+        //patientAlreadyBind:"111",
         user: "",
         wxUserInfo:"",
         urls: {
