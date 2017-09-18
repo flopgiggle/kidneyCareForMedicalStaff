@@ -32,3 +32,7 @@
     color: #666;
     font-size: 40rpx;
 }
+
+.form-item-label {
+    width:140rpx;
+}

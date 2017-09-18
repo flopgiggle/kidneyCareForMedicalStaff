@@ -100,7 +100,7 @@
           <text>备注</text>
         </view>
         <view class="form-item-input">
-          <input name="mark" value="{{userInfo.MobilePhone}}" type="number" maxlength="11" placeholder-class="form-input-placeholder" placeholder="请填写备注" auto-focus=""/>
+          <input name="mark" value="{{userInfo.MobilePhone}}" type="text" maxlength="11" placeholder-class="form-input-placeholder" placeholder="请填写备注" auto-focus=""/>
         </view>
       </view>
     </view>

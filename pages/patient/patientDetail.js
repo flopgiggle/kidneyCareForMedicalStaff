@@ -1,4 +1,4 @@
-// pages/my/my.js
+    // pages/my/my.js
 var app = getApp();
 var util = require('../../utils/util.js');
 Page({
@@ -10,6 +10,7 @@ Page({
         patientId :"",
         userInfo: {},
         patientInfo: {},
+        IsRead:true,
     },
 
     /**
@@ -17,7 +18,8 @@ Page({
      */
     onLoad: function (options) {
         this.setData({
-            patientId: options.patientId
+            patientId: options.patientId,
+            IsRead: options.IsRead
         });
         wx.setStorageSync("newpatient" + this.data.patientId, false);
         console.log(this.data.patientId);
