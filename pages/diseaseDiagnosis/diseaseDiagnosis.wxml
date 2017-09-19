@@ -92,7 +92,7 @@
     </view>
   </view>
   </checkbox-group>
-  <view  class="form-group" bindtap="onSaveTap">
+  <view  class="form-group fix-buttom" bindtap="onSaveTap">
     <view class="form-row-button">
       <text>保存</text>
     </view>

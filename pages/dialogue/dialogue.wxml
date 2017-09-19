@@ -28,16 +28,12 @@
   <view class="post-area">
    
     <input name="message" value="{{message}}" class="dialogue-input"></input><view class="dialogue-send">
-      
         <view>
           <button class="form-row-button" formType="submit">
             发送
           </button>
         </view>
-    
-     
     </view>
-    
   </view>
   </form>
 </view>
