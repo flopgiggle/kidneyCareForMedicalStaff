@@ -67,6 +67,11 @@ Page({
           prevPage.setData({
               IsRead: true
           });
+          setTimeout(function () {
+              wx.pageScrollTo({
+                  scrollTop: 99999
+              });
+          }, 200)
 
 
       });

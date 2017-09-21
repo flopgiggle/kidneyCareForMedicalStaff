@@ -58,7 +58,7 @@ Page({
             { coursCode: '5-6', checked: false, term: 'term5', name: '肾移植准备事项及流程' }
 
         ],
-        CKD: [{ Name: 'I期', Id: '1' }, { Name: 'II期', Id: '2' }, { Name: 'III期', Id: '3' }, { Name: 'IV期', Id: '4' }, { Name: 'V期', Id: '5' }],
+        CKD: [{ Name: '1期', Id: '1' }, { Name: '2期', Id: '2' }, { Name: '3期', Id: '3' }, { Name: '4期', Id: '4' }, { Name: '5期', Id: '5' }],
         CKDIndex: -1
     },
 
