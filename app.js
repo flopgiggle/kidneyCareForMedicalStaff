@@ -1,7 +1,8 @@
 var util = require('utils/util.js');
 //var host = "http://localhost:11662";
 var host = "https://30861365.qcloud.la";
-var baseUri = host+"/api/";
+var baseUri = host + "/api/";
+
 App({
     globalData: {
         g_isPlayingMusic: false,

@@ -2,7 +2,7 @@
 var app = getApp();
 var util = require('../../utils/util.js');
 //var lodash = require('../../utils/lodash.js');
-
+var _ = require('../../utils/undercore.js');
 Page({
 
     /**
@@ -95,10 +95,16 @@ Page({
         util.http(url,
             res => {
                 var result = JSON.parse(res.Result);
-                //result.allDoctors.push({ UserName: '未收录', Id: '-100' });
-                //result.allNurses.push({ UserName: '未收录', Id: '-100' });
+                
+                debugger;
+
+                var index = this.getIndexValue(app.globalData.user.BelongToHospital, result.hospital);
+                if (index == -1) {
+                    index = 0;
+                }
                 this.setData({
                     multiArray: [result.provinces, result.citys, result.hospital],
+                    multiIndex: [this.data.multiIndex[0], this.data.multiIndex[1], index != 0 ? index : this.data.multiIndex[2]]
                 });
             });
     },
@@ -140,7 +146,15 @@ Page({
      */
     onLoad: function (options) {
         //默认查询四川成都地区的医院
-        this.getHospitalSelectInfo("510000", "510100");
+        var cityCode = app.globalData.user.CityCode;
+        if (!!!cityCode) {
+            cityCode = "510100";
+        }
+        var provinceCode = app.globalData.user.CityCode;
+        if (!!!provinceCode) {
+            provinceCode = "510000";
+        }
+        this.getHospitalSelectInfo(provinceCode, cityCode);
     },
     formSubmit: function (e) {
         console.log('form发生了submit事件，携带数据为：', e.detail.value);
