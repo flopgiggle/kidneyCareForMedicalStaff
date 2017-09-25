@@ -28,7 +28,7 @@ Page({
         disabled:false,
     },
     //需要查找原始对象,id,对应的选项索引值
-    getIndexValue: function(orgValue,collect) {
+    getIndexValue: function(orgValue,collect,key) {
         if (!!!key) {
             key = "Id";
         }
@@ -99,7 +99,6 @@ Page({
             res => {
                 var result = JSON.parse(res.Result);
                 
-                debugger;
 
                 var hospital = this.getIndexValue(app.globalData.user.BelongToHospital, result.hospital);
                 if (hospital == -1) {
