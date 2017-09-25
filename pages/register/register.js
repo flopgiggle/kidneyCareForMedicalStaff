@@ -29,10 +29,13 @@ Page({
     },
     //需要查找原始对象,id,对应的选项索引值
     getIndexValue: function(orgValue,collect) {
+        if (!!!key) {
+            key = "Id";
+        }
         if (orgValue) {
             var index = 0;
             for (var item of collect) {
-                if (item.Id == orgValue) {
+                if (item[key] == orgValue) {
                     return index;
                 }
                 index++;
@@ -98,13 +101,26 @@ Page({
                 
                 debugger;
 
-                var index = this.getIndexValue(app.globalData.user.BelongToHospital, result.hospital);
-                if (index == -1) {
-                    index = 0;
+                var hospital = this.getIndexValue(app.globalData.user.BelongToHospital, result.hospital);
+                if (hospital == -1) {
+                    hospital = this.data.multiIndex[2];
                 }
+
+                var city = this.getIndexValue(app.globalData.user.CityCode, result.citys);
+                if (city == -1) {
+                    city = this.data.multiIndex[1];
+                }
+
+
+                var provinces = this.getIndexValue(app.globalData.user.ProvinceCode, result.provinces);
+                if (provinces == -1) {
+                    provinces = this.data.multiIndex[0];
+                }
+
+
                 this.setData({
                     multiArray: [result.provinces, result.citys, result.hospital],
-                    multiIndex: [this.data.multiIndex[0], this.data.multiIndex[1], index != 0 ? index : this.data.multiIndex[2]]
+                    multiIndex: [provinces, city, hospital]
                 });
             });
     },
@@ -150,7 +166,7 @@ Page({
         if (!!!cityCode) {
             cityCode = "510100";
         }
-        var provinceCode = app.globalData.user.CityCode;
+        var provinceCode = app.globalData.user.ProvinceCode;
         if (!!!provinceCode) {
             provinceCode = "510000";
         }
