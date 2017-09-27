@@ -1,18 +1,29 @@
+//program run mode
+//1.product for onlie product environment 
+//2.test for onlie test environment
+//3.local for local debug enviromnet
+var runMode = "test";
 var util = require('utils/util.js');
-//var host = "http://localhost:11662";
-var host = "https://30861365.qcloud.la";
-var baseUri = host + "/api/";
-
+var _ = require('utils/undercore.js');
+var host = {
+    product: "https://30861365.qcloud.la",
+    test: "https://77964003.qcloud.la",
+    local: "http://localhost:11662",
+}
+var openId = {
+    product: "",
+    test: "",
+    local: "ov3Ig0RPltiiQn9kLVcxwIVsj_RU",
+}
+var baseUri = host[runMode] + "/api/";
 App({
     globalData: {
         g_isPlayingMusic: false,
         g_currentMusicPostId: null,
         doubanBase: "https://api.douban.com",
-        host: host,
+        host: host[runMode],
         picUrl: host + "/upload/",
-        //openId: "oSqUB0XRxeZzn-iTpaXkenjXV0hE",
-        openId: "",
-        //patientAlreadyBind:"111",
+        openId: openId[runMode],
         user: "",
         wxUserInfo:"",
         urls: {
@@ -50,28 +61,7 @@ App({
         }
     },
     onLaunch: function() {
-        //wx.login({
-        //    success: res => {
-        //       // "http://localhost:11662/";
-        //        var url = baseUri + "user/getUserInfo/" +
-        //            res.code; //"https://api.weixin.qq.com/sns/jscode2session?appid=wx941fffa48c073a0d&secret=1b71efd31775ec025045185b951e0296&js_code=" + res.code + "&grant_type=authorization_code";
-        //        //util.http(url,
-        //        //    res => {
-        //        //        this.globalData.openId = 1234567;
-        //        //        this.globalData.user = res.Result;
-        //        //        //判定用户是否已注册,未注册则不能使用该app，需要跳转到注册页面
-        //        //        if (this.globalData.user.Status === 0 || this.globalData.user.Status == null) {
-        //        //            wx.navigateTo({
-        //        //                url: "/pages/register/register"
-        //        //            });
-        //        //        } else {
-        //        //            wx.switchTab({
-        //        //                url: "/pages/currentDayInfo/currentDayInfo"
-        //        //            });
-        //        //        }
-        //        //    });
-        //    }
-        //});
+
     }
 });
 
