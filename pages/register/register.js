@@ -124,32 +124,46 @@ Page({
             });
     },
     bindMultiPickerChange: function (e) {
-        console.log('picker发送选择改变，携带值为', e.detail.value)
+        console.log('picker发送选择改变，携带值为', e.detail.value);
+        var provice = this.data.multiIndex[0];
+        var city = this.data.multiIndex[1];
         this.setData({
-            multiIndex: e.detail.value
-        })
+            multiIndex: [provice, city, e.detail.value]
+        });
     },
-    bindMultiPickerColumnChange: function (e) {
+    bindAcreColumnPickerChange: function (e) {
+        console.log('picker发送选择改变，携带值为', e.detail.value);
+
+        var provice = this.data.multiIndex[0];
+        var city = this.data.multiIndex[1];
+        var hospital = this.data.multiIndex[2];
+        this.setData({
+            multiIndex: [e.detail.value[0], e.detail.value[1], hospital]
+        });
+    },
+    bindAcreColumnChange: function (e) {
         var provice = this.data.multiIndex[0];
         var city = this.data.multiIndex[1];
         var hospital = this.data.multiIndex[2];
         if (e.detail.column == 0) {
             provice = e.detail.value;
         }
-
         if (e.detail.column == 1) {
             city = e.detail.value;
         }
-
-        if (e.detail.column == 2) {
-            hospital = e.detail.value;
-        }
-
         var provicesIndex = this.data.multiArray[0][provice].Id;
         var cityIndex = this.data.multiArray[1][city].Id;
-        if (e.detail.column != 2) {
-            this.getHospitalSelectInfo(provicesIndex, cityIndex);
-        }
+        this.getHospitalSelectInfo(provicesIndex, cityIndex);
+        console.log('修改的列为', e.detail.column, '，值为', e.detail.value);
+        var data = {
+            multiIndex: [provice, city, hospital]
+        };
+        this.setData(data);
+    },
+    bindMultiPickerColumnChange: function (e) {
+        var provice = this.data.multiIndex[0];
+        var city = this.data.multiIndex[1];
+        var hospital = e.detail.value;
         console.log('修改的列为', e.detail.column, '，值为', e.detail.value);
         var data = {
             multiIndex: [provice, city, hospital]
