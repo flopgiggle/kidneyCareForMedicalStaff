@@ -78,6 +78,28 @@ input{
     transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
 }
 
+.form-item-picker-up:after {
+    content: " ";
+    display: inline-block;
+    height: 6px;
+    width: 6px;
+    border-width: 2px 2px 0 0;
+    border-color: #d9d9d9;
+    border-style: solid;
+    transform: matrix(0.71, -0.71, 0.71, 0.71, 0, 0);
+}
+
+.form-item-picker-down:after {
+    content: " ";
+    display: inline-block;
+    height: 6px;
+    width: 6px;
+    border-width: 2px 2px 0 0;
+    border-color: #d9d9d9;
+    border-style: solid;
+    transform: matrix(0.71, 0.71, 0.71, -0.71, 0, 0);
+}
+
 .form-row-button {
     height: 90rpx;
     width: 100%;

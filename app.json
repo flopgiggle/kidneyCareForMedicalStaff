@@ -12,7 +12,8 @@
     "pages/evaluate/evaluate",
     "pages/evaluate/content",
     "pages/evaluate/hitory",
-    "pages/patient/exceptInfo"
+    "pages/patient/exceptInfo",
+    "pages/patient/drug"
   ],
   "window": {
     "navigationBarBackgroundColor": "#4fc1e9"

@@ -1,0 +1,108 @@
+/* pages/uploadReport/uploadReport.wxss */
+.container {
+    align-items: center;
+    padding-bottom: 60rpx;
+}
+
+.date {
+    display:flex;
+    flex-direction:row !important;
+}
+
+.date .form-item-label 
+{
+    flex:3;
+}
+
+.form-item-label {
+    width:100%;
+}
+
+.date .form-item-input {
+    flex: 5;
+}
+    
+.center {
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom:25rpx;
+}
+
+.form-item image {
+    width: 130rpx;
+    height: 130rpx;
+}
+
+.add-icon {
+    font-size: 50rpx;
+    font-weight: 100;
+}
+
+.my-avatar {
+    width: 30%;
+}
+
+.my-name text {
+    color: #666;
+    font-size: 40rpx;
+}
+
+.form-item {
+    margin: 10rpx 0 10rpx 0;
+    flex-direction: column;
+    border:0;
+}
+
+    .form-item.ckd {
+        flex-direction: row;
+    }
+
+checkbox {
+    margin: 10rpx 0 20rpx 0;
+}
+
+.form-item-input {
+    font-size: 30rpx;
+}
+
+.disease-item {
+    flex-direction: row;
+    display: flex;
+}
+
+.left-disease {
+    flex: 1;
+    margin-left:15rpx;
+     
+}
+
+.right-disease {
+    flex: 1
+}
+
+checkbox-group {
+    width: 100%
+}
+
+.fix-buttom {
+    display: flex;
+    flex-direction: row;
+    position: fixed;
+    bottom: -1rpx;
+    right: 0rpx;
+    width: 101%;
+    margin-bottom: 0rpx;
+}
+
+.form-item {
+    align-content:center;
+    justify-content:center;
+    height:60rpx;
+    flex-direction:row;
+    
+}
+
+
+

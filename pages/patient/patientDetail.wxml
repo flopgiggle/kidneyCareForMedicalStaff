@@ -94,6 +94,14 @@
        
       </view>
     </view>
+    <view class="form-item form-item-picker" bindtap='onEvaluateDrugTap'>
+      <view class="form-item-label">
+        <text>用药记录</text>
+      </view>
+      <view class="form-item-input ">
+
+      </view>
+    </view>
   </view>
   <view class="form-group">
     <view class="form-item form-item-picker" bindtap='onMessageTap'>

@@ -1,0 +1,49 @@
+<view class="container">
+  <checkbox-group bindchange="yfCheckboxChange">
+    <view class="form-group ">
+      <view class="form-item date">
+        <view class="form-item-label">
+          <text>用药日期</text>
+        </view>
+        <view class="form-item-input">
+          <picker mode="date" value="{{date}}" start="1900-01-01" end="2019-08-30" bindchange="bindDateChange">
+            <view class="picker ">
+              {{date}}
+            </view>
+          </picker>
+        </view>
+      </view>
+    </view>
+    <block wx:for="{{allDrugs}}" wx:for-item="oneGroup" wx:for-index="i">
+      <view class="form-group">
+        <view class="form-item {{oneGroup.IsFold?'form-item-picker-up':'form-item-picker-down'}}" data-group="{{oneGroup}}" bindtap="onGroupTap">
+          <view class="form-item-label">
+            <text>{{oneGroup.GroupName}}</text>
+          </view>
+        </view>
+
+        <block wx:for="{{oneGroup.GroupTowList}}" wx:for-item="towGroup" wx:for-index="d">
+          <view class="form-item-input" style="margin-left:20rpx;width:100%;{{oneGroup.IsFold?'':'display:none'}}">{{d+1}}、{{towGroup.GroupName}}</view>
+            <view class="form-item-input;" style="{{oneGroup.IsFold?'':'display:none'}};width:100%;">
+              <block wx:for="{{towGroup.DrugsList}}" wx:for-item="drugItem" wx:for-index="idx">
+                <view wx:if="{{ idx%2 == 0 }}" class="disease-item">
+                  <view class="left-disease">
+                    <checkbox value="{{drugItem.DrugDode}}"/>{{drugItem.DrugsName}}
+                  </view>
+
+                  <view wx:if="{{towGroup.DrugsList[idx+1]!= null}}" class="right-disease">
+                    <checkbox value="{{towGroup.DrugsList[idx+1].DrugDode}}"/>{{towGroup.DrugsList[idx+1].DrugsName}}
+                  </view>
+                </view>
+              </block>    
+            </view>
+        </block>
+      </view>
+    </block>
+  </checkbox-group>
+  <view  class="form-group fix-buttom" bindtap="onSaveTap">
+    <view class="form-row-button">
+      <text>确认</text>
+    </view>
+  </view>
+</view>
