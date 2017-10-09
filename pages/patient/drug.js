@@ -11,6 +11,7 @@ Page({
         patientId: "",
         checkedList: [],
         patientInfo: {},
+        allSelectedDrugs:[],
         allDrugs: [],
         CKD: [{ Name: '1期', Id: '1' }, { Name: '2期', Id: '2' }, { Name: '3期', Id: '3' }, { Name: '4期', Id: '4' }, { Name: '5期', Id: '5' }],
         CKDIndex: -1,
@@ -21,24 +22,24 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        //var allDiease = this.data.disease;
-        //var patientInfo = wx.getStorageSync("patientInfo" + options.patientId);
-        ////设置选中的疾病
-
-        //for (var item of patientInfo.disease) {
-        //    for (var dataItem of allDiease) {
-        //        if (item.DiseaseCode == dataItem.diseaseCode) {
-        //            dataItem.checked = true;
-        //        }
-        //    }
-        //}
+        var patientInfo = wx.getStorageSync("patientInfo" + options.patientId);
         this.setData({
             patientId: options.patientId,
+            patientInfo: patientInfo,
         });
     },
-    onSaveTap: function (e) {
-        wx.navigateBack({
-            delta: 1
+    formSubmit: function (e) {
+        debugger;
+        var postData = [];
+        for (var item of this.data.allSelectedDrugs) {
+            postData.push({ DrugCode: item.DrugCode, DrugName: item.DrugsName, PatientId: this.data.patientId, Remark: e.detail.value[item.DrugCode] });
+        }
+        var url = app.globalData.urls.drugs.savePatientDrugs;
+        util.httpPost(url, postData, res => {
+            debugger;
+            wx.navigateBack({
+                delta: 1
+            });
         });
     },
     yfCheckboxChange: function (e) {
@@ -54,20 +55,22 @@ Page({
         //        }
         //    }
         //}
-        var contentCheckedList = [];
-
-        e.detail.value.forEach(a => {
-            this.data.disease.forEach(b => {
-                if (a === b.coursCode) {
-                    contentCheckedList.push(b);
+       
+        var allSelectedDrugs = [];
+        //设置选中的药品
+        this.processDrugs(drugs => {
+            var drugsCheckStatus = false;
+            for (var a of e.detail.value) {
+                if (drugs.DrugCode === a) {
+                    drugsCheckStatus = true;
                 }
-            });
+            }
+            drugs.Checked = drugsCheckStatus;
+            if (drugs.Checked) {
+                allSelectedDrugs.push(drugs);
+            }
         });
-
-
-        wx.setStorageSync("contentCheckedList" + this.data.patientId, contentCheckedList);
-        //this.setData({ checkedList: e.detail.value});
-        console.log('checkbox发生change事件，携带value值为：', e.detail.value);
+        this.setData({ allDrugs: this.data.allDrugs, allSelectedDrugs: allSelectedDrugs });
     },
     bindCKDChange: function (e) {
         this.setData({
@@ -80,7 +83,18 @@ Page({
     onReady: function () {
 
     },
-
+    /**
+     * 遍历所有药物的处理函数
+     */
+    processDrugs: function(processFun) {
+        for (var item of this.data.allDrugs) {
+            for (var innerItem of item.GroupTowList) {
+                for (var drugs of innerItem.DrugsList) {
+                    processFun(drugs);
+                }
+            }
+        }
+    },
     /**
      * 生命周期函数--监听页面显示
      */
@@ -92,6 +106,24 @@ Page({
                 var result = JSON.parse(res.Result);
                 this.setData({
                     allDrugs: result
+                });
+                //选中病人的当前用药情况
+                if (this.data.patientInfo.drugs) {
+                    this.processDrugs(drugs => {
+                        var drugsCheckStatus = false;
+                        var remark = "";
+                        for (var a of this.data.patientInfo.drugs) {
+                            if (drugs.DrugCode === a.DrugCode) {
+                                drugsCheckStatus = true;
+                                remark = a.Remark;
+                            }
+                        }
+                        drugs.Checked = drugsCheckStatus;
+                        drugs.Remark = remark;
+                    });
+                }
+                this.setData({
+                    allDrugs: this.data.allDrugs
                 });
             });
 

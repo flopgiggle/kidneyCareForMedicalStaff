@@ -94,12 +94,14 @@
        
       </view>
     </view>
-    <view class="form-item form-item-picker" bindtap='onEvaluateDrugTap'>
+    <view class="form-item form-item-picker autoHeight" bindtap='onEvaluateDrugTap'>
       <view class="form-item-label">
         <text>用药记录</text>
       </view>
-      <view class="form-item-input ">
-
+      <view class="form-item-input disease">
+        <!--<block wx:for="{{patientInfo.drugs}}" wx:for-item="item">
+          {{item.DrugName+' '+(item.Remark?item.Remark:'')}};
+        </block>-->
       </view>
     </view>
   </view>

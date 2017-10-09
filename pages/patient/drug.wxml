@@ -1,4 +1,5 @@
 <view class="container">
+  <form bindsubmit="formSubmit" >
   <checkbox-group bindchange="yfCheckboxChange">
     <view class="form-group ">
       <view class="form-item date">
@@ -25,14 +26,17 @@
         <block wx:for="{{oneGroup.GroupTowList}}" wx:for-item="towGroup" wx:for-index="d">
           <view class="form-item-input" style="margin-left:20rpx;width:100%;{{oneGroup.IsFold?'':'display:none'}}">{{d+1}}、{{towGroup.GroupName}}</view>
             <view class="form-item-input;" style="{{oneGroup.IsFold?'':'display:none'}};width:100%;">
-              <block wx:for="{{towGroup.DrugsList}}" wx:for-item="drugItem" wx:for-index="idx">
+             
+                <block wx:for="{{towGroup.DrugsList}}" wx:for-item="drugItem" wx:for-index="idx">
                 <view wx:if="{{ idx%2 == 0 }}" class="disease-item">
                   <view class="left-disease">
-                    <checkbox value="{{drugItem.DrugDode}}"/>{{drugItem.DrugsName}}
+                    <checkbox value="{{drugItem.DrugCode}}" checked="{{drugItem.Checked}}"/>{{drugItem.DrugsName}}
                   </view>
-
                   <view wx:if="{{towGroup.DrugsList[idx+1]!= null}}" class="right-disease">
-                    <checkbox value="{{towGroup.DrugsList[idx+1].DrugDode}}"/>{{towGroup.DrugsList[idx+1].DrugsName}}
+                    <checkbox value="{{towGroup.DrugsList[idx+1].DrugCode}}" checked="{{towGroup.DrugsList[idx+1].Checked}}"/>{{towGroup.DrugsList[idx+1].DrugsName}}
+                  </view>
+                  <view wx:if="{{drugItem.DrugsName == '其它'}}" class="form-item-input">
+                    <input name="{{drugItem.DrugCode}}" value="{{drugItem.Remark}}" type='text' maxlength="100" placeholder-class="form-input-placeholder" placeholder="(备注信息)" auto-focus=""/>
                   </view>
                 </view>
               </block>    
@@ -41,9 +45,12 @@
       </view>
     </block>
   </checkbox-group>
-  <view  class="form-group fix-buttom" bindtap="onSaveTap">
+  <view  class="form-group fix-buttom">
     <view class="form-row-button">
-      <text>确认</text>
+      <button class="form-row-button" formType="submit">
+        <text>保存</text>
+      </button>
     </view>
   </view>
+  </form>
 </view>
