@@ -30,13 +30,13 @@
                 <block wx:for="{{towGroup.DrugsList}}" wx:for-item="drugItem" wx:for-index="idx">
                 <view wx:if="{{ idx%2 == 0 }}" class="disease-item">
                   <view class="left-disease">
-                    <checkbox value="{{drugItem.DrugCode}}" checked="{{drugItem.Checked}}"/>{{drugItem.DrugsName}}
+                    <checkbox value="{{drugItem.DrugCode}}" checked="{{drugItem.Checked}}"/>{{drugItem.DrugName}}
                   </view>
                   <view wx:if="{{towGroup.DrugsList[idx+1]!= null}}" class="right-disease">
-                    <checkbox value="{{towGroup.DrugsList[idx+1].DrugCode}}" checked="{{towGroup.DrugsList[idx+1].Checked}}"/>{{towGroup.DrugsList[idx+1].DrugsName}}
+                    <checkbox value="{{towGroup.DrugsList[idx+1].DrugCode}}" checked="{{towGroup.DrugsList[idx+1].Checked}}"/>{{towGroup.DrugsList[idx+1].DrugName}}
                   </view>
-                  <view wx:if="{{drugItem.DrugsName == '其它'}}" class="form-item-input">
-                    <input name="{{drugItem.DrugCode}}" value="{{drugItem.Remark}}" type='text' maxlength="100" placeholder-class="form-input-placeholder" placeholder="(备注信息)" auto-focus=""/>
+                  <view wx:if="{{drugItem.DrugName == '其它'}}" class="form-item-input">
+                    <input name="{{drugItem.DrugCode}}" style="margin-top:6rpx;" value="{{drugItem.Remark}}" type='text' maxlength="100" placeholder-class="form-input-placeholder" placeholder="(备注信息)" auto-focus=""/>
                   </view>
                 </view>
               </block>    
@@ -47,7 +47,7 @@
   </checkbox-group>
   <view  class="form-group fix-buttom">
     <view class="form-row-button">
-      <button class="form-row-button" formType="submit">
+      <button  class="form-row-button" formType="submit">
         <text>保存</text>
       </button>
     </view>

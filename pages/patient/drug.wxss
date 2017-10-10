@@ -94,6 +94,7 @@ checkbox-group {
     right: 0rpx;
     width: 101%;
     margin-bottom: 0rpx;
+    z-index: 1000;
 }
 
 .form-item {

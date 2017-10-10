@@ -1,0 +1,22 @@
+<view class="container">
+  <block wx:for="{{drugs}}" wx:for-item="item" wx:for-index="idx">
+    <view class="form-group">
+      <view class="form-item">
+        <view class="form-item-label">
+          <text>记录日期</text>
+        </view>
+        <view class="form-item-input">
+          {{item.RecordTime}}
+        </view>
+      </view>
+      <view class="form-item">
+        <view class="form-item-label">
+          <text>用药名称</text>
+        </view>
+        <view class="form-item-input">
+          {{item.Drugs}}
+        </view>
+      </view>
+    </view>
+  </block>
+</view>

@@ -88,15 +88,24 @@
     </view>
     <view class="form-item form-item-picker" bindtap='onEvaluateHitoryTap'>
       <view class="form-item-label">
-        <text>评估记录</text>
+        <text>历史评估</text>
       </view>
       <view class="form-item-input ">
-       
       </view>
     </view>
     <view class="form-item form-item-picker autoHeight" bindtap='onEvaluateDrugTap'>
       <view class="form-item-label">
         <text>用药记录</text>
+      </view>
+      <view class="form-item-input disease">
+        <!--<block wx:for="{{patientInfo.drugs}}" wx:for-item="item">
+          {{item.DrugName+' '+(item.Remark?item.Remark:'')}};
+        </block>-->
+      </view>
+    </view>
+    <view class="form-item form-item-picker autoHeight" bindtap='onHistoryDrugTap'>
+      <view class="form-item-label">
+        <text>历史用药</text>
       </view>
       <view class="form-item-input disease">
         <!--<block wx:for="{{patientInfo.drugs}}" wx:for-item="item">

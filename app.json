@@ -13,7 +13,8 @@
     "pages/evaluate/content",
     "pages/evaluate/hitory",
     "pages/patient/exceptInfo",
-    "pages/patient/drug"
+    "pages/patient/drug",
+    "pages/patient/historyDrug"
   ],
   "window": {
     "navigationBarBackgroundColor": "#4fc1e9"

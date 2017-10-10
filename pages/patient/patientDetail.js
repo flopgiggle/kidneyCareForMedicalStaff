@@ -64,6 +64,11 @@ Page({
             url: "/pages/patient/drug?patientId=" + this.data.patientId
         });
     },
+    onHistoryDrugTap: function (e) {
+        wx.navigateTo({
+            url: "/pages/patient/historyDrug?patientId=" + this.data.patientId
+        });
+    },
     /**
      * 生命周期函数--监听页面初次渲染完成
      */

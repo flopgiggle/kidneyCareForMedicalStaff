@@ -29,33 +29,33 @@ Page({
         });
     },
     formSubmit: function (e) {
-        debugger;
         var postData = [];
         for (var item of this.data.allSelectedDrugs) {
-            postData.push({ DrugCode: item.DrugCode, DrugName: item.DrugsName, PatientId: this.data.patientId, Remark: e.detail.value[item.DrugCode] });
-        }
-        var url = app.globalData.urls.drugs.savePatientDrugs;
-        util.httpPost(url, postData, res => {
             debugger;
-            wx.navigateBack({
-                delta: 1
+            postData.push({
+                DrugCode: item.DrugCode,
+                DrugName: item.DrugName,
+                PatientId: this.data.patientId,
+                Remark: e.detail.value[item.DrugCode],
+                RecordTime: this.data.date
             });
-        });
+        }
+        debugger;
+        var url = app.globalData.urls.drugs.savePatientDrugs;
+        util.httpPost(url,
+        {
+            RecordTime: this.data.date,
+            Drugs: postData,
+            PatientId:this.data.patientId
+        },
+            res => {
+                wx.navigateBack({
+                    delta: 1
+                });
+            });
     },
     yfCheckboxChange: function (e) {
-        //var allDisease = e.detail.value;
-        ////设置选中的疾病
-        //var allDiease = this.data.disease;
-        //for (var item of allDisease) {
-        //    for (var dataItem of allDiease) {
-        //        if (item == dataItem.diseaseCode) {
-        //            dataItem.checked = true;
-        //        } else {
-        //            dataItem.checked = false;
-        //        }
-        //    }
-        //}
-       
+
         var allSelectedDrugs = [];
         //设置选中的药品
         this.processDrugs(drugs => {
@@ -100,15 +100,16 @@ Page({
      */
     onShow: function () {
         var url = app.globalData.urls.drugs.getAllDrugs;
-        debugger;
         util.http(url,
             res => {
                 var result = JSON.parse(res.Result);
                 this.setData({
                     allDrugs: result
                 });
+                var allSelectedDrugs = [];
                 //选中病人的当前用药情况
                 if (this.data.patientInfo.drugs) {
+                    
                     this.processDrugs(drugs => {
                         var drugsCheckStatus = false;
                         var remark = "";
@@ -116,6 +117,7 @@ Page({
                             if (drugs.DrugCode === a.DrugCode) {
                                 drugsCheckStatus = true;
                                 remark = a.Remark;
+                                allSelectedDrugs.push(a);
                             }
                         }
                         drugs.Checked = drugsCheckStatus;
@@ -123,22 +125,10 @@ Page({
                     });
                 }
                 this.setData({
-                    allDrugs: this.data.allDrugs
+                    allDrugs: this.data.allDrugs,
+                    allSelectedDrugs: allSelectedDrugs
                 });
             });
-
-        var checkedList = wx.getStorageSync("contentCheckedList" + this.data.patientId);
-        for (var oneContent of this.data.disease) {
-            for (var oneChedked of checkedList) {
-                if (oneChedked.coursCode === oneContent.coursCode) {
-                    oneContent.checked = true;
-                    break;
-                } else {
-                    oneContent.checked = false;
-                }
-            };
-        };
-        this.setData({ disease: this.data.disease});
     },
 
     /**
@@ -174,6 +164,12 @@ Page({
      */
     onShareAppMessage: function () {
 
+    },
+    bindDateChange: function (e) {
+        console.log('picker发送选择改变，携带值为', e.detail.value);
+        this.setData({
+            date: e.detail.value
+        });
     },
     onGroupTap: function (e) {
         //设置展开收缩药物大类面板
