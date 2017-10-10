@@ -15,6 +15,18 @@
         </view>
       </view>
     </view>
+    <view class="form-group">
+      <view class="form-item" >
+        <view class="form-item-label">
+          <text>当前用药</text>
+        </view>
+      </view>
+      <view class="form-item-input;" style="width:90%;margin-bottom:15rpx;">
+        <block wx:for="{{allSelectedDrugs}}" wx:for-item="item" wx:for-index="idx">
+          {{item.DrugName+' '+(item.Remark?item.Remark:'')}};
+        </block>
+      </view>
+    </view>
     <block wx:for="{{allDrugs}}" wx:for-item="oneGroup" wx:for-index="i">
       <view class="form-group">
         <view class="form-item {{oneGroup.IsFold?'form-item-picker-up':'form-item-picker-down'}}" data-group="{{oneGroup}}" bindtap="onGroupTap">
