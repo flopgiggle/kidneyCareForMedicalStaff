@@ -1,7 +1,10 @@
 <view class="container">
+  <view wx:if="{{ drugs.length==0}}" class="none-data">
+    <view>暂无历史用药信息</view>
+  </view>
   <block wx:for="{{drugs}}" wx:for-item="item" wx:for-index="idx">
     <view class="form-group">
-      <view class="form-item">
+      <view class="form-item " style="height:50rpx">
         <view class="form-item-label">
           <text>记录日期</text>
         </view>
@@ -9,11 +12,11 @@
           {{item.RecordTime}}
         </view>
       </view>
-      <view class="form-item">
+      <view class="form-item autoHeight">
         <view class="form-item-label">
           <text>用药名称</text>
         </view>
-        <view class="form-item-input">
+        <view class="form-item-input" style="text-align:left">
           {{item.Drugs}}
         </view>
       </view>

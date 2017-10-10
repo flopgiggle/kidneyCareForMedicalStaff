@@ -127,6 +127,17 @@ form {
     height: 100%;
 }
 
+.none-data {
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    flex-direction: column;
+    display: flex;
+    color: #666;
+    height: 70vh;
+    text-align: center;
+}
+
 
 
 
