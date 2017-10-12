@@ -48,7 +48,7 @@
                     <checkbox value="{{towGroup.DrugsList[idx+1].DrugCode}}" checked="{{towGroup.DrugsList[idx+1].Checked}}"/>{{towGroup.DrugsList[idx+1].DrugName}}
                   </view>
                   <view wx:if="{{drugItem.DrugName == '其它'}}" class="form-item-input">
-                    <input name="{{drugItem.DrugCode}}" style="margin-top:6rpx;" value="{{drugItem.Remark}}" type='text' maxlength="100" placeholder-class="form-input-placeholder" placeholder="(备注信息)" auto-focus=""/>
+                    <input id="{{drugItem.DrugCode}}" bindblur="inputBlurChange" name="{{drugItem.DrugCode}}" style="margin-top:6rpx;" value="{{drugItem.Remark}}" type='text' maxlength="100" placeholder-class="form-input-placeholder" placeholder="(备注信息)" auto-focus=""/>
                   </view>
                 </view>
               </block>    

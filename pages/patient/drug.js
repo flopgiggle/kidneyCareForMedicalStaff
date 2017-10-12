@@ -95,6 +95,20 @@ Page({
             }
         }
     },
+    inputBlurChange: function (e) {
+        var currentDrugCode = e.target.id;
+        for (var oneDrugs of this.data.allSelectedDrugs) {
+            if (oneDrugs.DrugCode === currentDrugCode) {
+                oneDrugs.Remark = e.detail.value;
+            }
+        }
+        this.processDrugs(drugs => {
+            if (drugs.DrugCode === currentDrugCode) {
+                drugs.Remark = e.detail.value;
+            }
+        });
+        this.setData({ allDrugs: this.data.allDrugs, allSelectedDrugs: this.data.allSelectedDrugs });
+    },
     /**
      * 生命周期函数--监听页面显示
      */
