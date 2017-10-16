@@ -61,6 +61,9 @@ App({
                 getAllDrugs: baseUri + "drugs/getAllDrugs",
                 savePatientDrugs: baseUri + "drugs/savePatientDrugs",
                 getHistoryDrugs: baseUri + "drugs/getHistoryDrugs/",
+            },
+            course: {
+                createCourse: baseUri + "course/createCourse",
             }
 
         }

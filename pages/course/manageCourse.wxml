@@ -1,0 +1,25 @@
+<view class="container">
+  <view wx:if="{{ patientInfo.length==0}}" class="none-data">
+    <view>暂无历史评估信息</view>
+  </view>
+  <block wx:for="{{patientInfo}}" wx:for-item="item" wx:for-index="idx">
+    <view class="form-group">
+      <view class="form-item">
+        <view class="form-item-label">
+          <text>课程日期</text>
+        </view>
+        <view class="form-item-input">
+          {{item.AttendingDates}}
+        </view>
+      </view>
+      <view class="form-item">
+        <view class="form-item-label">
+          <text>课程内容</text>
+        </view>
+        <view class="form-item-input">
+          {{item.ObjectName}}
+        </view>
+      </view>
+    </view>
+  </block>
+</view>

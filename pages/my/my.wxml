@@ -20,21 +20,21 @@
       </view>
     </view>
   </view>
-  <view class="form-group" wx:if="{{false}}">
-    <view class="form-item" wx:if="{{false}}">
+  <view class="form-group" >
+    <view class="form-item form-item-picker" bindtap="chooseNewCourse">
       <view class="form-item-label">
-        <text>血压上限</text>
+        <text>新建课程</text>
       </view>
       <view class="form-item-input">
-        <input placeholder-class="form-input-placeholder" type="number" placeholder="血压预警的上限值" auto-focus=""/>
+        
       </view>
     </view>
-    <view class="form-item" wx:if="{{false}}">
+    <view class="form-item form-item-picker" bindtap="chooseManageCourse">
       <view class="form-item-label">
-        <text>血糖上限</text>
+        <text>管理课程</text>
       </view>
       <view class="form-item-input">
-        <input placeholder-class="form-input-placeholder" type="number" placeholder="血糖预警的下限值" auto-focus=""/>
+        
       </view>
     </view>
   </view>

@@ -14,7 +14,9 @@
     "pages/evaluate/hitory",
     "pages/patient/exceptInfo",
     "pages/patient/drug",
-    "pages/patient/historyDrug"
+    "pages/patient/historyDrug",
+    "pages/course/addCourse",
+    "pages/course/manageCourse"
   ],
   "window": {
     "navigationBarBackgroundColor": "#4fc1e9"
