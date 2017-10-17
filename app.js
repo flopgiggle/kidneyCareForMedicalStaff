@@ -66,7 +66,8 @@ App({
                 createCourse: baseUri + "course/createCourse",
                 uploadPic: baseUri + "course/uploadPic",
                 uploadPPT: baseUri + "course/uploadPPT",
-                getCourseList: baseUri + "course/getCourseList",
+                getCourseList: baseUri + "course/getCourseList/",
+                getCourseDetailById: baseUri + "course/getCourseDetailById/",
             }
 
         }

@@ -23,7 +23,9 @@ function http(url, callBack,noShowMask) {
         url: url,
         method: 'GET',
         header: {
-            "Content-Type": "json"
+            "Content-Type": "json",
+            'openId': '',
+            'userId': getApp().globalData.user ? getApp().globalData.user.Id : "",
         },
         success: function (res) {
             callBack(res.data);

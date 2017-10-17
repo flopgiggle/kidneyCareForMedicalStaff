@@ -1,0 +1,52 @@
+<view class="container">
+    <view class="form-group">
+      <view class="form-item">
+        <view class="form-item-label">
+          <text>课程名称</text>
+        </view>
+        <view class="form-item-input">
+          {{courseDetail.CourseName}}
+        </view>
+      </view>
+      <view class="form-item">
+        <view class="form-item-label">
+          <text>课程日期</text>
+        </view>
+        <view class="form-item-input">
+          {{courseDetail.Date}} {{courseDetail.StartTime+" - "+courseDetail.EndTime}}
+        </view>
+      </view>
+      <view class="form-item">
+        <view class="form-item-label">
+          <text>课程地点</text>
+        </view>
+        <view class="form-item-input">
+          {{courseDetail.Address}}
+        </view>
+      </view>
+      <view class="form-item">
+        <view class="form-item-label">
+          <text>主讲人</text>
+        </view>
+        <view class="form-item-input">
+          {{courseDetail.Speaker}}
+        </view>
+      </view>
+      <view class="form-item">
+        <view class="form-item-label">
+          <text>主讲人简介</text>
+        </view>
+        <view class="form-item-input">
+          {{courseDetail.SpeakerInfo}}
+        </view>
+      </view>
+      <view class="form-item">
+        <view class="form-item-label">
+          <text>课程简介</text>
+        </view>
+        <view class="form-item-input">
+          {{courseDetail.CourseContent}}
+        </view>
+      </view>
+    </view>
+</view>

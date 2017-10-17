@@ -7,7 +7,8 @@ Page({
      * 页面的初始数据
      */
     data: {
-        patientId: "",
+        courseId: "",
+        courseDetail: {},
         checkedList: [],
         patientInfo: {},
         CKD: [{ Name: '1期', Id: '1' }, { Name: '2期', Id: '2' }, { Name: '3期', Id: '3' }, { Name: '4期', Id: '4' }, { Name: '5期', Id: '5' }],
@@ -18,7 +19,7 @@ Page({
      */
     onLoad: function (options) {
         this.setData({
-            patientId: options.patientId,
+            courseId: options.courseId,
         });
     },
     /**
@@ -27,21 +28,16 @@ Page({
     onReady: function () {
 
     },
-    onCourseTap: function (e) {
-        wx.navigateTo({
-            url: "/pages/course/courseDetail?courseId=" + e.currentTarget.dataset.course.Id
-        });
-    },
+
     /**
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-        var url = app.globalData.urls.course.getCourseList;
+        var url = app.globalData.urls.course.getCourseDetailById + this.data.courseId;
         util.http(url,
             res => {
-            debugger;
-            var patientInfo = JSON.parse(res.Result);
-            this.setData({ patientInfo: patientInfo });
+                var courseDetail = JSON.parse(res.Result);
+                this.setData({ courseDetail: courseDetail });
         });
     },
 
