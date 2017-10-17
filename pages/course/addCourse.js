@@ -16,7 +16,10 @@ Page({
         date: util.getNowFormatDate(),
         count: [1, 2, 3],
         countIndex: 2,
-        imageList: []
+        picList: [],
+        pptList: [],
+        appUrlName: null,
+        pptUrlName:null,
     },
     bindReportTypeChange: function (e) {
         this.setData({
@@ -24,24 +27,43 @@ Page({
             reportTypeId: this.data.reportType[e.detail.value].Id
         });
     },
-    chooseImage: function () {
+    choosePic: function () {
         var that = this;
         wx.chooseImage({
             sourceType: sourceType[this.data.sourceTypeIndex],
             sizeType: sizeType[this.data.sizeTypeIndex],
-            count: 5,
-            success: function (res) {
-                console.log(res);
-                that.setData({
-                    imageList: res.tempFilePaths
+            count: 1,
+            success: response => {
+                this.uploadImage(response.tempFilePaths[0], res => {
+                    res = JSON.parse(res.data);
+                    that.setData({
+                        picList: response.tempFilePaths,
+                        appUrlName: res.name
+                    });
                 });
-
-
-
+                
             }
         })
     },
-
+    choosePPT: function () {
+        var that = this;
+        wx.chooseImage({
+            sourceType: sourceType[this.data.sourceTypeIndex],
+            sizeType: sizeType[this.data.sizeTypeIndex],
+            count: 1,
+            success: response=>{
+                this.uploadImage(response.tempFilePaths[0], res => {
+                    res = JSON.parse(res.data);
+                    that.setData({
+                        pptList: response.tempFilePaths,
+                        pptUrlName: res.name
+                    });
+                });
+                
+            }
+        })
+    },
+    
     /**
      * 生命周期函数--监听页面加载
      */
@@ -64,11 +86,24 @@ Page({
     },
     formSubmit: function (e) {
         console.log('form发生了submit事件，携带数据为：', e.detail.value);
+        var postData = {
+            CourseName: e.detail.value.CourseName,
+            Address: e.detail.value.Address,
+            Date: this.data.date,
+            StartTime: this.data.startTime,
+            EndTime: this.data.endTime,
+            Speaker: e.detail.value.Speaker,
+            SpeakerInfo: e.detail.value.SpeakerInfo,
+            CourseContent: e.detail.value.CourseContent,
+            Type: 0,
+            PicUrl: this.data.appUrlName,
+            PPTUrl: this.data.pptUrlName,
+        };
 
-        if (this.data.reportTypeId == -1) {
+        if (postData.CourseName < 2) {
             wx.showModal({
                 title: '提示',
-                content: '请选择报告类型',
+                content: '请填写课程名称',
                 success: function (res) {
                     if (res.confirm) {
                         console.log('用户点击确定');
@@ -80,83 +115,77 @@ Page({
             return;
         }
 
-        var postData = {
-            CourseName: e.detail.value.CourseName,
-            Address: e.detail.value.Address,
-            Date: this.data.date,
-            StartTime: this.data.startTime,
-            EndTime: this.data.endTime,
-            Speaker: e.detail.value.Speaker,
-            SpeakerInfo: e.detail.value.SpeakerInfo,
-            CourseContent: e.detail.value.CourseContent,
-            Type: 0,
-            PicUrl: e.detail.value.PicUrl,
-            PPTUrl: e.detail.value.PPTUrl,
-        };
-        util.httpPost(app.globalData.urls.course.createCourse, postData, res => {
-            if (res.IsSuccess) {
-                //开始上传图片
-                if (this.data.imageList && this.data.imageList.length > 0) {
-                    var reportId = res.Result;
-                    this.uploadimg({
-                        url: app.globalData.host+"/UploadHandler.ashx",
-                        path: this.data.imageList,//这里是选取的图片的地址数组,
-                        formData: {
-                            'reportId': reportId
-                        }
-                    });
+        if (postData.Address < 2) {
+            wx.showModal({
+                title: '提示',
+                content: '请填写课程地址',
+                success: function (res) {
+                    if (res.confirm) {
+                        console.log('用户点击确定');
+                    } else if (res.cancel) {
+                        console.log('用户点击取消');
+                    }
                 }
-            }
-            
-            wx.switchTab({
-                url: "/pages/currentDayInfo/currentDayInfo"
             });
-        });
-        //e.detail.value.name;
-        //e.detail.value.illInfo;
-    },
+            return;
+        }
 
-    //多张图片上传
-    uploadimg: function (data){
-        var that= this,
-            i=data.i ? data.i : 0,
-            success=data.success ? data.success : 0,
-            fail=data.fail ? data.fail : 0;
-
-        wx.uploadFile({
-            url: data.url,
-            filePath: data.path[i],
-            name: 'fileData',
-            formData: { ...data.formData,num:i} ,
-            success: (resp) => {
-                success++;
-                console.log(resp);
-                console.log(i);
-                //这里可能有BUG，失败也会执行这里
-            },
-            fail: (res) => {
-                fail++;
-                console.log('fail:' + i + "fail:" + fail);
-            },
-            complete: () => {
-                console.log(i);
-                i++;
-                if (i === data.path.length) {   //当图片传完时，停止调用          
-                    console.log('执行完毕');
-                    console.log('成功：' + success + " 失败：" + fail);
-                } else {
-                    //若图片还没有传完，则继续调用函数
-                    console.log(i);
-                    data.i = i;
-                    data.success = success;
-                    data.fail = fail;
-                    that.uploadimg(data);
+        if (postData.Speaker < 2) {
+            wx.showModal({
+                title: '提示',
+                content: '请填写主讲人',
+                success: function (res) {
+                    if (res.confirm) {
+                        console.log('用户点击确定');
+                    } else if (res.cancel) {
+                        console.log('用户点击取消');
+                    }
                 }
+            });
+            return;
+        }
 
+        //var isPicNull = true;
+        //if (this.data.picList && this.data.picList[0]) {
+        //    isPicNull = false;
+        //    uploadImage(this.data.picList[0]);
+        //}
+
+        //var isPPTNull = true;
+        //if (this.data.pptList && this.data.pptList[0]) {
+        //    isPPTNull = false;
+        //    uploadImage(this.data.pptList[0])
+        //}
+
+        //if (isPicNull && isPPTNull) {
+        this.saveMainData(postData);
+        //}
+
+
+
+    },
+    saveMainData: function (postData) {
+        util.httpPost(app.globalData.urls.course.createCourse, postData, res => {
+            wx.redirectTo({
+                url: "/pages/course/manageCourse"
+            })
+        });
+    },
+    uploadImage: function (filePath, callback) {
+        wx.showLoading({
+            title: '加载中',
+        });
+        wx.uploadFile({
+            url: app.globalData.host + "/UploadImages.ashx",
+            filePath: filePath,
+            name: 'fileData',
+            formData: {},
+            success: (res) => {
+                callback(res);
+                wx.hideLoading();
             }
         });
     },
-
     bindDateChange: function (e) {
         console.log('picker发送选择改变，携带值为', e.detail.value);
         this.setData({

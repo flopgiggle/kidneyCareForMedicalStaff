@@ -58,7 +58,9 @@ function httpPost(url, data, callBack, noShowMask) {
         method: 'POST',
         data: data,
         header: {
-            'content-type': 'application/json'
+            'content-type': 'application/json',
+            'openId': '',
+            'userId': getApp().globalData.user ? getApp().globalData.user.Id:"",
         },
         success: function (res) {
             callBack(res.data);
