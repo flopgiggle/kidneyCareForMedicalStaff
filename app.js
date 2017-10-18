@@ -18,11 +18,9 @@ var openId = {
 var baseUri = host[runMode] + "/api/";
 App({
     globalData: {
-        g_isPlayingMusic: false,
-        g_currentMusicPostId: null,
-        doubanBase: "https://api.douban.com",
         host: host[runMode],
-        picUrl: host + "/upload/",
+        picUrl: host[runMode] + "/upload/",
+        courseFileUrl: host[runMode] + "/uploadcoursefile/",
         openId: openId[runMode],
         user: "",
         wxUserInfo:"",
