@@ -9,7 +9,7 @@
           <text>课程状态</text>
         </view>
         <view class="form-item-input">
-          {{"进行中"}}
+          {{item.StatusName}}
         </view>
       </view>
       <view class="form-item">
