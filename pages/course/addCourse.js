@@ -9,17 +9,15 @@ Page({
      * 页面的初始数据
      */
     data: {
-        reportTypeIndex: -1,
         startTime: "14:00",
         endTime: "16:00",
-        reportTypeId: -1,
         date: util.getNowFormatDate(),
-        count: [1, 2, 3],
-        countIndex: 2,
         picList: [],
         pptList: [],
         appUrlName: null,
-        pptUrlName:null,
+        pptUrlName: null,
+        courseId: "",
+        orgCourseDetail: {},
     },
     bindReportTypeChange: function (e) {
         this.setData({
@@ -68,6 +66,9 @@ Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        this.setData({
+            courseId: options.courseId,
+        });
         Date.prototype.Format = function (fmt) { //author: meizz
             var o = {
                 "M+": this.getMonth() + 1,
@@ -87,6 +88,7 @@ Page({
     formSubmit: function (e) {
         console.log('form发生了submit事件，携带数据为：', e.detail.value);
         var postData = {
+            Id: this.data.courseId,
             CourseName: e.detail.value.CourseName,
             Address: e.detail.value.Address,
             Date: this.data.date,
@@ -145,24 +147,7 @@ Page({
             return;
         }
 
-        //var isPicNull = true;
-        //if (this.data.picList && this.data.picList[0]) {
-        //    isPicNull = false;
-        //    uploadImage(this.data.picList[0]);
-        //}
-
-        //var isPPTNull = true;
-        //if (this.data.pptList && this.data.pptList[0]) {
-        //    isPPTNull = false;
-        //    uploadImage(this.data.pptList[0])
-        //}
-
-        //if (isPicNull && isPPTNull) {
         this.saveMainData(postData);
-        //}
-
-
-
     },
     saveMainData: function (postData) {
         util.httpPost(app.globalData.urls.course.createCourse, postData, res => {
@@ -216,7 +201,26 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
+        if (this.data.courseId) {
+            var url = app.globalData.urls.course.getCourseDetailById + this.data.courseId;
+            util.http(url,
+                res => {
+                    var courseDetail = JSON.parse(res.Result);
+                    courseDetail.StartTimeString = util.formatDate("hh:mm", new Date(courseDetail.StartTime));
+                    courseDetail.EndTimeString = util.formatDate("hh:mm", new Date(courseDetail.EndTime));
+                    this.setData({
+                        startTime: courseDetail.StartTimeString,
+                        endTime: courseDetail.EndTimeString,
+                        date: courseDetail.Date,
+                        picList: [app.globalData.courseFileUrl + courseDetail.PicUrl],
+                        pptList: [app.globalData.courseFileUrl + courseDetail.PPTUrl],
+                        appUrlName: courseDetail.PicUrl,
+                        pptUrlName: courseDetail.PPTUrl,
+                        orgCourseDetail: courseDetail,
 
+                    });
+                });
+        }
     },
 
     /**

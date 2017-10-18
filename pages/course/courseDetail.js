@@ -50,7 +50,24 @@ Page({
                 });
         });
     },
-
+    onDeleteTap: function () {
+        wx.showModal({
+            title: '提示',
+            content: '是否要删除该课程',
+            success: function (res) {
+                if (res.confirm) {
+                    console.log('用户点击确定');
+                } else if (res.cancel) {
+                    console.log('用户点击取消');
+                }
+            }
+        });
+    },
+    onModifyTap: function () {
+        wx.redirectTo({
+            url: "/pages/course/addCourse?courseId=" + this.data.courseId
+        });
+    },
     /**
      * 生命周期函数--监听页面隐藏
      */
