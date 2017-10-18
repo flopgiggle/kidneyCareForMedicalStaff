@@ -51,12 +51,37 @@ Page({
         });
     },
     onDeleteTap: function () {
+        var url = app.globalData.urls.course.deleteCorese + this.data.courseId;
         wx.showModal({
             title: '提示',
             content: '是否要删除该课程',
             success: function (res) {
                 if (res.confirm) {
-                    console.log('用户点击确定');
+                    util.http(url,
+                        res => {
+                            wx.redirectTo({
+                                url: "/pages/course/manageCourse"
+                            });
+                        });
+                } else if (res.cancel) {
+                    console.log('用户点击取消');
+                }
+            }
+        });
+    },
+    onFinishTap: function () {
+        var url = app.globalData.urls.course.finishCourse + this.data.courseId;
+        wx.showModal({
+            title: '提示',
+            content: '是否要结束该课程',
+            success: function (res) {
+                if (res.confirm) {
+                    util.http(url,
+                        res => {
+                            wx.redirectTo({
+                                url: "/pages/course/manageCourse"
+                            });
+                        });
                 } else if (res.cancel) {
                     console.log('用户点击取消');
                 }

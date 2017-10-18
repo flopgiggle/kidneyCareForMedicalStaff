@@ -66,6 +66,8 @@ App({
                 uploadPPT: baseUri + "course/uploadPPT",
                 getCourseList: baseUri + "course/getCourseList/",
                 getCourseDetailById: baseUri + "course/getCourseDetailById/",
+                deleteCorese: baseUri + "course/deleteCorese/",
+                finishCourse: baseUri + "course/finishCourse/",
             }
 
         }

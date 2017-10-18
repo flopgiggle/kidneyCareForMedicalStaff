@@ -73,12 +73,17 @@
       </view>    
     </view>
 
-  <view class="add-record">
+  <view class="add-record" wx:if="{{courseDetail.Status == 10}}">
     <view class="record-button right-button" bindtap="onDeleteTap">
       <text>删除课程</text>
     </view>
     <view class="record-button left-button" bindtap="onModifyTap">
       <text>修改课程</text>
+    </view>
+  </view>
+  <view class="add-record" wx:if="{{courseDetail.Status == 11}}">
+    <view class="record-button right-button" bindtap="onFinishTap">
+      <text>结束课程</text>
     </view>
   </view>
 </view>
