@@ -39,7 +39,6 @@ Page({
         var url = app.globalData.urls.course.getCourseList;
         util.http(url,
             res => {
-            debugger;
             var patientInfo = JSON.parse(res.Result);
             this.setData({ patientInfo: patientInfo });
         });

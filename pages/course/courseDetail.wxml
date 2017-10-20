@@ -1,12 +1,17 @@
 <view class="container">
-    <view class="form-group">
-      <view class="form-item upload-Item autoHeight">
-        <view class="form-item-input upload-container my-avatar">
-          <image class="avatar" src="{{picUrl}}"></image>
-        </view>
-      </view>
+
+    <view class="form-group  upload-Item autoHeight" wx:if="{{isShowPic}}">
+      <image  class="avatar" src="{{picUrl}}"></image>
     </view>
     <view class="form-group">
+      <view class="form-item">
+        <view class="form-item-label">
+          <text>课程状态</text>
+        </view>
+        <view class="form-item-input">
+          {{courseDetail.StatusName}}
+        </view>
+      </view>
       <view class="form-item">
         <view class="form-item-label">
           <text>课程名称</text>
@@ -60,7 +65,7 @@
           <text>预约人数</text>
         </view>
         <view class="form-item-input">
-          {{courseDetail.CourseContent}}
+          {{takeInData.AppointmentPersonNum}}
         </view>
       </view>
       <view class="form-item">
@@ -68,7 +73,7 @@
           <text>签到人数</text>
         </view>
         <view class="form-item-input">
-          {{courseDetail.CourseContent}}
+          {{takeInData.SignInPersonNum}}
         </view>
       </view>    
     </view>
@@ -81,7 +86,7 @@
       <text>修改课程</text>
     </view>
   </view>
-  <view class="add-record" wx:if="{{courseDetail.Status == 11}}">
+  <view class="add-record" wx:if="{{courseDetail.Status == 21}}">
     <view class="record-button right-button" bindtap="onFinishTap">
       <text>结束课程</text>
     </view>

@@ -208,6 +208,7 @@ Page({
                     var courseDetail = JSON.parse(res.Result);
                     courseDetail.StartTimeString = util.formatDate("hh:mm", new Date(courseDetail.StartTime));
                     courseDetail.EndTimeString = util.formatDate("hh:mm", new Date(courseDetail.EndTime));
+                    debugger;
                     this.setData({
                         startTime: courseDetail.StartTimeString,
                         endTime: courseDetail.EndTimeString,
@@ -222,7 +223,21 @@ Page({
                 });
         }
     },
-
+    downloadPPT: function (e) {
+        debugger;
+        wx.downloadFile({
+            url: app.globalData.courseFileUrl + this.data.pptUrlName,
+            success: function (res) {
+                var filePath = res.tempFilePath
+                wx.openDocument({
+                    filePath: filePath,
+                    success: function (res) {
+                        console.log('打开文档成功')
+                    }
+                })
+            }
+        })
+    },
     /**
      * 生命周期函数--监听页面隐藏
      */

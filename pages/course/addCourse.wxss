@@ -15,9 +15,13 @@
 .upload-container {
     flex: 3 !important;
     justify-content: flex-start;
+    vertical-align:central;
+    align-items:center;
     display: flex;
     flex-wrap: wrap;
 }
+
+
 
 .upload-preview {
     border: solid;
@@ -31,6 +35,17 @@
     flex-direction: column;
     justify-content: center;
     margin-right:5rpx;
+}
+
+.file-preview {
+    width: 130rpx;
+    height: 130rpx;
+    text-align: center;
+    vertical-align: central;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-right: 5rpx;
 }
 
 .form-item image {

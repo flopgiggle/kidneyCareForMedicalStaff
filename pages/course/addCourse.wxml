@@ -6,7 +6,7 @@
         <text>课程名称</text>
       </view>
       <view class="form-item-input">
-        <input name="CourseName" value="{{orgCourseDetail.CourseName}}" type="text" maxlength="5"  placeholder-class="form-input-placeholder" placeholder="(必填)" auto-focus=""/>
+        <input name="CourseName" value="{{orgCourseDetail.CourseName}}" type="text" maxlength="50"  placeholder-class="form-input-placeholder" placeholder="(必填)" auto-focus=""/>
       </view>
     </view>
     <view class="form-item form-item-picker">
@@ -50,7 +50,7 @@
         <text>课程地点</text>
       </view>
       <view class="form-item-input">
-        <input name="Address" value="{{orgCourseDetail.Address}}" type="text" maxlength="5"  placeholder-class="form-input-placeholder" placeholder="(必填)" auto-focus=""/>
+        <input name="Address" value="{{orgCourseDetail.Address}}" type="text" maxlength="50"  placeholder-class="form-input-placeholder" placeholder="(必填)" auto-focus=""/>
       </view>
     </view>
 
@@ -67,7 +67,7 @@
         <text>主讲人简介</text>
       </view>
       <view class="form-item-input">
-        <input name="SpeakerInfo" value="{{orgCourseDetail.SpeakerInfo}}" type="text" maxlength="5"  placeholder-class="form-input-placeholder" placeholder="" auto-focus=""/>
+        <input name="SpeakerInfo" value="{{orgCourseDetail.SpeakerInfo}}" type="text" maxlength="500"  placeholder-class="form-input-placeholder" placeholder="(推荐填写)" auto-focus=""/>
       </view>
     </view>
     <view class="form-item" >
@@ -75,7 +75,7 @@
         <text>课程简介</text>
       </view>
       <view class="form-item-input">
-        <input name="CourseContent" value="{{orgCourseDetail.CourseContent}}" type="digit" maxlength="5"  placeholder-class="form-input-placeholder" placeholder="" auto-focus=""/>
+        <input name="CourseContent" value="{{orgCourseDetail.CourseContent}}" type="text" maxlength="500"  placeholder-class="form-input-placeholder" placeholder="(推荐填写)" auto-focus=""/>
       </view>
     </view>
     <view class="form-item upload-Item">
@@ -93,17 +93,17 @@
         </view>
       </view>
     </view>
-    <view class="form-item upload-Item">
+    <view class="form-item upload-Item" wx:if="{{false}}">
       <view class="form-item-label uploadLeft">
         <text>课程PPT</text>
       </view>
-      <view class="form-item-input upload-container" bindtap="choosePPT">
+      <view class="form-item-input upload-container" >
         <block wx:for="{{pptList}}" wx:for-item="image">
-          <view class="upload-preview">
-            <image class="weui-uploader__img" src="{{image}}" data-src="{{image}}" bindtap="previewImage"></image>
+          <view class="file-preview">
+            <button  style="width:120rpx;height:100rpx;padding-left:5rpx;padding-right:5rpx" data-scr="{{image}}" bindtap="downloadPPT">下载</button>
           </view>
         </block>
-        <view class="upload-preview">
+        <view class="upload-preview" bindtap="choosePPT">
           <view class="add-icon">+</view>
         </view>
       </view>

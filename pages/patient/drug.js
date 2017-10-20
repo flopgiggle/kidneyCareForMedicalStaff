@@ -31,7 +31,6 @@ Page({
     formSubmit: function (e) {
         var postData = [];
         for (var item of this.data.allSelectedDrugs) {
-            debugger;
             postData.push({
                 DrugCode: item.DrugCode,
                 DrugName: item.DrugName,
@@ -40,7 +39,6 @@ Page({
                 RecordTime: this.data.date
             });
         }
-        debugger;
         var url = app.globalData.urls.drugs.savePatientDrugs;
         util.httpPost(url,
         {

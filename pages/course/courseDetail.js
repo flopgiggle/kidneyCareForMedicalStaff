@@ -10,11 +10,13 @@ Page({
         courseId: "",
         courseDetail: {},
         picUrl: "",
-        pptUrl:"",
+        pptUrl: "",
+        isShowPic: false,
         checkedList: [],
         patientInfo: {},
         CKD: [{ Name: '1期', Id: '1' }, { Name: '2期', Id: '2' }, { Name: '3期', Id: '3' }, { Name: '4期', Id: '4' }, { Name: '5期', Id: '5' }],
-        CKDIndex: -1
+        CKDIndex: -1,
+        takeInData: {},
     },
     /**
      * 生命周期函数--监听页面加载
@@ -35,20 +37,38 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
+        this.getCourseDetail();
+        this.getCourseTakeInData();
+    },
+    getCourseDetail: function () {
         var url = app.globalData.urls.course.getCourseDetailById + this.data.courseId;
         util.http(url,
             res => {
                 var courseDetail = JSON.parse(res.Result);
-                debugger;
                 courseDetail.StartTimeString = util.formatDate("hh:mm", new Date(courseDetail.StartTime));
                 courseDetail.EndTimeString = util.formatDate("hh:mm", new Date(courseDetail.EndTime));
-                debugger;
+                var isShowPic = false;
+                if (courseDetail.PicUrl) {
+                    isShowPic = true;
+                }
                 this.setData({
                     courseDetail: courseDetail,
                     picUrl: app.globalData.courseFileUrl + courseDetail.PicUrl,
-                    pptUrl: app.globalData.courseFileUrl + courseDetail.PPTUrl
+                    pptUrl: app.globalData.courseFileUrl + courseDetail.PPTUrl,
+                    isShowPic: isShowPic,
                 });
-        });
+            });
+    },
+    getCourseTakeInData: function () {
+        var url = app.globalData.urls.course.getCourseTakeInData + this.data.courseId;
+        util.http(url,
+            res => {
+                var takeInData = res.Result;
+                this.setData({
+                    takeInData: takeInData
+                });
+
+            });
     },
     onDeleteTap: function () {
         var url = app.globalData.urls.course.deleteCorese + this.data.courseId;
