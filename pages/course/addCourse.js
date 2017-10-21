@@ -117,6 +117,38 @@ Page({
             return;
         }
 
+        if (postData.StartTime >= postData.EndTime) {
+            wx.showModal({
+                title: '提示',
+                content: '开始时间必须小于结束时间',
+                success: function (res) {
+                    if (res.confirm) {
+                        console.log('用户点击确定');
+                    } else if (res.cancel) {
+                        console.log('用户点击取消');
+                    }
+                }
+            });
+            return;
+        }
+        var selectTime = postData.Date + " " + postData.StartTime;
+        var nowTime = util.formatDate("yyyy-MM-dd hh:mm", new Date());
+        debugger;
+        if (selectTime <= nowTime) {
+            wx.showModal({
+                title: '提示',
+                content: '课程时间必须大于当前时间',
+                success: function (res) {
+                    if (res.confirm) {
+                        console.log('用户点击确定');
+                    } else if (res.cancel) {
+                        console.log('用户点击取消');
+                    }
+                }
+            });
+            return;
+        }
+
         if (postData.Address < 2) {
             wx.showModal({
                 title: '提示',
@@ -147,13 +179,21 @@ Page({
             return;
         }
 
+
+
         this.saveMainData(postData);
     },
     saveMainData: function (postData) {
         util.httpPost(app.globalData.urls.course.createCourse, postData, res => {
-            wx.redirectTo({
-                url: "/pages/course/manageCourse"
-            })
+            if (this.data.courseId) {
+                wx.navigateBack({
+                    delta: 1
+                })
+            } else {
+                wx.redirectTo({
+                    url: "/pages/course/manageCourse"
+                });
+            }
         });
     },
     uploadImage: function (filePath, callback) {

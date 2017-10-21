@@ -47,7 +47,7 @@
     </view>
     <view class="form-item" >
       <view class="form-item-label">
-        <text>课程地点</text>
+        <text>课程地址</text>
       </view>
       <view class="form-item-input">
         <input name="Address" value="{{orgCourseDetail.Address}}" type="text" maxlength="50"  placeholder-class="form-input-placeholder" placeholder="(必填)" auto-focus=""/>
@@ -84,7 +84,7 @@
       </view>
       <view class="form-item-input upload-container" bindtap="choosePic">
         <block wx:for="{{picList}}" wx:for-item="image">
-          <view class="upload-preview">
+          <view class="upload-preview" wx:if="{{image.indexOf('null')!=-1}}">
             <image class="weui-uploader__img" src="{{image}}" data-src="{{image}}" bindtap="previewImage"></image>
           </view>
         </block>

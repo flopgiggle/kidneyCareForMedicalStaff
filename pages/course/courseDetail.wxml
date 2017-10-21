@@ -24,7 +24,7 @@
         <view class="form-item-label">
           <text>课程日期</text>
         </view>
-        <view class="form-item-input">
+        <view class="form-item-input" wx:if="{{courseDetail}}">
           {{courseDetail.Date}} {{courseDetail.StartTimeString+" - "+courseDetail.EndTimeString}}
         </view>
       </view>
@@ -32,12 +32,12 @@
         <view class="form-item-label">
           <text>课程地点</text>
         </view>
-        <view class="form-item-input">
+        <view class="form-item-input" wx:if="{{courseDetail}}">
           {{courseDetail.Address}}
         </view>
       </view>
       <view class="form-item">
-        <view class="form-item-label">
+        <view class="form-item-label" wx:if="{{courseDetail}}">
           <text>主讲人</text>
         </view>
         <view class="form-item-input">
