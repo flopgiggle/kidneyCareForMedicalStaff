@@ -1,8 +1,8 @@
 <view class="container">
-  <view wx:if="{{ patientInfo.length==0}}" class="none-data">
+  <view wx:if="{{ courseList.length==0}}" class="none-data">
     <view>暂无课程信息</view>
   </view>
-  <block wx:for="{{patientInfo}}" wx:for-item="item" wx:for-index="idx">
+  <block wx:for="{{courseList}}" wx:for-item="item" wx:for-index="idx">
     <view class="form-group" data-course="{{item}}" bindtap="onCourseTap">
       <view class="form-item"  >
         <view class="form-item-label">
@@ -17,7 +17,7 @@
           <text>课程日期</text>
         </view>
         <view class="form-item-input">
-          {{item.Date}}
+          {{item.Date}}  {{item.StartTimeString+" - "+item.EndTimeString}}
         </view>
       </view>
       <view class="form-item">

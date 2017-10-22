@@ -33,7 +33,7 @@
           <text>患教内容</text>
         </view>
         <view class="form-item-input">
-          {{item.CoursCode}}
+          {{item.CoursCode?item.CoursCode:item.CoursName}}
         </view>
       </view>
       <view class="form-item">

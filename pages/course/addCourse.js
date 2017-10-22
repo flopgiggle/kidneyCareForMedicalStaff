@@ -234,13 +234,6 @@ Page({
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady: function () {
-
-    },
-
-    /**
-     * 生命周期函数--监听页面显示
-     */
-    onShow: function () {
         if (this.data.courseId) {
             var url = app.globalData.urls.course.getCourseDetailById + this.data.courseId;
             util.http(url,
@@ -253,7 +246,7 @@ Page({
                         startTime: courseDetail.StartTimeString,
                         endTime: courseDetail.EndTimeString,
                         date: courseDetail.Date,
-                        picList: [app.globalData.courseFileUrl + courseDetail.PicUrl],
+                        picList: courseDetail.PicUrl == null ? null : [app.globalData.courseFileUrl + courseDetail.PicUrl],
                         pptList: [app.globalData.courseFileUrl + courseDetail.PPTUrl],
                         appUrlName: courseDetail.PicUrl,
                         pptUrlName: courseDetail.PPTUrl,
@@ -262,6 +255,13 @@ Page({
                     });
                 });
         }
+    },
+
+    /**
+     * 生命周期函数--监听页面显示
+     */
+    onShow: function () {
+
     },
     downloadPPT: function (e) {
         debugger;

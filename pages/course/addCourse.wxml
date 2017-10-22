@@ -84,7 +84,7 @@
       </view>
       <view class="form-item-input upload-container" bindtap="choosePic">
         <block wx:for="{{picList}}" wx:for-item="image">
-          <view class="upload-preview" wx:if="{{image.indexOf('null')!=-1}}">
+          <view class="upload-preview" >
             <image class="weui-uploader__img" src="{{image}}" data-src="{{image}}" bindtap="previewImage"></image>
           </view>
         </block>
