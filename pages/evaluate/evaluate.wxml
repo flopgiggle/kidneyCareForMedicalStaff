@@ -57,7 +57,7 @@
         </view>
 
       </view>
-      <view class="form-item form-item-picker" bindtap="onContentTap">
+      <view class="form-item form-item-picker form-auto" bindtap="onContentTap">
         <view class="form-item-label">
           <text>患教内容</text>
         </view>

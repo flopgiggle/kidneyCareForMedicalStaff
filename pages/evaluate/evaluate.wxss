@@ -9,6 +9,9 @@ form {
 }
 
 .form-item {
-    height:auto;
     min-height:90rpx;
+}
+
+.form-auto {
+	height:auto;
 }
