@@ -21,7 +21,7 @@
           <picker bindchange="bindObjectChange" value="{{objectIndex}}" range="{{object}}" range-key="{{'name'}}">
             <view class="picker">
               <text class="form-input-placeholder" wx:if="{{objectIndex==-1}}">
-                请选择患教对象
+                请选择
               </text> {{objectIndex==-1?"":object[objectIndex].name}}
             </view>
           </picker>
@@ -50,7 +50,7 @@
           <picker bindchange="bindModeChange" value="{{modeIndex}}" range="{{mode}}" range-key="{{'name'}}">
             <view class="picker">
               <text class="form-input-placeholder" wx:if="{{modeIndex==-1}}">
-                请选择患教对象
+                请选择
               </text> {{modeIndex==-1?"":mode[modeIndex].name}}
             </view>
           </picker>
@@ -73,7 +73,7 @@
           <picker bindchange="bindCognitionChange" value="{{cognitionIndex}}" range="{{cognition}}" range-key="{{'name'}}">
             <view class="picker">
               <text class="form-input-placeholder" wx:if="{{cognitionIndex==-1}}">
-                请选择患教对象
+                请选择
               </text> {{cognitionIndex==-1?"":cognition[cognitionIndex].name}}
             </view>
           </picker>
@@ -87,7 +87,7 @@
           <picker bindchange="bindBehaviorChange" value="{{behaviorIndex}}" range="{{behavior}}" range-key="{{'name'}}">
             <view class="picker">
               <text class="form-input-placeholder" wx:if="{{behaviorIndex==-1}}">
-                请选择患教对象
+                请选择
               </text> {{behaviorIndex==-1?"":behavior[behaviorIndex].name}}
             </view>
           </picker>

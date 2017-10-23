@@ -40,9 +40,10 @@ Page({
         util.http(url,
             res => {
             var courseList = JSON.parse(res.Result);
-                courseList.forEach(a => {
-                    a.StartTimeString = util.formatDate("hh:mm", new Date(a.StartTime));
-                    a.EndTimeString = util.formatDate("hh:mm", new Date(a.EndTime));
+            courseList.forEach(a => {
+                    debugger;
+                    a.StartTimeString = util.formatDate("hh:mm", new Date(a.StartTime.replace("T", " ")));
+                    a.EndTimeString = util.formatDate("hh:mm", new Date(a.EndTime.replace("T", " ")));
                 });
 
             this.setData({ courseList: courseList });
