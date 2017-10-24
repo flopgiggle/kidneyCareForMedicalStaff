@@ -10,16 +10,22 @@
 .upload-container {
     justify-content: flex-start;
     display: flex;
+
 }
 
-.logoMessage {
+.signin {
     color: forestgreen;
     font-weight: bold;
     float: right;
     margin-top: 10rpx;
-    margin-left:5rpx;
 }
 
+.unsignin {
+    color: red;
+    font-weight: bold;
+    float: right;
+    margin-top: 10rpx;
+}
 
 .form-item image {
     width: 130rpx;
@@ -47,9 +53,9 @@
 }
 
     .titleRight .name {
-        flex: 30;
-        text-align: left;
-        margin-left: 20rpx;
+        flex:30;
+        text-align:left;
+        margin-left:20rpx;
     }
     .titleRight .sex {
         flex: 10;
@@ -57,7 +63,7 @@
         vertical-align:central;
     }
     .titleRight .age {
-        flex: 25;
+        flex: 70;
         text-align: left;
         vertical-align: central;
     }
@@ -65,8 +71,10 @@
         flex: 10;
     }
     .titleRight .status {
-        flex: 40;
+        flex: 50;
         text-align:left;
+        margin-left:5rpx;
+
     }
 
    

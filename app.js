@@ -69,6 +69,7 @@ App({
                 deleteCorese: baseUri + "course/deleteCorese/",
                 finishCourse: baseUri + "course/finishCourse/",
                 getCourseTakeInData: baseUri + "course/getCourseTakeInData/",
+                allSiginPersonList: baseUri + "course/allSiginPersonList/"
             }
 
         }

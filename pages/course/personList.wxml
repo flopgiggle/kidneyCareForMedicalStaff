@@ -2,7 +2,7 @@
 
   <view class="form-group">
     <view wx:if="{{ patientList.length==0}}" class="none-data">
-      <view>无患者信息,请联系患者绑定医患关系</view>
+      <view>暂无预约与签到信息</view>
     </view>
     <block wx:for="{{patientList}}" wx:for-item="userInfo">
       <view class="form-item upload-Item " data-patient="{{userInfo}}" bindtap="onPatientTap">
@@ -15,19 +15,7 @@
             {{userInfo.UserName?userInfo.UserName:""}}
           </view>
           <view class="age">
-            {{userInfo.age}}岁
-          </view>
-          <view class="sex">{{userInfo.Sex=="0"?"男":"女"}}
-          </view>
-
-          <view class="icon">
-            <image wx:if="{{userInfo.Sex=='0'}}" class="image-sex" src="/images/boy.png"></image>
-            <image wx:else="{{userInfo.Sex=='0'}}" class="image-sex" src="/images/girl.png"></image>
-          </view>
-          <view class="status">
-            <text class="logoMessage" wx:if="{{userInfo.IsNew}}" style="color:red">new</text>
-            <text class="logoMessage"wx:if="{{userInfo.isException}}" style="color:red"> 异常</text>
-            <text  class="logoMessage" wx:if="{{userInfo.IsRead==false}}" style="color:red"> 新消息</text>
+            {{userInfo.age}}岁{{"  "}}{{userInfo.Sex=="0"?"男":"女"}}{{"  "}}4期 <text class="signin" wx:if="{{userInfo.IsSignIn==true}}">已签到</text><text class="unsignin" wx:if="{{userInfo.IsSignIn==false}}">未签到</text>
           </view>
         </view>
       </view>

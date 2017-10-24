@@ -114,6 +114,16 @@ Page({
             url: "/pages/course/addCourse?courseId=" + this.data.courseId
         });
     },
+    onApointmentNumTap: function() {
+        wx.redirectTo({
+            url: "/pages/course/personList?courseId=" + this.data.courseId + "&apointment=" + this.data.takeInData.AppointmentPersonNum + "&signin=" + this.data.takeInData.SignInPersonNum
+        });
+    },
+    onSignInNumTap: function () {
+        wx.redirectTo({
+            url: "/pages/course/personList?courseId=" + this.data.courseId + "&apointment=" + this.data.takeInData.AppointmentPersonNum+ "&signin=" + this.data.takeInData.SignInPersonNum
+        });
+    },
     /**
      * 生命周期函数--监听页面隐藏
      */

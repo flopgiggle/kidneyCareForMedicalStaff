@@ -60,15 +60,15 @@
           {{courseDetail.CourseContent}}
         </view>
       </view>
-      <view class="form-item">
+      <view class="form-item form-item-picker" bindtap="onApointmentNumTap">
         <view class="form-item-label">
           <text>预约人数</text>
         </view>
-        <view class="form-item-input">
+        <view class="form-item-input ">
           {{takeInData.AppointmentPersonNum}}
         </view>
       </view>
-      <view class="form-item">
+      <view class="form-item form-item-picker" bindtap="onSignInNumTap">
         <view class="form-item-label">
           <text>签到人数</text>
         </view>
