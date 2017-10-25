@@ -157,7 +157,6 @@ Page({
                 var result = res.Result;
                 for (var oneItem of result) {
                     oneItem.age = util.jsGetAge(oneItem.Birthday);
-                    debugger;
                     if (wx.getStorageSync("newpatient" + oneItem.PatientId) !== false) {
                         oneItem.IsNew = true;
                     } else {
