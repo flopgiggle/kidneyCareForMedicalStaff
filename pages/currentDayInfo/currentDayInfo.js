@@ -22,7 +22,7 @@ Page({
     },
     onPatientTap: function (e) {
         wx.navigateTo({
-            url: "/pages/patient/patientDetail?patientId=" + e.currentTarget.dataset.patient.patientId + "&IsRead=" + e.currentTarget.dataset.patient.IsRead
+            url: "/pages/patient/patientDetail?patientId=" + e.currentTarget.dataset.patient.PatientId + "&IsRead=" + e.currentTarget.dataset.patient.IsRead
         });
     },
     bindDateChange: function (e) {
