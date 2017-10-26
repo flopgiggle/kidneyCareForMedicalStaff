@@ -238,8 +238,8 @@ Page({
             util.http(url,
                 res => {
                     var courseDetail = JSON.parse(res.Result);
-                    courseDetail.StartTimeString = util.formatDate("hh:mm", new Date(courseDetail.StartTime.replace("T", " ")));
-                    courseDetail.EndTimeString = util.formatDate("hh:mm", new Date(courseDetail.EndTime.replace("T", " ")));
+                    courseDetail.StartTimeString = util.formatDate("hh:mm", new Date(courseDetail.StartTime.replace("T", " ").replace("-", "/")));
+                    courseDetail.EndTimeString = util.formatDate("hh:mm", new Date(courseDetail.EndTime.replace("T", " ").replace("-", "/")));
                     this.setData({
                         startTime: courseDetail.StartTimeString,
                         endTime: courseDetail.EndTimeString,
