@@ -41,8 +41,11 @@ Page({
             res => {
             var courseList = JSON.parse(res.Result);
             courseList.forEach(a => {
-                a.StartTimeString = util.formatDate("hh:mm", new Date(a.StartTime.replace("T", " ").replace("-", "/")));
-                a.EndTimeString = util.formatDate("hh:mm", new Date(a.EndTime.replace("T", " ").replace("-", "/")));
+              a.StartTimeString = util.formatDate("hh:mm", new Date(a.StartTime.replace("T", " ").replace("-", "/").replace("-", "/")));
+              a.EndTimeString = util.formatDate("hh:mm", new Date(a.EndTime.replace("T", " ").replace("-", "/").replace("-", "/")));
+                console.log(a.StartTime.replace("T", " ").replace("-", "/"));
+              console.log(a.StartTimeString);
+                
                 });
 
             this.setData({ courseList: courseList });

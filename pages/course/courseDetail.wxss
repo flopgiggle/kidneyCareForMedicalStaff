@@ -18,6 +18,7 @@
 
 .avatar {
     max-height:400rpx;
+    width: 100%;
 }
 
 .form-item image {
