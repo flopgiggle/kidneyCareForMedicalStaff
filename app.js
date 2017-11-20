@@ -6,9 +6,9 @@ var runMode = "test";
 var util = require('utils/util.js');
 var _ = require('utils/undercore.js');
 var host = {
-    product: "https://30861365.qcloud.la",
-    test: "https://77964003.qcloud.la",
-    local: "http://localhost:11662",
+  product: "https://api.intellimedcare.com/",
+  test: "https://apitemp.intellimedcare.com/",
+  local: "http://localhost:11662"
 }
 var openId = {
     product: "",
