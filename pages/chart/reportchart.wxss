@@ -102,3 +102,7 @@
 .list-item.title {
     background-color: #ccffff
 }
+
+.report-year-area{
+  margin-bottom: 0;
+}

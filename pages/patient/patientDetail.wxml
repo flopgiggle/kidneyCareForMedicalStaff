@@ -55,7 +55,7 @@
   <view class="form-group" >
     <view class="form-item form-item-picker" bindtap='onRecordTap'>
       <view class="form-item-label">
-        <text>记录曲线</text>
+        <text>日常记录</text>
       </view>
       <view class="form-item-input">
        
@@ -63,7 +63,7 @@
     </view>
     <view class="form-item form-item-picker" bindtap='onReportTap'>
       <view class="form-item-label">
-        <text>报告记录</text>
+        <text>检查报告</text>
       </view>
       <view class="form-item-input">
        

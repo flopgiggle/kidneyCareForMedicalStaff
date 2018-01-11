@@ -13,11 +13,13 @@ Page({
      * 页面的初始数据
      */
     data: {
-        year: "2017",
+        year: "2018",
         result: [],
         report: [],
         picurl: app.globalData.picUrl,
-        patientId: ""
+        patientId: "",
+        array: ['2012', '2013', '2014', '2015', '2016', '2017', '2018'],
+        searchDate: 6,
     },
 
     /**
@@ -28,11 +30,14 @@ Page({
             patientId: options.patientId
         });
     },
+    onReady: function () {
+      this.loadList();
 
+    },
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
-    onReady: function () {
+    loadList: function () {
         var windowWidth = 320;
 
         try {
@@ -96,6 +101,15 @@ Page({
             current: picList[0], // 当前显示图片的http链接
             urls: picList // 需要预览的图片http链接列表
         });
+    },
+    bindDateChange: function (e) {
+      console.log('picker发送选择改变，携带值为', e.detail.value);
+      debugger;
+      this.setData({
+        searchDate: e.detail.value,
+        year: this.data.array[e.detail.value],
+      });
+      this.loadList();
     },
     /**
      * 生命周期函数--监听页面隐藏
