@@ -86,9 +86,12 @@ Page({
         res => {
             //合并收缩压舒张压数据
             //var recordListGroup = res.Result.MyRecord;
+            debugger;
             var patientInfo = JSON.parse(res.Result);
             wx.setStorageSync("patientInfo"+this.data.patientId, patientInfo);
+            debugger;
             this.setData({
+              
                 patientInfo: patientInfo,
                 age:util.jsGetAge(patientInfo.patientBaseInfo.Birthday)
             });
@@ -133,5 +136,16 @@ Page({
         wx.navigateTo({
             url: "/pages/patient/exceptInfo?patientId=" + this.data.patientId
         });
-    }
+    },
+    onTeleTap: function (e) {
+      wx.makePhoneCall({
+        phoneNumber: e.target.dataset.mobile, //此号码并非真实电话号码，仅用于测试  
+        success: function () {
+          console.log("拨打电话成功！")
+        },
+        fail: function () {
+          console.log("拨打电话失败！")
+        }
+      })  
+    },
 })

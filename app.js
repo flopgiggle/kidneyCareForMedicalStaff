@@ -2,7 +2,7 @@
 //1.product for onlie product environment 
 //2.test for onlie test environment
 //3.local for local debug enviromnet
-var runMode = "test";
+var runMode = "product";
 var util = require('utils/util.js');
 var _ = require('utils/undercore.js');
 var host = {
@@ -11,9 +11,11 @@ var host = {
   local: "http://localhost:11662"
 }
 var openId = {
+    //product: "ov3Ig0dzZLPu6sNxnzwMPjPHVjwc",
     product: "",
+    //test: "ov3Ig0dzZLPu6sNxnzwMPjPHVjwc",
     test: "",
-    local: "ov3Ig0RPltiiQn9kLVcxwIVsj_RU",
+    local: "ov3Ig0dzZLPu6sNxnzwMPjPHVjwc",
 }
 var baseUri = host[runMode] + "/api/";
 App({

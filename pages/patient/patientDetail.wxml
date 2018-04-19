@@ -5,8 +5,15 @@
         <image wx:if="{{patientInfo.patientBaseInfo.WxAvatarUrl!='' && patientInfo.patientBaseInfo.WxAvatarUrl!=null}}" class="avatar" src="{{patientInfo.patientBaseInfo.WxAvatarUrl}}"></image>
         <image wx:else="{{patientInfo.patientBaseInfo.WxAvatarUrl=='' ||patientInfo.patientBaseInfo.WxAvatarUrl==null }}" class="avatar" src="/images/avatar/1.png"></image>
       </view>
-      <view class="my-name">
-        <text>{{patientInfo.patientBaseInfo.UserName?patientInfo.patientBaseInfo.UserName:""}} {{patientInfo.patientBaseInfo.Sex=="0"?"男":"女"}} {{age}}岁</text>
+      <view style='height:100%;margin-top:40rpx'>
+        <view class="my-name" style='height:10rpx'>
+          <text>{{patientInfo.patientBaseInfo.UserName?patientInfo.patientBaseInfo.UserName:""}} {{patientInfo.patientBaseInfo.Sex=="0"?"男":"女"}} {{age}}岁</text>  
+        </view>
+        <view class="my-name" style='height:10rpx'>
+          <text style='font-size:30rpx'>
+            医生:{{patientInfo.patientBaseInfo.DoctorName?patientInfo.patientBaseInfo.DoctorName:"未绑定"}} 护士:{{patientInfo.patientBaseInfo.NurseName?patientInfo.patientBaseInfo.NurseName:"未绑定"}}
+          </text>
+        </view>
       </view>
     </view>
   </view>
@@ -119,6 +126,16 @@
       <view class="form-item-label row {{IsRead=='false'?'red-point':''}}">
         <view class="messageTitle">
           <text>沟通消息</text>
+        </view>
+      </view>
+      <view class="form-item-input ">
+      
+      </view>
+    </view>
+    <view class="form-item form-item-picker" data-mobile="{{patientInfo.patientBaseInfo.MobilePhone}}" bindtap='onTeleTap'>
+      <view class="form-item-label row {{IsRead=='false'?'red-point':''}}">
+        <view class="messageTitle">
+          <text>拨打电话</text>
         </view>
       </view>
       <view class="form-item-input ">
